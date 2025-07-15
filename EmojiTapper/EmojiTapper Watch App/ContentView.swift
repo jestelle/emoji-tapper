@@ -83,13 +83,17 @@ struct GameView: View {
                     .padding(.horizontal)
                 }
                 
-                // Emoji
-                Text(gameState.currentEmoji)
-                    .font(.system(size: 30))
-                    .position(gameState.emojiPosition)
-                    .onTapGesture {
-                        gameState.emojiTapped()
-                    }
+                // Emojis (sorted by zIndex so higher z-index renders on top and gets priority for taps)
+                ForEach(gameState.currentEmojis.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
+                    Text(emoji.emoji)
+                        .font(.system(size: 30 * gameState.emojiSizeMultiplier))
+                        .opacity(gameState.emojiOpacity)
+                        .position(emoji.position)
+                        .zIndex(Double(emoji.zIndex))
+                        .onTapGesture {
+                            gameState.emojiTapped(emoji)
+                        }
+                }
             }
         }
     }
