@@ -16,10 +16,19 @@ class GameState {
     var currentEmoji: String = "🎯"
     var emojiPosition: CGPoint = CGPoint(x: 75, y: 75)
     var currentLevel: GameLevel = BasicLevel()
+    var highScore: Int = 0 {
+        didSet {
+            saveHighScore()
+        }
+    }
     
     private var gameTimer: Timer?
     
-    let availableEmojis = ["😀", "🎯", "⭐", "🎈", "🔥", "💎", "🎮", "⚡", "🌟", "🎊"]
+    let availableEmojis = ["😀", "😊", "😂", "🥰", "😎", "🤔", "😮", "😋", "🙂", "😆", "😍", "🤗", "😴", "🤯", "😇"]
+    
+    init() {
+        loadHighScore()
+    }
     
     func startGame() {
         score = 0
@@ -32,6 +41,10 @@ class GameState {
     func endGame() {
         isGameActive = false
         stopTimer()
+        
+        if score > highScore {
+            highScore = score
+        }
     }
     
     func emojiTapped() {
@@ -67,5 +80,13 @@ class GameState {
     private func stopTimer() {
         gameTimer?.invalidate()
         gameTimer = nil
+    }
+    
+    private func saveHighScore() {
+        UserDefaults.standard.set(highScore, forKey: "EmojiTapperHighScore")
+    }
+    
+    private func loadHighScore() {
+        highScore = UserDefaults.standard.integer(forKey: "EmojiTapperHighScore")
     }
 }

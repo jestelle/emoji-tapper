@@ -18,8 +18,8 @@ protocol GameLevel {
 
 struct BasicLevel: GameLevel {
     let name = "Basic"
-    let initialTime: TimeInterval = 10.0
-    let timeBonus: Double = 0.1 // 10% time bonus
+    let initialTime: TimeInterval = 30.0
+    let timeBonus: Double = 0.0 // No time bonus
     
     func shouldShowEmoji(_ emoji: String, in availableEmojis: [String]) -> Bool {
         return true // Show any emoji

@@ -28,7 +28,7 @@ struct MenuView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            Text("🎯")
+            Text("😊")
                 .font(.system(size: 40))
             
             Text("Emoji Tapper")
@@ -36,9 +36,15 @@ struct MenuView: View {
                 .foregroundColor(.white)
             
             if gameState.score > 0 {
-                Text("Score: \(gameState.score)")
+                Text("Last: \(gameState.score)")
                     .font(.subheadline)
                     .foregroundColor(.gray)
+            }
+            
+            if gameState.highScore > 0 {
+                Text("High: \(gameState.highScore)")
+                    .font(.subheadline)
+                    .foregroundColor(.yellow)
             }
             
             Button("Start Game") {
@@ -55,22 +61,26 @@ struct GameView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Timer and Score HUD
+                // Timer progress bar and Score HUD
                 VStack {
+                    // Timer progress bar
                     HStack {
-                        Text("\(Int(gameState.timeRemaining))s")
-                            .font(.caption)
-                            .foregroundColor(.white)
-                        
-                        Spacer()
-                        
-                        Text("Score: \(gameState.score)")
-                            .font(.caption)
-                            .foregroundColor(.white)
+                        ProgressView(value: gameState.timeRemaining, total: gameState.currentLevel.initialTime)
+                            .progressViewStyle(LinearProgressViewStyle(tint: .green))
+                            .scaleEffect(x: 1, y: 2, anchor: .center)
                     }
                     .padding(.horizontal)
                     
                     Spacer()
+                    
+                    // Score in lower left corner
+                    HStack {
+                        Text("\(gameState.score)")
+                            .font(.caption)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
                 }
                 
                 // Emoji
