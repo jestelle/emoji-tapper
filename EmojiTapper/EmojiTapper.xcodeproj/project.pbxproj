@@ -1,0 +1,671 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FC0ADA502E26057000A4D0F6 /* EmojiTapper Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC0ADA512E26057000A4D0F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC0ADA4E2E26057000A4D0F6;
+			remoteInfo = "EmojiTapper Watch App";
+		};
+		FC0ADA622E26057100A4D0F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC0ADA4E2E26057000A4D0F6;
+			remoteInfo = "EmojiTapper Watch App";
+		};
+		FC0ADA6C2E26057100A4D0F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC0ADA4E2E26057000A4D0F6;
+			remoteInfo = "EmojiTapper Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FC0ADA782E26057100A4D0F6 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				FC0ADA502E26057000A4D0F6 /* EmojiTapper Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FC0ADA492E26057000A4D0F6 /* EmojiTapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiTapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmojiTapper Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EmojiTapper Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EmojiTapper Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FC0ADA532E26057000A4D0F6 /* EmojiTapper Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "EmojiTapper Watch App";
+			sourceTree = "<group>";
+		};
+		FC0ADA642E26057100A4D0F6 /* EmojiTapper Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "EmojiTapper Watch AppTests";
+			sourceTree = "<group>";
+		};
+		FC0ADA6E2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "EmojiTapper Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC0ADA4C2E26057000A4D0F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA5E2E26057100A4D0F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA682E26057100A4D0F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC0ADA422E26057000A4D0F6 = {
+			isa = PBXGroup;
+			children = (
+				FC0ADA532E26057000A4D0F6 /* EmojiTapper Watch App */,
+				FC0ADA642E26057100A4D0F6 /* EmojiTapper Watch AppTests */,
+				FC0ADA6E2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */,
+				FC0ADA4A2E26057000A4D0F6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC0ADA4A2E26057000A4D0F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC0ADA492E26057000A4D0F6 /* EmojiTapper.app */,
+				FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */,
+				FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */,
+				FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FC0ADA482E26057000A4D0F6 /* EmojiTapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC0ADA792E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper" */;
+			buildPhases = (
+				FC0ADA472E26057000A4D0F6 /* Resources */,
+				FC0ADA782E26057100A4D0F6 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC0ADA522E26057000A4D0F6 /* PBXTargetDependency */,
+			);
+			name = EmojiTapper;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapper;
+			productReference = FC0ADA492E26057000A4D0F6 /* EmojiTapper.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC0ADA752E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper Watch App" */;
+			buildPhases = (
+				FC0ADA4B2E26057000A4D0F6 /* Sources */,
+				FC0ADA4C2E26057000A4D0F6 /* Frameworks */,
+				FC0ADA4D2E26057000A4D0F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FC0ADA532E26057000A4D0F6 /* EmojiTapper Watch App */,
+			);
+			name = "EmojiTapper Watch App";
+			packageProductDependencies = (
+			);
+			productName = "EmojiTapper Watch App";
+			productReference = FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC0ADA602E26057100A4D0F6 /* EmojiTapper Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC0ADA7C2E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper Watch AppTests" */;
+			buildPhases = (
+				FC0ADA5D2E26057100A4D0F6 /* Sources */,
+				FC0ADA5E2E26057100A4D0F6 /* Frameworks */,
+				FC0ADA5F2E26057100A4D0F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC0ADA632E26057100A4D0F6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC0ADA642E26057100A4D0F6 /* EmojiTapper Watch AppTests */,
+			);
+			name = "EmojiTapper Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "EmojiTapper Watch AppTests";
+			productReference = FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FC0ADA6A2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC0ADA7F2E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper Watch AppUITests" */;
+			buildPhases = (
+				FC0ADA672E26057100A4D0F6 /* Sources */,
+				FC0ADA682E26057100A4D0F6 /* Frameworks */,
+				FC0ADA692E26057100A4D0F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC0ADA6D2E26057100A4D0F6 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC0ADA6E2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */,
+			);
+			name = "EmojiTapper Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "EmojiTapper Watch AppUITests";
+			productReference = FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FC0ADA432E26057000A4D0F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					FC0ADA482E26057000A4D0F6 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					FC0ADA4E2E26057000A4D0F6 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					FC0ADA602E26057100A4D0F6 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FC0ADA4E2E26057000A4D0F6;
+					};
+					FC0ADA6A2E26057100A4D0F6 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FC0ADA4E2E26057000A4D0F6;
+					};
+				};
+			};
+			buildConfigurationList = FC0ADA462E26057000A4D0F6 /* Build configuration list for PBXProject "EmojiTapper" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FC0ADA422E26057000A4D0F6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FC0ADA4A2E26057000A4D0F6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC0ADA482E26057000A4D0F6 /* EmojiTapper */,
+				FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */,
+				FC0ADA602E26057100A4D0F6 /* EmojiTapper Watch AppTests */,
+				FC0ADA6A2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FC0ADA472E26057000A4D0F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA4D2E26057000A4D0F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA5F2E26057100A4D0F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA692E26057100A4D0F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FC0ADA4B2E26057000A4D0F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA5D2E26057100A4D0F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC0ADA672E26057100A4D0F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FC0ADA522E26057000A4D0F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */;
+			targetProxy = FC0ADA512E26057000A4D0F6 /* PBXContainerItemProxy */;
+		};
+		FC0ADA632E26057100A4D0F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */;
+			targetProxy = FC0ADA622E26057100A4D0F6 /* PBXContainerItemProxy */;
+		};
+		FC0ADA6D2E26057100A4D0F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */;
+			targetProxy = FC0ADA6C2E26057100A4D0F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FC0ADA732E26057100A4D0F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FC0ADA742E26057100A4D0F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		FC0ADA762E26057100A4D0F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EmojiTapper Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EmojiTapper;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapper.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		FC0ADA772E26057100A4D0F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EmojiTapper Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = EmojiTapper;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapper.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		FC0ADA7A2E26057100A4D0F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				INFOPLIST_KEY_CFBundleDisplayName = EmojiTapper;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FC0ADA7B2E26057100A4D0F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				INFOPLIST_KEY_CFBundleDisplayName = EmojiTapper;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC0ADA7D2E26057100A4D0F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joshestelle.EmojiTapper-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiTapper Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmojiTapper Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		FC0ADA7E2E26057100A4D0F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joshestelle.EmojiTapper-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiTapper Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmojiTapper Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		FC0ADA802E26057100A4D0F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joshestelle.EmojiTapper-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "EmojiTapper Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		FC0ADA812E26057100A4D0F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joshestelle.EmojiTapper-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "EmojiTapper Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FC0ADA462E26057000A4D0F6 /* Build configuration list for PBXProject "EmojiTapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC0ADA732E26057100A4D0F6 /* Debug */,
+				FC0ADA742E26057100A4D0F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC0ADA752E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC0ADA762E26057100A4D0F6 /* Debug */,
+				FC0ADA772E26057100A4D0F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC0ADA792E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC0ADA7A2E26057100A4D0F6 /* Debug */,
+				FC0ADA7B2E26057100A4D0F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC0ADA7C2E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC0ADA7D2E26057100A4D0F6 /* Debug */,
+				FC0ADA7E2E26057100A4D0F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC0ADA7F2E26057100A4D0F6 /* Build configuration list for PBXNativeTarget "EmojiTapper Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC0ADA802E26057100A4D0F6 /* Debug */,
+				FC0ADA812E26057100A4D0F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FC0ADA432E26057000A4D0F6 /* Project object */;
+}
