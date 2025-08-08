@@ -112,11 +112,11 @@ class GameState {
         // Fill remaining slots with normal emojis
         let remainingSlots = targetCount - 1
         for _ in 0..<remainingSlots {
-            // 20% chance for skull, 10% chance for hourglass (max 1), 10% chance for cherry (max 3)
+            // 40% chance for skull, 10% chance for hourglass (max 1), 10% chance for cherry (max 3)
             let randomValue = Double.random(in: 0...1)
             
-            if randomValue < 0.2 {
-                // Add skull (20% chance)
+            if randomValue < 0.4 {
+                // Add skull (40% chance)
                 let position = generateRandomPosition()
                 currentEmojis.append(GameEmoji(
                     emoji: "💀",
@@ -125,7 +125,7 @@ class GameState {
                     zIndex: zIndex
                 ))
                 zIndex += 1
-            } else if randomValue < 0.3 {
+            } else if randomValue < 0.5 {
                 // Check if we already have an hourglass
                 let hasHourglass = currentEmojis.contains { $0.type == .hourglass }
                 if !hasHourglass {
@@ -149,7 +149,7 @@ class GameState {
                     ))
                     zIndex += 1
                 }
-            } else if randomValue < 0.4 {
+            } else if randomValue < 0.6 {
                 // Check if we already have 3 cherries
                 let cherryCount = currentEmojis.filter { $0.type == .cherry }.count
                 if cherryCount < 3 {
@@ -174,7 +174,7 @@ class GameState {
                     zIndex += 1
                 }
             } else {
-                // Add normal emoji (60% chance)
+                // Add normal emoji (40% chance)
                 let normalEmoji = normalEmojis.randomElement() ?? "😀"
                 let position = generateRandomPosition()
                 currentEmojis.append(GameEmoji(
