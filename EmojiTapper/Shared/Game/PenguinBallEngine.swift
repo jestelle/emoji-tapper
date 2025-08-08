@@ -22,10 +22,11 @@ class PenguinBallEngine: GameModeEngine {
     
     // Penguin Ball specific properties
     private var currentRound: Int = 0
-    private let maxRounds: Int = 10
+    private let maxRounds: Int = 5
     private var timeUntilDisappear: TimeInterval = 1.0
     private var totalEmojis: Int = 0
     private var emojisRemaining: Int = 0
+    var roundScores: [Int] = [] // Track score for each round
     
     var gameStateText: String {
         if isGameActive {
@@ -56,6 +57,7 @@ class PenguinBallEngine: GameModeEngine {
     func startGame() {
         score = 0
         currentRound = 0
+        roundScores = []
         isGameActive = true
         startNextRound()
     }
@@ -74,7 +76,9 @@ class PenguinBallEngine: GameModeEngine {
         
         if emoji.emoji == "🐧" {
             // Found the penguin!
-            score += possiblePoints
+            let roundScore = possiblePoints
+            score += roundScore
+            roundScores.append(roundScore)
             stopAllTimers()
             
             if currentRound >= maxRounds {

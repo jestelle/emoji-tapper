@@ -20,7 +20,7 @@ enum GameMode: String, CaseIterable {
         case .classic:
             return "Tap emojis to score points and earn time"
         case .penguinBall:
-            return "Find the penguin among many emojis in 10 rounds"
+            return "Find the penguin among many emojis in 5 rounds"
         }
     }
 }

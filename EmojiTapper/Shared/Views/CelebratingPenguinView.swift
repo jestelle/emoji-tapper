@@ -13,13 +13,15 @@ struct CelebratingPenguinView: View {
     @State private var isGrown = false
     
     var body: some View {
-        Text(penguin.emoji)
-            .font(.system(size: fontSize))
-            .position(penguin.position)
-            .scaleEffect(isGrown ? 1.25 : 1.0) // Grow by 25%
-            .animation(.easeInOut(duration: 0.3), value: isGrown)
-            .onAppear {
-                isGrown = true
-            }
+        GeometryReader { geometry in
+            Text(penguin.emoji)
+                .font(.system(size: fontSize))
+                .scaleEffect(isGrown ? 1.25 : 1.0, anchor: .center)
+                .position(penguin.position)
+                .animation(.easeInOut(duration: 0.3), value: isGrown)
+        }
+        .onAppear {
+            isGrown = true
+        }
     }
 }

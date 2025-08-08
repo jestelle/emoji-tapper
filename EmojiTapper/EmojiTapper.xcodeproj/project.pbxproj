@@ -28,6 +28,8 @@
 		FC7910DC2E459A2E00F1EAB4 /* AnimatedEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910D92E459A2E00F1EAB4 /* AnimatedEmojiView.swift */; };
 		FC7910DE2E459BFB00F1EAB4 /* CelebratingPenguinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910DD2E459BFB00F1EAB4 /* CelebratingPenguinView.swift */; };
 		FC7910DF2E459BFB00F1EAB4 /* CelebratingPenguinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910DD2E459BFB00F1EAB4 /* CelebratingPenguinView.swift */; };
+		FC7910E12E459E4100F1EAB4 /* GameEndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */; };
+		FC7910E22E459E4100F1EAB4 /* GameEndScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,7 @@
 		FC7910D62E4599F800F1EAB4 /* AnimatedEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedEmoji.swift; sourceTree = "<group>"; };
 		FC7910D92E459A2E00F1EAB4 /* AnimatedEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedEmojiView.swift; sourceTree = "<group>"; };
 		FC7910DD2E459BFB00F1EAB4 /* CelebratingPenguinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebratingPenguinView.swift; sourceTree = "<group>"; };
+		FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -246,6 +249,7 @@
 			children = (
 				FC7910D92E459A2E00F1EAB4 /* AnimatedEmojiView.swift */,
 				FC7910DD2E459BFB00F1EAB4 /* CelebratingPenguinView.swift */,
+				FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -529,6 +533,7 @@
 			files = (
 				FC7910D52E45955200F1EAB4 /* GameMode.swift in Sources */,
 				FC7910DF2E459BFB00F1EAB4 /* CelebratingPenguinView.swift in Sources */,
+				FC7910E12E459E4100F1EAB4 /* GameEndScreen.swift in Sources */,
 				FC7910C52E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
 				FC7910D82E4599F800F1EAB4 /* AnimatedEmoji.swift in Sources */,
 				FC7910DC2E459A2E00F1EAB4 /* AnimatedEmojiView.swift in Sources */,
@@ -560,6 +565,7 @@
 			files = (
 				FC7910D42E45955200F1EAB4 /* GameMode.swift in Sources */,
 				FC7910DE2E459BFB00F1EAB4 /* CelebratingPenguinView.swift in Sources */,
+				FC7910E22E459E4100F1EAB4 /* GameEndScreen.swift in Sources */,
 				FC7910C92E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
 				FC7910D72E4599F800F1EAB4 /* AnimatedEmoji.swift in Sources */,
 				FC7910DB2E459A2E00F1EAB4 /* AnimatedEmojiView.swift in Sources */,

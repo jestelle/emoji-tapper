@@ -42,6 +42,7 @@ class PlatformGameState {
     var currentEmojis: [PositionedGameEmoji] = []
     var animatingEmojis: [AnimatedEmoji] = []
     var celebratingPenguin: PositionedGameEmoji? = nil
+    var showGameEndScreen: Bool = false
     var selectedGameMode: GameMode = .classic {
         didSet {
             switchGameMode(to: selectedGameMode)
@@ -53,6 +54,14 @@ class PlatformGameState {
     var isGameActive: Bool { gameEngine.isGameActive }
     var highScore: Int { gameEngine.highScore }
     var gameStateText: String { gameEngine.gameStateText }
+    
+    // Penguin Ball specific properties
+    var roundScores: [Int] {
+        if let penguinEngine = gameEngine as? PenguinBallEngine {
+            return penguinEngine.roundScores
+        }
+        return []
+    }
     
     // Classic mode specific properties for progress bar
     var timeRemainingForProgress: TimeInterval {
@@ -94,6 +103,7 @@ class PlatformGameState {
         currentEmojis.removeAll()
         animatingEmojis.removeAll()
         celebratingPenguin = nil
+        showGameEndScreen = false
     }
     
     private func setupEngineCallback() {
@@ -169,6 +179,15 @@ class PlatformGameState {
         currentEmojis.removeAll()
         animatingEmojis.removeAll()
         celebratingPenguin = nil
+        
+        // Show end screen for Penguin Ball
+        if gameEngine.gameMode == .penguinBall {
+            showGameEndScreen = true
+        }
+    }
+    
+    func dismissGameEndScreen() {
+        showGameEndScreen = false
     }
     
     func emojiTapped(_ emoji: PositionedGameEmoji) {
@@ -214,11 +233,18 @@ class PlatformGameState {
         // Remove non-penguin emojis from current display
         currentEmojis.removeAll { $0.id != clickedPenguin.id }
         
-        // After celebration period, proceed to next round
+        // After celebration period, proceed to next round or show end screen
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.celebratingPenguin = nil
-            self.gameEngine.proceedToNextRound()
-            self.updatePositions()
+            
+            // Check if game should end after this round
+            if let penguinEngine = self.gameEngine as? PenguinBallEngine,
+               penguinEngine.roundScores.count >= 5 { // All 5 rounds complete
+                self.endGame()
+            } else {
+                self.gameEngine.proceedToNextRound()
+                self.updatePositions()
+            }
         }
     }
     

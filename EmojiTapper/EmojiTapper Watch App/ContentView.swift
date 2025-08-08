@@ -14,7 +14,17 @@ struct ContentView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            if gameState.isGameActive {
+            if gameState.showGameEndScreen {
+                GameEndScreenWatch(
+                    totalScore: gameState.score,
+                    roundScores: gameState.roundScores,
+                    highScore: gameState.highScore,
+                    isNewHighScore: gameState.score == gameState.highScore && gameState.score > 0,
+                    onDismiss: {
+                        gameState.dismissGameEndScreen()
+                    }
+                )
+            } else if gameState.isGameActive {
                 GameView(gameState: gameState)
             } else {
                 MenuView(gameState: gameState)
@@ -31,7 +41,7 @@ struct MenuView: View {
             Text(gameState.selectedGameMode == .classic ? "😊" : "🐧")
                 .font(.system(size: 35))
             
-            Text("Emoji Tapper")
+            Text(gameState.selectedGameMode == .classic ? "Emoji Tapper" : "Penguin Ball")
                 .font(.headline)
                 .foregroundColor(.white)
             
@@ -45,17 +55,16 @@ struct MenuView: View {
             .pickerStyle(.menu)
             .font(.caption)
             
-            if gameState.score > 0 {
-                Text("Last: \(gameState.score)")
-                    .font(.caption2)
-                    .foregroundColor(.gray)
-            }
+            // Reserve space for scores to prevent layout shifts
+            Text(gameState.score > 0 ? "Last: \(gameState.score)" : " ")
+                .font(.caption2)
+                .foregroundColor(.gray)
+                .opacity(gameState.score > 0 ? 1.0 : 0.0)
             
-            if gameState.highScore > 0 {
-                Text("High: \(gameState.highScore)")
-                    .font(.caption2)
-                    .foregroundColor(.yellow)
-            }
+            Text(gameState.highScore > 0 ? "High: \(gameState.highScore)" : " ")
+                .font(.caption2)
+                .foregroundColor(.yellow)
+                .opacity(gameState.highScore > 0 ? 1.0 : 0.0)
             
             Button("Start Game") {
                 gameState.startGame()
@@ -105,7 +114,10 @@ struct GameView: View {
                 }
                 
                 // Emojis (sorted by zIndex so higher z-index renders on top and gets priority for taps)
-                ForEach(gameState.currentEmojis.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
+                // Exclude celebrating penguin from regular emojis to avoid double display
+                ForEach(gameState.currentEmojis.filter { emoji in
+                    gameState.celebratingPenguin?.id != emoji.id
+                }.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
                     Text(emoji.emoji)
                         .font(.system(size: 40))
                         .position(emoji.position)
