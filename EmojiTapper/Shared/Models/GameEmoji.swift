@@ -15,8 +15,23 @@ enum EmojiType {
 }
 
 struct GameEmoji: Identifiable {
-    let id = UUID()
+    let id: UUID
     let emoji: String
     let type: EmojiType
     let zIndex: Int // Higher values render on top
+    
+    init(emoji: String, type: EmojiType, zIndex: Int) {
+        self.id = UUID()
+        self.emoji = emoji
+        self.type = type
+        self.zIndex = zIndex
+    }
+    
+    // Manual initializer to preserve ID when updating z-index
+    init(id: UUID, emoji: String, type: EmojiType, zIndex: Int) {
+        self.id = id
+        self.emoji = emoji
+        self.type = type
+        self.zIndex = zIndex
+    }
 }
