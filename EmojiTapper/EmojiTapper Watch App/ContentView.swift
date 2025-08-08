@@ -138,7 +138,7 @@ struct GameView: View {
                     DancingEmojiView(
                         emoji: emoji.emoji,
                         basePosition: emoji.position,
-                        fontSize: 40,
+                        fontSize: 30, // 25% smaller (40 * 0.75 = 30)
                         zIndex: Double(emoji.zIndex),
                         onTap: {
                             gameState.emojiTapped(emoji)
@@ -148,19 +148,19 @@ struct GameView: View {
                 
                 // Celebrating penguin (grown and staying in place)
                 if let celebratingPenguin = gameState.celebratingPenguin {
-                    CelebratingPenguinView(penguin: celebratingPenguin, fontSize: 40)
+                    CelebratingPenguinView(penguin: celebratingPenguin, fontSize: 30)
                 }
                 
                 // Animated emojis flying off screen
                 ForEach(gameState.animatingEmojis) { animatedEmoji in
-                    AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 40)
+                    AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 30)
                 }
                 
                 // Animated position changes (wrong emoji taps in Penguin Ball)
                 ForEach(gameState.animatedPositionChanges) { animatedChange in
                     AnimatedPositionChangeView(
                         animatedChange: animatedChange,
-                        fontSize: 40,
+                        fontSize: 30,
                         onComplete: {
                             // Individual animations will clean themselves up via the timer
                         }
