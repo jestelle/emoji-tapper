@@ -130,13 +130,15 @@ struct iOSGameView: View {
                 ForEach(gameState.currentEmojis.filter { emoji in
                     gameState.celebratingPenguin?.id != emoji.id
                 }.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
-                    Text(emoji.emoji)
-                        .font(.system(size: 60)) // Larger for iPhone
-                        .position(emoji.position)
-                        .zIndex(Double(emoji.zIndex))
-                        .onTapGesture {
+                    DancingEmojiView(
+                        emoji: emoji.emoji,
+                        basePosition: emoji.position,
+                        fontSize: 60, // Larger for iPhone
+                        zIndex: Double(emoji.zIndex),
+                        onTap: {
                             gameState.emojiTapped(emoji)
                         }
+                    )
                 }
                 
                 // Celebrating penguin (grown and staying in place)

@@ -36,14 +36,29 @@ struct AnimatedPositionChangeView: View {
         return CGPoint(x: x, y: y)
     }
     
+    @State private var danceRotation: Double = 0
+    @State private var danceScale: Double = 1.0
+    
     var body: some View {
         Text(animatedChange.emoji)
             .font(.system(size: fontSize))
             .position(currentPosition)
+            .rotationEffect(.degrees(danceRotation))
+            .scaleEffect(danceScale)
             .zIndex(Double(animatedChange.zIndex))
             .onAppear {
+                // Main position animation
                 withAnimation(.easeInOut(duration: animatedChange.duration)) {
                     progress = 1.0
+                }
+                
+                // Add subtle dance animations during the position change
+                withAnimation(
+                    .easeInOut(duration: 0.15)
+                    .repeatForever(autoreverses: true)
+                ) {
+                    danceRotation = Double.random(in: -3...3)
+                    danceScale = Double.random(in: 0.98...1.02)
                 }
                 
                 // Call completion callback after animation

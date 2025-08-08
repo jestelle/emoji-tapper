@@ -34,6 +34,8 @@
 		FC7910E52E45A15F00F1EAB4 /* AnimatedPositionChangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910E32E45A15F00F1EAB4 /* AnimatedPositionChangeView.swift */; };
 		FC7910E72E45A16400F1EAB4 /* AnimatedPositionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910E62E45A16400F1EAB4 /* AnimatedPositionChange.swift */; };
 		FC7910E82E45A16400F1EAB4 /* AnimatedPositionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910E62E45A16400F1EAB4 /* AnimatedPositionChange.swift */; };
+		FC79110F2E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */; };
+		FC7911102E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,7 @@
 		FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndScreen.swift; sourceTree = "<group>"; };
 		FC7910E32E45A15F00F1EAB4 /* AnimatedPositionChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPositionChangeView.swift; sourceTree = "<group>"; };
 		FC7910E62E45A16400F1EAB4 /* AnimatedPositionChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPositionChange.swift; sourceTree = "<group>"; };
+		FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancingEmojiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -258,6 +261,7 @@
 				FC7910D92E459A2E00F1EAB4 /* AnimatedEmojiView.swift */,
 				FC7910DD2E459BFB00F1EAB4 /* CelebratingPenguinView.swift */,
 				FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */,
+				FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -551,6 +555,7 @@
 				FC7910C72E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
 				FC7910C82E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
 				FC7910CF2E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
+				FC79110F2E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7910D02E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +590,7 @@
 				FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
 				FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
 				FC7910D12E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
+				FC7911102E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7910D22E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
