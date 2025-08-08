@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color.primary.colorInvert().ignoresSafeArea()
             
             if gameState.showGameEndScreen {
                 GameEndScreen(
@@ -44,7 +44,7 @@ struct iOSMenuView: View {
             Text(gameState.selectedGameMode == .classic ? "Emoji Tapper" : "Penguin Ball")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
             
             // Game mode picker
             Picker("Game Mode", selection: $gameState.selectedGameMode) {
@@ -104,7 +104,7 @@ struct iOSGameView: View {
                         HStack {
                             Text(gameState.gameStateText)
                                 .font(.headline)
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -118,7 +118,7 @@ struct iOSGameView: View {
                         Text("\(gameState.score)")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                         Spacer()
                     }
                     .padding(.horizontal)

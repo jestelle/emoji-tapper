@@ -16,7 +16,7 @@ struct GameEndScreen: View {
     
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color.primary.colorInvert().ignoresSafeArea()
             
             ScrollView {
                 VStack(spacing: 20) {
@@ -24,7 +24,7 @@ struct GameEndScreen: View {
                     Text("🐧 Game Complete! 🐧")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                     
                     if isNewHighScore {
@@ -43,7 +43,7 @@ struct GameEndScreen: View {
                         
                         Text("\(totalScore)")
                             .font(.system(size: 48, weight: .bold))
-                            .foregroundColor(isNewHighScore ? .yellow : .white)
+                            .foregroundColor(isNewHighScore ? .yellow : .primary)
                     }
                     
                     // Round Breakdown
@@ -55,7 +55,7 @@ struct GameEndScreen: View {
                         ForEach(Array(roundScores.enumerated()), id: \.offset) { index, score in
                             HStack {
                                 Text("Round \(index + 1)")
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
                                 Spacer()
                                 Text("\(score) pts")
                                     .foregroundColor(.green)
@@ -109,7 +109,7 @@ struct GameEndScreenWatch: View {
                 Text("🐧 Complete! 🐧")
                     .font(.headline)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
                 
                 if isNewHighScore {
@@ -122,7 +122,7 @@ struct GameEndScreenWatch: View {
                 // Total Score
                 Text("\(totalScore)")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(isNewHighScore ? .yellow : .white)
+                    .foregroundColor(isNewHighScore ? .yellow : .primary)
                 
                 // Round Scores (compact)
                 VStack(spacing: 4) {
