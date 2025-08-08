@@ -7,7 +7,8 @@ A Firebase Cloud Functions-based leaderboard service for the Emoji Tapper game, 
 ### Prerequisites
 - Node.js 18 or higher
 - Firebase CLI (`npm install -g firebase-tools`)
-- Firebase project
+- Firebase project (✅ `top-leaderboard`)
+- Java 8+ (for local emulators only)
 
 ### Installation
 
@@ -24,17 +25,9 @@ A Firebase Cloud Functions-based leaderboard service for the Emoji Tapper game, 
    cd ..
    ```
 
-3. **Initialize Firebase project**
+3. **Build TypeScript functions** (✅ Already configured)
    ```bash
-   firebase login
-   firebase init
-   # Select existing project or create new one
-   # Choose Firestore and Functions
-   ```
-
-4. **Build TypeScript functions**
-   ```bash
-   cd functions
+   cd top-leaderboard
    npm run build
    cd ..
    ```
@@ -84,7 +77,7 @@ interface HighScore {
 
 ## API Endpoints
 
-Base URL: `https://your-region-your-project.cloudfunctions.net/`
+Base URL: `https://us-central1-top-leaderboard.cloudfunctions.net/`
 
 ### 1. Submit High Score
 
@@ -287,7 +280,7 @@ Common HTTP status codes:
 
 ### Submit a Score (JavaScript)
 ```javascript
-const response = await fetch('https://your-region-your-project.cloudfunctions.net/submitScore', {
+const response = await fetch('https://us-central1-top-leaderboard.cloudfunctions.net/submitScore', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -313,7 +306,7 @@ const params = new URLSearchParams({
   limit: '10'
 });
 
-const response = await fetch(`https://your-region-your-project.cloudfunctions.net/getTopScores?${params}`);
+const response = await fetch(`https://us-central1-top-leaderboard.cloudfunctions.net/getTopScores?${params}`);
 const result = await response.json();
 console.log(result.scores);
 ```

@@ -1,7 +1,7 @@
 // Test script for the Emoji Tapper Leaderboard API
 // Run with: node test-api.js
 
-const BASE_URL = 'http://localhost:5001/your-project-id/us-central1'; // Update with your project ID
+const BASE_URL = 'http://localhost:5001/top-leaderboard/us-central1';
 
 async function testAPI() {
   console.log('🧪 Testing Emoji Tapper Leaderboard API\n');
