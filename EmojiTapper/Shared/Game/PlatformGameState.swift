@@ -41,6 +41,7 @@ class PlatformGameState {
     
     var currentEmojis: [PositionedGameEmoji] = []
     var animatingEmojis: [AnimatedEmoji] = []
+    var celebratingPenguin: PositionedGameEmoji? = nil
     var selectedGameMode: GameMode = .classic {
         didSet {
             switchGameMode(to: selectedGameMode)
@@ -92,6 +93,7 @@ class PlatformGameState {
         setupEngineCallback()
         currentEmojis.removeAll()
         animatingEmojis.removeAll()
+        celebratingPenguin = nil
     }
     
     private func setupEngineCallback() {
@@ -166,16 +168,57 @@ class PlatformGameState {
         gameEngine.endGame()
         currentEmojis.removeAll()
         animatingEmojis.removeAll()
+        celebratingPenguin = nil
     }
     
     func emojiTapped(_ emoji: PositionedGameEmoji) {
         // Find the corresponding GameEmoji by ID
         if let gameEmoji = gameEngine.currentEmojis.first(where: { $0.id == emoji.id }) {
-            gameEngine.emojiTapped(gameEmoji)
-            // Update positions after the engine processes the tap
-            DispatchQueue.main.async {
-                self.updatePositions()
+            
+            // Special handling for Penguin Ball penguin clicks
+            if gameEngine.gameMode == .penguinBall && gameEmoji.emoji == "🐧" {
+                handlePenguinCelebration(clickedPenguin: emoji)
+            } else {
+                gameEngine.emojiTapped(gameEmoji)
+                // Update positions after the engine processes the tap
+                DispatchQueue.main.async {
+                    self.updatePositions()
+                }
             }
+        }
+    }
+    
+    private func handlePenguinCelebration(clickedPenguin: PositionedGameEmoji) {
+        // Tap the penguin in the engine first (updates score, etc.)
+        if let gameEmoji = gameEngine.currentEmojis.first(where: { $0.id == clickedPenguin.id }) {
+            gameEngine.emojiTapped(gameEmoji)
+        }
+        
+        // Start celebration: penguin grows, others animate away
+        celebratingPenguin = clickedPenguin
+        
+        // Animate all non-penguin emojis away
+        let nonPenguinEmojis = currentEmojis.filter { $0.id != clickedPenguin.id }
+        let screenBounds = getScreenBounds()
+        
+        for emoji in nonPenguinEmojis {
+            let animatedEmoji = AnimatedEmoji(from: emoji, screenBounds: screenBounds)
+            animatingEmojis.append(animatedEmoji)
+            
+            // Clean up animated emoji after animation
+            DispatchQueue.main.asyncAfter(deadline: .now() + animatedEmoji.duration + 0.1) {
+                self.animatingEmojis.removeAll { $0.id == animatedEmoji.id }
+            }
+        }
+        
+        // Remove non-penguin emojis from current display
+        currentEmojis.removeAll { $0.id != clickedPenguin.id }
+        
+        // After celebration period, proceed to next round
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.celebratingPenguin = nil
+            self.gameEngine.proceedToNextRound()
+            self.updatePositions()
         }
     }
     

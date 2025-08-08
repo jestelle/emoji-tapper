@@ -115,6 +115,11 @@ struct GameView: View {
                         }
                 }
                 
+                // Celebrating penguin (grown and staying in place)
+                if let celebratingPenguin = gameState.celebratingPenguin {
+                    CelebratingPenguinView(penguin: celebratingPenguin, fontSize: 40)
+                }
+                
                 // Animated emojis flying off screen
                 ForEach(gameState.animatingEmojis) { animatedEmoji in
                     AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 40)

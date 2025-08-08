@@ -86,6 +86,10 @@ class ClassicGameEngine: GameModeEngine {
         onEmojisChanged?()
     }
     
+    func proceedToNextRound() {
+        // Classic mode doesn't have rounds, so this does nothing
+    }
+    
     func generateNewEmojis() {
         currentEmojis.removeAll()
         let targetCount = maxEmojisOnScreen

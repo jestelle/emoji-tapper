@@ -76,20 +76,19 @@ class PenguinBallEngine: GameModeEngine {
             // Found the penguin!
             score += possiblePoints
             stopAllTimers()
-            shouldNotifyUI = false // Don't move penguin when clicked
             
             if currentRound >= maxRounds {
                 endGame()
-            } else {
-                // Start next round after a brief delay
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.shouldNotifyUI = true // Re-enable UI updates for next round
-                    self.startNextRound()
-                }
             }
+            // Don't automatically proceed to next round - let UI handle celebration
         } else {
             // Wrong emoji - no penalty, just continue
         }
+    }
+    
+    func proceedToNextRound() {
+        guard currentRound < maxRounds else { return }
+        startNextRound()
     }
     
     private func startNextRound() {

@@ -37,4 +37,5 @@ protocol GameModeEngine {
     func startGame()
     func endGame()
     func emojiTapped(_ emoji: GameEmoji)
+    func proceedToNextRound() // For Penguin Ball round progression
 }
