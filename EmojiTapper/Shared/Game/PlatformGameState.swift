@@ -1,0 +1,85 @@
+//
+//  PlatformGameState.swift
+//  Shared
+//
+//  Created by Josh Estelle on 8/8/25.
+//
+
+import SwiftUI
+import Foundation
+
+// Platform-specific emoji with position
+struct PositionedGameEmoji: Identifiable {
+    let id = UUID()
+    let emoji: String
+    let type: EmojiType
+    let position: CGPoint
+    let zIndex: Int
+    
+    init(from gameEmoji: GameEmoji, position: CGPoint) {
+        self.emoji = gameEmoji.emoji
+        self.type = gameEmoji.type
+        self.position = position
+        self.zIndex = gameEmoji.zIndex
+    }
+}
+
+// Platform-agnostic positioning protocol
+protocol EmojiPositioner {
+    func generateRandomPosition(avoiding existingPositions: [CGPoint]) -> CGPoint
+    func getTopmostEmojiAt(point: CGPoint, in emojis: [PositionedGameEmoji]) -> PositionedGameEmoji?
+}
+
+@Observable
+class PlatformGameState {
+    private let gameEngine = GameEngine()
+    private let positioner: EmojiPositioner
+    
+    var currentEmojis: [PositionedGameEmoji] = []
+    
+    // Forward properties from GameEngine
+    var score: Int { gameEngine.score }
+    var timeRemaining: TimeInterval { gameEngine.timeRemaining }
+    var isGameActive: Bool { gameEngine.isGameActive }
+    var currentLevel: GameLevel { gameEngine.currentLevel }
+    var highScore: Int { gameEngine.highScore }
+    
+    init(positioner: EmojiPositioner) {
+        self.positioner = positioner
+    }
+    
+    func startGame() {
+        gameEngine.startGame()
+        updatePositions()
+    }
+    
+    func endGame() {
+        gameEngine.endGame()
+        currentEmojis.removeAll()
+    }
+    
+    func emojiTapped(_ emoji: PositionedGameEmoji) {
+        // Find the corresponding GameEmoji
+        if let gameEmoji = gameEngine.currentEmojis.first(where: { $0.id.uuidString == emoji.id.uuidString }) {
+            gameEngine.emojiTapped(gameEmoji)
+            updatePositions()
+        }
+    }
+    
+    func getTopmostEmojiAt(point: CGPoint) -> PositionedGameEmoji? {
+        return positioner.getTopmostEmojiAt(point: point, in: currentEmojis)
+    }
+    
+    private func updatePositions() {
+        var existingPositions: [CGPoint] = []
+        currentEmojis.removeAll()
+        
+        for gameEmoji in gameEngine.currentEmojis {
+            let position = positioner.generateRandomPosition(avoiding: existingPositions)
+            existingPositions.append(position)
+            
+            let positionedEmoji = PositionedGameEmoji(from: gameEmoji, position: position)
+            currentEmojis.append(positionedEmoji)
+        }
+    }
+}

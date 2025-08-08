@@ -1,6 +1,6 @@
 //
 //  GameLevel.swift
-//  EmojiTapper Watch App
+//  Shared
 //
 //  Created by Josh Estelle on 7/15/25.
 //

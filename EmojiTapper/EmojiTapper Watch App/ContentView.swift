@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var gameState = GameState()
+    @State private var gameState = PlatformGameState(positioner: WatchEmojiPositioner())
     
     var body: some View {
         ZStack {
@@ -24,7 +24,7 @@ struct ContentView: View {
 }
 
 struct MenuView: View {
-    let gameState: GameState
+    let gameState: PlatformGameState
     
     var body: some View {
         VStack(spacing: 15) {
@@ -56,7 +56,7 @@ struct MenuView: View {
 }
 
 struct GameView: View {
-    let gameState: GameState
+    let gameState: PlatformGameState
     
     var body: some View {
         GeometryReader { geometry in

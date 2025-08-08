@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		FC0ADA502E26057000A4D0F6 /* EmojiTapper Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FC7910C52E458EDB00F1EAB4 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */; };
+		FC7910C62E458EDB00F1EAB4 /* GameEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */; };
+		FC7910C72E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */; };
+		FC7910C82E458EDB00F1EAB4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */; };
+		FC7910C92E458EDB00F1EAB4 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */; };
+		FC7910CA2E458EDB00F1EAB4 /* GameEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */; };
+		FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */; };
+		FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +78,10 @@
 		FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiTapperMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformGameState.swift; sourceTree = "<group>"; };
+		FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEmoji.swift; sourceTree = "<group>"; };
+		FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -160,6 +172,7 @@
 				FC7910732E458C8300F1EAB4 /* EmojiTapperMobile */,
 				FC7910842E458C8400F1EAB4 /* EmojiTapperMobileTests */,
 				FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
+				FC7910C42E458EDB00F1EAB4 /* Shared */,
 				FC0ADA4A2E26057000A4D0F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,6 +189,33 @@
 				FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FC7910C02E458EDB00F1EAB4 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */,
+				FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		FC7910C32E458EDB00F1EAB4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */,
+				FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FC7910C42E458EDB00F1EAB4 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FC7910C02E458EDB00F1EAB4 /* Game */,
+				FC7910C32E458EDB00F1EAB4 /* Models */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +495,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7910C52E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
+				FC7910C62E458EDB00F1EAB4 /* GameEmoji.swift in Sources */,
+				FC7910C72E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
+				FC7910C82E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +520,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7910C92E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
+				FC7910CA2E458EDB00F1EAB4 /* GameEmoji.swift in Sources */,
+				FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
+				FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
