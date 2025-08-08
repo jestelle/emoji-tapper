@@ -57,15 +57,24 @@ class LeaderboardService {
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: body)
-            let (data, response) = try await URLSession.shared.data(for: request)
+            print("🌐 Submitting score to: \(url)")
+            
+            // Add timeout configuration
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 30
+            config.timeoutIntervalForResource = 60
+            let session = URLSession(configuration: config)
+            
+            let (data, response) = try await session.data(for: request)
             
             if let httpResponse = response as? HTTPURLResponse {
+                print("📡 Response status: \(httpResponse.statusCode)")
                 if httpResponse.statusCode == 201 {
                     let submitResponse = try JSONDecoder().decode(SubmitScoreResponse.self, from: data)
                     return submitResponse.success
                 } else {
                     let errorResponse = try JSONDecoder().decode(SubmitScoreResponse.self, from: data)
-                    lastError = errorResponse.error ?? "Failed to submit score"
+                    lastError = errorResponse.error ?? "Failed to submit score (HTTP \(httpResponse.statusCode))"
                     return false
                 }
             }
@@ -74,7 +83,14 @@ class LeaderboardService {
             return false
             
         } catch {
-            lastError = error.localizedDescription
+            print("❌ Network error: \(error)")
+            
+            // Handle specific sandbox errors
+            if error.localizedDescription.contains("Sandbox") || error.localizedDescription.contains("networkd") {
+                lastError = "Network access blocked by sandbox. Please check app permissions."
+            } else {
+                lastError = error.localizedDescription
+            }
             return false
         }
     }
@@ -102,9 +118,18 @@ class LeaderboardService {
         }
         
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            print("🌐 Getting top scores from: \(url)")
+            
+            // Add timeout configuration
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 30
+            config.timeoutIntervalForResource = 60
+            let session = URLSession(configuration: config)
+            
+            let (data, response) = try await session.data(from: url)
             
             if let httpResponse = response as? HTTPURLResponse {
+                print("📡 Response status: \(httpResponse.statusCode)")
                 if httpResponse.statusCode == 200 {
                     let topScoresResponse = try JSONDecoder().decode(TopScoresResponse.self, from: data)
                     if topScoresResponse.success {
@@ -116,7 +141,7 @@ class LeaderboardService {
                     }
                 } else {
                     let errorResponse = try JSONDecoder().decode(TopScoresResponse.self, from: data)
-                    lastError = errorResponse.error ?? "Failed to get top scores"
+                    lastError = errorResponse.error ?? "Failed to get top scores (HTTP \(httpResponse.statusCode))"
                     return false
                 }
             }
@@ -125,7 +150,14 @@ class LeaderboardService {
             return false
             
         } catch {
-            lastError = error.localizedDescription
+            print("❌ Network error: \(error)")
+            
+            // Handle specific sandbox errors
+            if error.localizedDescription.contains("Sandbox") || error.localizedDescription.contains("networkd") {
+                lastError = "Network access blocked by sandbox. Please check app permissions."
+            } else {
+                lastError = error.localizedDescription
+            }
             return false
         }
     }
@@ -238,5 +270,46 @@ class LeaderboardService {
     func refreshLeaderboard(mode: GameMode) async {
         await getTopScores(mode: mode)
         await getLeaderboardStats(mode: mode)
+    }
+    
+    // MARK: - Test Connection
+    
+    func testConnection() async -> Bool {
+        isLoading = true
+        lastError = nil
+        
+        defer { isLoading = false }
+        
+        let url = URL(string: "\(baseURL)/getTopScores?game=\(gameName)&mode=Classic&platform=\(currentPlatform.rawValue)&period=all_time&limit=1")!
+        
+        do {
+            print("🌐 Testing connection to: \(url)")
+            
+            // Add timeout configuration
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 30
+            config.timeoutIntervalForResource = 60
+            let session = URLSession(configuration: config)
+            
+            let (data, response) = try await session.data(from: url)
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("📡 Test response status: \(httpResponse.statusCode)")
+                return httpResponse.statusCode == 200
+            }
+            
+            return false
+            
+        } catch {
+            print("❌ Test connection error: \(error)")
+            
+            // Handle specific sandbox errors
+            if error.localizedDescription.contains("Sandbox") || error.localizedDescription.contains("networkd") {
+                lastError = "Network access blocked by sandbox. Please check app permissions."
+            } else {
+                lastError = "Connection test failed: \(error.localizedDescription)"
+            }
+            return false
+        }
     }
 }

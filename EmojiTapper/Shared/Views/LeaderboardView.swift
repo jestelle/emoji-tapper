@@ -85,6 +85,14 @@ struct LeaderboardView: View {
                         }
                     }
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Test") {
+                        Task {
+                            let success = await leaderboardService.testConnection()
+                            print("🔍 Connection test result: \(success)")
+                        }
+                    }
+                }
                 #endif
             }
             .alert("Leaderboard Error", isPresented: .constant(leaderboardService.lastError != nil)) {
