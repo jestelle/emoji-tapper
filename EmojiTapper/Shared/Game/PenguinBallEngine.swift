@@ -30,7 +30,7 @@ class PenguinBallEngine: GameModeEngine {
     var gameStateText: String {
         if isGameActive {
             let roundText = "Round \(currentRound)/\(maxRounds)"
-            let pointsText = "Points: \(possiblePoints)"
+            let pointsText = "Available points: \(possiblePoints)"
             return "\(roundText) • \(pointsText)"
         }
         return ""
@@ -44,8 +44,10 @@ class PenguinBallEngine: GameModeEngine {
     
     private var gameTimer: Timer?
     private var disappearTimer: Timer?
+    var onEmojisChanged: (() -> Void)?
+    private var shouldNotifyUI: Bool = true
     
-    let distractorEmojis = ["😀", "😊", "😂", "🥰", "😎", "🤔", "😮", "😋", "🙂", "😆", "😍", "🤗", "😴", "🤯", "😇", "🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐸", "🐵", "🙈", "🙉", "🙊", "🐒", "🐔", "🐧", "🐦", "🐤", "🐣", "🐥", "🦆", "🦅", "🦉", "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞", "🐜", "🦟", "🦗", "🕷", "🦂", "🐢", "🐍", "🦎", "🦖", "🦕", "🐙", "🦑", "🦐", "🦞", "🦀", "🐡", "🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🐊", "🐅", "🐆", "🦓", "🦍", "🦧", "🐘", "🦛", "🦏", "🐪", "🐫", "🦒", "🦘", "🐃", "🐂", "🐄", "🐎", "🐖", "🐏", "🐑", "🦙", "🐐", "🦌", "🐕", "🐩", "🦮", "🐕‍🦺", "🐈", "🐈‍⬛", "🐓", "🦃", "🦚", "🦜", "🦢", "🦩", "🕊", "🐇", "🦝", "🦨", "🦡", "🦦", "🦫", "🐿", "🦔"]
+    let distractorEmojis = ["😀", "😊", "😂", "🥰", "😎", "🤔", "😮", "😋", "🙂", "😆", "😍", "🤗", "😴", "🤯", "😇", "🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐸", "🐵", "🙈", "🙉", "🙊", "🐒", "🐔", "🐦", "🐤", "🐣", "🐥", "🦆", "🦅", "🦉", "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞", "🐜", "🦟", "🦗", "🕷", "🦂", "🐢", "🐍", "🦎", "🦖", "🦕", "🐙", "🦑", "🦐", "🦞", "🦀", "🐡", "🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🐊", "🐅", "🐆", "🦓", "🦍", "🦧", "🐘", "🦛", "🦏", "🐪", "🐫", "🦒", "🦘", "🐃", "🐂", "🐄", "🐎", "🐖", "🐏", "🐑", "🦙", "🐐", "🦌", "🐕", "🐩", "🦮", "🐕‍🦺", "🐈", "🐈‍⬛", "🐓", "🦃", "🦚", "🦜", "🦢", "🦩", "🕊", "🐇", "🦝", "🦨", "🦡", "🦦", "🦫", "🐿", "🦔"]
     
     init() {
         loadHighScore()
@@ -74,12 +76,14 @@ class PenguinBallEngine: GameModeEngine {
             // Found the penguin!
             score += possiblePoints
             stopAllTimers()
+            shouldNotifyUI = false // Don't move penguin when clicked
             
             if currentRound >= maxRounds {
                 endGame()
             } else {
                 // Start next round after a brief delay
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.shouldNotifyUI = true // Re-enable UI updates for next round
                     self.startNextRound()
                 }
             }
@@ -126,6 +130,11 @@ class PenguinBallEngine: GameModeEngine {
         
         // Shuffle the array to randomize positions
         currentEmojis.shuffle()
+        
+        // Notify UI of emoji changes
+        if shouldNotifyUI {
+            onEmojisChanged?()
+        }
     }
     
     private func startDisappearTimer() {
@@ -148,14 +157,14 @@ class PenguinBallEngine: GameModeEngine {
         // Don't remove the penguin
         let nonPenguinEmojis = currentEmojis.filter { $0.emoji != "🐧" }
         
-        if nonPenguinEmojis.count <= 1 {
+        if nonPenguinEmojis.count == 0 {
             // Only penguin left, stop removing
             stopAllTimers()
             return
         }
         
-        // Remove 3-5 emojis at a time
-        let removeCount = min(Int.random(in: 3...5), nonPenguinEmojis.count - 1)
+        // Remove 3-5 emojis at a time, but don't go below just the penguin
+        let removeCount = min(Int.random(in: 3...5), nonPenguinEmojis.count)
         let emojisToRemove = Array(nonPenguinEmojis.shuffled().prefix(removeCount))
         
         for emojiToRemove in emojisToRemove {
@@ -163,6 +172,11 @@ class PenguinBallEngine: GameModeEngine {
                 currentEmojis.remove(at: index)
                 emojisRemaining -= 1
             }
+        }
+        
+        // Notify UI of emoji changes
+        if shouldNotifyUI {
+            onEmojisChanged?()
         }
     }
     

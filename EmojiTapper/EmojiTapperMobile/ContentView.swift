@@ -126,6 +126,11 @@ struct iOSGameView: View {
                             gameState.emojiTapped(emoji)
                         }
                 }
+                
+                // Animated emojis flying off screen
+                ForEach(gameState.animatingEmojis) { animatedEmoji in
+                    AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 60)
+                }
             }
         }
     }

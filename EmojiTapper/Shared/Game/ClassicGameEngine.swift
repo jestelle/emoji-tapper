@@ -29,6 +29,7 @@ class ClassicGameEngine: GameModeEngine {
     // For progress bar in UI
     var timeRemainingForProgress: TimeInterval { timeRemaining }
     var totalTimeForProgress: TimeInterval { currentLevel.initialTime }
+    var onEmojisChanged: (() -> Void)?
     
     private var gameTimer: Timer?
     
@@ -82,6 +83,7 @@ class ClassicGameEngine: GameModeEngine {
         }
         
         generateNewEmojis()
+        onEmojisChanged?()
     }
     
     func generateNewEmojis() {

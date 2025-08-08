@@ -7,6 +7,9 @@
 
 import SwiftUI
 import Foundation
+#if canImport(UIKit)
+import UIKit
+#endif
 
 // Platform-specific emoji with position
 struct PositionedGameEmoji: Identifiable {
@@ -37,6 +40,7 @@ class PlatformGameState {
     private let positioner: EmojiPositioner
     
     var currentEmojis: [PositionedGameEmoji] = []
+    var animatingEmojis: [AnimatedEmoji] = []
     var selectedGameMode: GameMode = .classic {
         didSet {
             switchGameMode(to: selectedGameMode)
@@ -68,6 +72,7 @@ class PlatformGameState {
         self.positioner = positioner
         self.selectedGameMode = gameMode
         self.gameEngine = Self.createEngine(for: gameMode)
+        setupEngineCallback()
     }
     
     private static func createEngine(for mode: GameMode) -> GameModeEngine {
@@ -84,7 +89,69 @@ class PlatformGameState {
             gameEngine.endGame()
         }
         gameEngine = Self.createEngine(for: mode)
+        setupEngineCallback()
         currentEmojis.removeAll()
+        animatingEmojis.removeAll()
+    }
+    
+    private func setupEngineCallback() {
+        gameEngine.onEmojisChanged = { [weak self] in
+            DispatchQueue.main.async {
+                if self?.gameEngine.gameMode == .penguinBall {
+                    self?.syncWithEngine()
+                } else {
+                    self?.updatePositions()
+                }
+            }
+        }
+    }
+    
+    private func syncWithEngine() {
+        // For Penguin Ball, animate emojis that are no longer in the engine
+        let engineEmojiIDs = Set(gameEngine.currentEmojis.map { $0.id })
+        let emojisToRemove = currentEmojis.filter { !engineEmojiIDs.contains($0.id) }
+        
+        // Start animations for removed emojis
+        let screenBounds = getScreenBounds()
+        for removedEmoji in emojisToRemove {
+            let animatedEmoji = AnimatedEmoji(from: removedEmoji, screenBounds: screenBounds)
+            animatingEmojis.append(animatedEmoji)
+            
+            // Remove the animated emoji after its animation completes
+            DispatchQueue.main.asyncAfter(deadline: .now() + animatedEmoji.duration + 0.1) {
+                self.animatingEmojis.removeAll { $0.id == animatedEmoji.id }
+            }
+        }
+        
+        // Remove emojis from current display (they're now animating)
+        currentEmojis.removeAll { positionedEmoji in
+            !engineEmojiIDs.contains(positionedEmoji.id)
+        }
+        
+        // Add any new emojis that aren't positioned yet
+        let positionedEmojiIDs = Set(currentEmojis.map { $0.id })
+        for gameEmoji in gameEngine.currentEmojis {
+            if !positionedEmojiIDs.contains(gameEmoji.id) {
+                let existingPositions = currentEmojis.map { $0.position }
+                let position = positioner.generateRandomPosition(avoiding: existingPositions)
+                let positionedEmoji = PositionedGameEmoji(from: gameEmoji, position: position)
+                currentEmojis.append(positionedEmoji)
+            }
+        }
+    }
+    
+    private func getScreenBounds() -> CGRect {
+        #if canImport(UIKit)
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            return window.bounds
+        } else {
+            return UIScreen.main.bounds
+        }
+        #else
+        // Fallback for non-UIKit environments
+        return CGRect(x: 0, y: 0, width: 800, height: 600)
+        #endif
     }
     
     func startGame() {
@@ -98,6 +165,7 @@ class PlatformGameState {
     func endGame() {
         gameEngine.endGame()
         currentEmojis.removeAll()
+        animatingEmojis.removeAll()
     }
     
     func emojiTapped(_ emoji: PositionedGameEmoji) {

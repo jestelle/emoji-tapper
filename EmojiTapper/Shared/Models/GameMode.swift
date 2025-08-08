@@ -32,6 +32,7 @@ protocol GameModeEngine {
     var currentEmojis: [GameEmoji] { get }
     var gameStateText: String { get } // For displaying round info, time, etc.
     var highScore: Int { get }
+    var onEmojisChanged: (() -> Void)? { get set } // Callback for UI updates
     
     func startGame()
     func endGame()
