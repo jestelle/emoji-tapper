@@ -31,7 +31,7 @@ class PenguinBallEngine: GameModeEngine {
     var gameStateText: String {
         if isGameActive {
             let roundText = "Round \(currentRound)/\(maxRounds)"
-            let pointsText = "Available points: \(possiblePoints)"
+            let pointsText = "\(possiblePoints) available"
             return "\(roundText) • \(pointsText)"
         }
         return ""

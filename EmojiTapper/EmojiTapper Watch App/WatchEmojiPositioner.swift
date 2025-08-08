@@ -18,8 +18,8 @@ class WatchEmojiPositioner: EmojiPositioner {
         
         while attempts < maxAttempts {
             let position = CGPoint(
-                x: Double.random(in: 15...135),
-                y: Double.random(in: 35...135)
+                x: Double.random(in: 10...180),
+                y: Double.random(in: 35...180)
             )
             
             // Check if this position overlaps with existing emojis
@@ -37,8 +37,8 @@ class WatchEmojiPositioner: EmojiPositioner {
         
         // If we can't find a non-overlapping position after max attempts, return a random one
         return CGPoint(
-            x: Double.random(in: 15...135),
-            y: Double.random(in: 35...135)
+            x: Double.random(in: 10...180),
+            y: Double.random(in: 35...180)
         )
     }
     

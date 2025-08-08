@@ -37,34 +37,50 @@ struct MenuView: View {
     @Bindable var gameState: PlatformGameState
     
     var body: some View {
-        VStack(spacing: 12) {
-            Text(gameState.selectedGameMode == .classic ? "😊" : "🐧")
-                .font(.system(size: 35))
-            
-            Text(gameState.selectedGameMode == .classic ? "Emoji Tapper" : "Penguin Ball")
-                .font(.headline)
-                .foregroundColor(.primary)
-            
-            // Game mode picker
-            Picker("Game Mode", selection: $gameState.selectedGameMode) {
-                ForEach(GameMode.allCases, id: \.self) { mode in
-                    Text(mode.displayName)
-                        .tag(mode)
+        VStack(spacing: 8) {
+            // Game mode selector as tappable icons
+            HStack(spacing: 20) {
+                // Classic Mode
+                VStack(spacing: 4) {
+                    Text("😊")
+                        .font(.system(size: 30))
+                        .opacity(gameState.selectedGameMode == .classic ? 1.0 : 0.4)
+                    Text("Classic")
+                        .font(.caption2)
+                        .foregroundColor(gameState.selectedGameMode == .classic ? .primary : .secondary)
+                }
+                .onTapGesture {
+                    gameState.selectedGameMode = .classic
+                }
+                
+                // Penguin Ball Mode
+                VStack(spacing: 4) {
+                    Text("🐧")
+                        .font(.system(size: 30))
+                        .opacity(gameState.selectedGameMode == .penguinBall ? 1.0 : 0.4)
+                    Text("Penguin")
+                        .font(.caption2)
+                        .foregroundColor(gameState.selectedGameMode == .penguinBall ? .primary : .secondary)
+                }
+                .onTapGesture {
+                    gameState.selectedGameMode = .penguinBall
                 }
             }
-            .pickerStyle(.navigationLink)
-            .font(.caption)
+            .padding(.top, 4)
             
-            // Reserve space for scores to prevent layout shifts
-            Text(gameState.score > 0 ? "Last: \(gameState.score)" : " ")
-                .font(.caption2)
-                .foregroundColor(.gray)
-                .opacity(gameState.score > 0 ? 1.0 : 0.0)
-            
-            Text(gameState.highScore > 0 ? "High: \(gameState.highScore)" : " ")
-                .font(.caption2)
-                .foregroundColor(.yellow)
-                .opacity(gameState.highScore > 0 ? 1.0 : 0.0)
+            // Compact scores with smaller text
+            VStack(spacing: 2) {
+                Text(gameState.score > 0 ? "Last: \(gameState.score)" : " ")
+                    .font(.system(size: 10))
+                    .foregroundColor(.gray)
+                    .opacity(gameState.score > 0 ? 1.0 : 0.0)
+                
+                Text(gameState.highScore > 0 ? "High: \(gameState.highScore)" : " ")
+                    .font(.system(size: 10))
+                    .foregroundColor(.yellow)
+                    .opacity(gameState.highScore > 0 ? 1.0 : 0.0)
+            }
+            .padding(.vertical, 4)
             
             Button("Start Game") {
                 gameState.startGame()
@@ -72,6 +88,7 @@ struct MenuView: View {
             .buttonStyle(.borderedProminent)
             .font(.caption)
         }
+        .padding(.bottom, 8) // Extra padding to ensure button is visible
     }
 }
 
