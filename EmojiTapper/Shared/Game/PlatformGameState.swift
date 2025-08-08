@@ -133,11 +133,37 @@ class PlatformGameState {
         // For Penguin Ball, animate emojis that are no longer in the engine
         let engineEmojiIDs = Set(gameEngine.currentEmojis.map { $0.id })
         let emojisToRemove = currentEmojis.filter { !engineEmojiIDs.contains($0.id) }
+        let animatingEmojisToRemove = animatedPositionChanges.filter { !engineEmojiIDs.contains($0.id) }
         
-        // Start animations for removed emojis
+        // Start exit animations for removed emojis that were in current display
         let screenBounds = getScreenBounds()
         for removedEmoji in emojisToRemove {
             let animatedEmoji = AnimatedEmoji(from: removedEmoji, screenBounds: screenBounds)
+            animatingEmojis.append(animatedEmoji)
+            
+            // Remove the animated emoji after its animation completes
+            DispatchQueue.main.asyncAfter(deadline: .now() + animatedEmoji.duration + 0.1) {
+                self.animatingEmojis.removeAll { $0.id == animatedEmoji.id }
+            }
+        }
+        
+        // For emojis that were in position animations, interrupt them and start exit animations
+        for animatingChange in animatingEmojisToRemove {
+            // Cancel the position animation by removing it
+            animatedPositionChanges.removeAll { $0.id == animatingChange.id }
+            
+            // Create a positioned emoji at the current animated position and start exit animation
+            // We'll estimate the current position based on time elapsed
+            let currentPosition = estimateCurrentAnimatedPosition(for: animatingChange)
+            let interruptedEmoji = PositionedGameEmoji(
+                id: animatingChange.id,
+                emoji: animatingChange.emoji,
+                type: .normal, // Default type since we can't access the original type
+                position: currentPosition,
+                zIndex: animatingChange.zIndex
+            )
+            
+            let animatedEmoji = AnimatedEmoji(from: interruptedEmoji, screenBounds: screenBounds)
             animatingEmojis.append(animatedEmoji)
             
             // Remove the animated emoji after its animation completes
@@ -151,16 +177,41 @@ class PlatformGameState {
             !engineEmojiIDs.contains(positionedEmoji.id)
         }
         
-        // Add any new emojis that aren't positioned yet
+        // Add any new emojis that aren't positioned yet (but not if they're currently animating position changes)
         let positionedEmojiIDs = Set(currentEmojis.map { $0.id })
+        let animatingEmojiIDs = Set(animatedPositionChanges.map { $0.id })
         for gameEmoji in gameEngine.currentEmojis {
-            if !positionedEmojiIDs.contains(gameEmoji.id) {
+            if !positionedEmojiIDs.contains(gameEmoji.id) && !animatingEmojiIDs.contains(gameEmoji.id) {
                 let existingPositions = currentEmojis.map { $0.position }
                 let position = positioner.generateRandomPosition(avoiding: existingPositions)
                 let positionedEmoji = PositionedGameEmoji(from: gameEmoji, position: position)
                 currentEmojis.append(positionedEmoji)
             }
         }
+    }
+    
+    private func estimateCurrentAnimatedPosition(for animatedChange: AnimatedPositionChange) -> CGPoint {
+        // For simplicity, assume we're halfway through the animation
+        // In a more sophisticated implementation, we could track animation start times
+        let progress = 0.5
+        let t = progress
+        let t2 = t * t
+        let t3 = t2 * t
+        let mt = 1.0 - t
+        let mt2 = mt * mt
+        let mt3 = mt2 * mt
+        
+        let x = mt3 * animatedChange.startPosition.x +
+                3 * mt2 * t * animatedChange.controlPoint1.x +
+                3 * mt * t2 * animatedChange.controlPoint2.x +
+                t3 * animatedChange.endPosition.x
+        
+        let y = mt3 * animatedChange.startPosition.y +
+                3 * mt2 * t * animatedChange.controlPoint1.y +
+                3 * mt * t2 * animatedChange.controlPoint2.y +
+                t3 * animatedChange.endPosition.y
+        
+        return CGPoint(x: x, y: y)
     }
     
     private func getScreenBounds() -> CGRect {
@@ -226,9 +277,6 @@ class PlatformGameState {
     private func handleWrongEmojiTap(_ gameEmoji: GameEmoji) {
         gameEngine.emojiTapped(gameEmoji) // Process the tap (no penalty in Penguin Ball)
         
-        // Pause disappearing timers during animation
-        gameEngine.pauseTimers()
-        
         // Generate new positions for all current emojis
         var newPositions: [UUID: CGPoint] = [:]
         var existingPositions: [CGPoint] = []
@@ -251,12 +299,16 @@ class PlatformGameState {
         let animatingEmojiIds = Set(animatedPositionChanges.map { $0.id })
         currentEmojis.removeAll { animatingEmojiIds.contains($0.id) }
         
-        // After animations complete, set final positions and resume timers
+        // After animations complete, set final positions
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { // Max animation duration
-            // Set final positions without regenerating them - use exact animation end positions
+            // Check if any emojis disappeared during animation - if so, don't restore them
+            let currentEngineEmojiIds = Set(self.gameEngine.currentEmojis.map { $0.id })
+            
+            // Set final positions only for emojis that still exist in the engine
             self.currentEmojis = self.animatedPositionChanges.compactMap { change in
-                // Find corresponding engine emoji to preserve type and other properties
-                if let engineEmoji = self.gameEngine.currentEmojis.first(where: { $0.id == change.id }) {
+                // Only restore emoji if it still exists in the game engine
+                if currentEngineEmojiIds.contains(change.id),
+                   let engineEmoji = self.gameEngine.currentEmojis.first(where: { $0.id == change.id }) {
                     // Create positioned emoji manually to preserve the exact ID and final position
                     return PositionedGameEmoji(
                         id: change.id, // Keep same ID
@@ -270,8 +322,6 @@ class PlatformGameState {
             }
             
             self.animatedPositionChanges.removeAll()
-            // Resume disappearing timers after animation
-            self.gameEngine.resumeTimers()
         }
     }
     
