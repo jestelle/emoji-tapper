@@ -7,6 +7,9 @@
 
 import SwiftUI
 import Foundation
+#if os(watchOS)
+import WatchKit
+#endif
 
 @Observable
 class PenguinBallEngine: GameModeEngine {
@@ -113,11 +116,39 @@ class PenguinBallEngine: GameModeEngine {
         startDisappearTimer()
     }
     
+    private func calculateEmojiCount() -> Int {
+        let screenBounds = getScreenBounds()
+        let screenArea = screenBounds.width * screenBounds.height
+        
+        // Base density: aim for roughly 1 emoji per 2000 square points
+        // Watch (~30K area) → ~15 emojis → scale up to 80 for good density  
+        // iPhone (~300K area) → ~150 emojis → reasonable for larger screen
+        let densityFactor: Double = 0.0003 // Adjust this to tune density
+        let baseCount = max(80, Int(screenArea * densityFactor))
+        
+        // Cap at reasonable limits
+        return min(500, baseCount) // Max 500 emojis to keep performance good
+    }
+    
+    private func getScreenBounds() -> CGRect {
+        #if os(watchOS)
+        // For watchOS, use WKInterfaceDevice screen bounds
+        let device = WKInterfaceDevice.current()
+        return device.screenBounds
+        #elseif canImport(UIKit)
+        // For iOS/macOS with UIKit
+        return UIScreen.main.bounds
+        #else
+        // Fallback for other environments
+        return CGRect(x: 0, y: 0, width: 800, height: 600)
+        #endif
+    }
+    
     private func generateNewEmojis() {
         currentEmojis.removeAll()
         
-        // Generate lots of emojis - different amounts for different platforms
-        let baseCount = 80 // Will be dense but manageable on all platforms
+        // Calculate emoji count based on screen size for better density scaling
+        let baseCount = calculateEmojiCount()
         totalEmojis = baseCount
         emojisRemaining = baseCount
         
