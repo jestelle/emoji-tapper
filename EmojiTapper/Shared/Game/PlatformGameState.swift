@@ -10,6 +10,9 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 #endif
+#if os(watchOS)
+import WatchKit
+#endif
 
 // Platform-specific emoji with position
 struct PositionedGameEmoji: Identifiable {
@@ -215,15 +218,15 @@ class PlatformGameState {
     }
     
     private func getScreenBounds() -> CGRect {
-        #if canImport(UIKit)
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first {
-            return window.bounds
-        } else {
-            return UIScreen.main.bounds
-        }
+        #if os(watchOS)
+        // For watchOS, use WKInterfaceDevice screen bounds
+        let device = WKInterfaceDevice.current()
+        return device.screenBounds
+        #elseif canImport(UIKit)
+        // For iOS/macOS with UIKit
+        return UIScreen.main.bounds
         #else
-        // Fallback for non-UIKit environments
+        // Fallback for other environments
         return CGRect(x: 0, y: 0, width: 800, height: 600)
         #endif
     }

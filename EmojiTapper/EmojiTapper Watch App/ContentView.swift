@@ -52,7 +52,7 @@ struct MenuView: View {
                         .tag(mode)
                 }
             }
-            .pickerStyle(.menu)
+            .pickerStyle(.navigationLink)
             .font(.caption)
             
             // Reserve space for scores to prevent layout shifts
