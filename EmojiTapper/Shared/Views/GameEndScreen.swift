@@ -12,7 +12,14 @@ struct GameEndScreen: View {
     let roundScores: [Int]
     let highScore: Int
     let isNewHighScore: Bool
+    let gameMode: GameMode
     let onDismiss: () -> Void
+    
+    @State private var leaderboardService = LeaderboardService()
+    @State private var showingLeaderboard = false
+    @State private var showingPlayerNameAlert = false
+    @State private var playerName: String = ""
+    @State private var scoreSubmitted = false
     
     var body: some View {
         ZStack {
@@ -81,17 +88,68 @@ struct GameEndScreen: View {
                         }
                     }
                     
-                    // Continue Button
-                    Button("Continue") {
-                        onDismiss()
+                    // Leaderboard Buttons
+                    VStack(spacing: 12) {
+                        if !scoreSubmitted {
+                            Button("Submit to Leaderboard") {
+                                showingPlayerNameAlert = true
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .font(.title2)
+                        } else {
+                            Text("✅ Score Submitted!")
+                                .font(.title2)
+                                .foregroundColor(.green)
+                        }
+                        
+                        Button("View Leaderboard") {
+                            showingLeaderboard = true
+                        }
+                        .buttonStyle(.bordered)
+                        .font(.title2)
+                        
+                        Button("Continue") {
+                            onDismiss()
+                        }
+                        .buttonStyle(.bordered)
+                        .font(.title2)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .font(.title2)
                     .padding(.top)
                 }
-                .padding()
+            .padding()
             }
         }
+        .sheet(isPresented: $showingLeaderboard) {
+            LeaderboardView()
+        }
+        .alert("Submit Score", isPresented: $showingPlayerNameAlert) {
+            TextField("Your Name", text: $playerName)
+            Button("Cancel", role: .cancel) { }
+            Button("Submit") {
+                if !playerName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    Task {
+                        let success = await leaderboardService.submitScore(
+                            mode: gameMode,
+                            player: playerName.trimmingCharacters(in: .whitespacesAndNewlines),
+                            score: totalScore
+                        )
+                        if success {
+                            scoreSubmitted = true
+                        }
+                    }
+                }
+            }
+        } message: {
+            Text("Enter your name to submit your score")
+        }
+        .alert("Leaderboard Error", isPresented: .constant(leaderboardService.lastError != nil)) {
+            Button("OK") {
+                leaderboardService.clearError()
+            }
+        } message: {
+            Text(leaderboardService.lastError ?? "")
+        }
+        
     }
 }
 
@@ -100,7 +158,14 @@ struct GameEndScreenWatch: View {
     let roundScores: [Int]
     let highScore: Int
     let isNewHighScore: Bool
+    let gameMode: GameMode
     let onDismiss: () -> Void
+    
+    @State private var leaderboardService = LeaderboardService()
+    @State private var showingLeaderboard = false
+    @State private var showingPlayerNameAlert = false
+    @State private var playerName: String = ""
+    @State private var scoreSubmitted = false
     
     var body: some View {
         ScrollView {
@@ -142,14 +207,64 @@ struct GameEndScreenWatch: View {
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)
                 
-                // Continue Button
-                Button("Continue") {
-                    onDismiss()
+                // Leaderboard Buttons
+                VStack(spacing: 8) {
+                    if !scoreSubmitted {
+                        Button("Submit Score") {
+                            showingPlayerNameAlert = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .font(.caption)
+                    } else {
+                        Text("✅ Submitted!")
+                            .font(.caption)
+                            .foregroundColor(.green)
+                    }
+                    
+                    Button("Leaderboard") {
+                        showingLeaderboard = true
+                    }
+                    .buttonStyle(.bordered)
+                    .font(.caption)
+                    
+                    Button("Continue") {
+                        onDismiss()
+                    }
+                    .buttonStyle(.bordered)
+                    .font(.caption)
                 }
-                .buttonStyle(.borderedProminent)
-                .font(.caption)
             }
             .padding()
+        }
+        .sheet(isPresented: $showingLeaderboard) {
+            LeaderboardViewWatch()
+        }
+        .alert("Submit Score", isPresented: $showingPlayerNameAlert) {
+            TextField("Your Name", text: $playerName)
+            Button("Cancel", role: .cancel) { }
+            Button("Submit") {
+                if !playerName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    Task {
+                        let success = await leaderboardService.submitScore(
+                            mode: gameMode,
+                            player: playerName.trimmingCharacters(in: .whitespacesAndNewlines),
+                            score: totalScore
+                        )
+                        if success {
+                            scoreSubmitted = true
+                        }
+                    }
+                }
+            }
+        } message: {
+            Text("Enter your name to submit your score")
+        }
+        .alert("Leaderboard Error", isPresented: .constant(leaderboardService.lastError != nil)) {
+            Button("OK") {
+                leaderboardService.clearError()
+            }
+        } message: {
+            Text(leaderboardService.lastError ?? "")
         }
     }
 }

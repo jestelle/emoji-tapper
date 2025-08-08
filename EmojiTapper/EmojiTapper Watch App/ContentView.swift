@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var gameState = PlatformGameState(positioner: WatchEmojiPositioner())
+    @State private var showingLeaderboard = false
     
     var body: some View {
         ZStack {
@@ -20,6 +21,7 @@ struct ContentView: View {
                     roundScores: gameState.roundScores,
                     highScore: gameState.highScore,
                     isNewHighScore: gameState.score == gameState.highScore && gameState.score > 0,
+                    gameMode: gameState.selectedGameMode,
                     onDismiss: {
                         gameState.dismissGameEndScreen()
                     }
@@ -27,14 +29,18 @@ struct ContentView: View {
             } else if gameState.isGameActive {
                 GameView(gameState: gameState)
             } else {
-                MenuView(gameState: gameState)
+                MenuView(gameState: gameState, showingLeaderboard: $showingLeaderboard)
             }
+        }
+        .sheet(isPresented: $showingLeaderboard) {
+            LeaderboardViewWatch()
         }
     }
 }
 
 struct MenuView: View {
     @Bindable var gameState: PlatformGameState
+    @Binding var showingLeaderboard: Bool
     
     var body: some View {
         VStack(spacing: 8) {
@@ -87,11 +93,19 @@ struct MenuView: View {
             }
             .padding(.vertical, 4)
             
-            Button("Start Game") {
-                gameState.startGame()
+            VStack(spacing: 6) {
+                Button("Start Game") {
+                    gameState.startGame()
+                }
+                .buttonStyle(.borderedProminent)
+                .font(.caption)
+                
+                Button("🏆") {
+                    showingLeaderboard = true
+                }
+                .buttonStyle(.bordered)
+                .font(.caption2)
             }
-            .buttonStyle(.borderedProminent)
-            .font(.caption)
         }
         .padding(.bottom, 8) // Extra padding to ensure button is visible
     }

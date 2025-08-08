@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var gameState = PlatformGameState(positioner: iOSEmojiPositioner())
+    @State private var showingLeaderboard = false
     
     var body: some View {
         ZStack {
@@ -20,6 +21,7 @@ struct ContentView: View {
                     roundScores: gameState.roundScores,
                     highScore: gameState.highScore,
                     isNewHighScore: gameState.score == gameState.highScore && gameState.score > 0,
+                    gameMode: gameState.selectedGameMode,
                     onDismiss: {
                         gameState.dismissGameEndScreen()
                     }
@@ -27,14 +29,18 @@ struct ContentView: View {
             } else if gameState.isGameActive {
                 iOSGameView(gameState: gameState)
             } else {
-                iOSMenuView(gameState: gameState)
+                iOSMenuView(gameState: gameState, showingLeaderboard: $showingLeaderboard)
             }
+        }
+        .sheet(isPresented: $showingLeaderboard) {
+            LeaderboardView()
         }
     }
 }
 
 struct iOSMenuView: View {
     @Bindable var gameState: PlatformGameState
+    @Binding var showingLeaderboard: Bool
     
     var body: some View {
         VStack(spacing: 25) {
@@ -78,11 +84,19 @@ struct iOSMenuView: View {
                 format: "High Score: %d"
             )
             
-            Button("Start Game") {
-                gameState.startGame()
+            VStack(spacing: 12) {
+                Button("Start Game") {
+                    gameState.startGame()
+                }
+                .buttonStyle(.borderedProminent)
+                .font(.title2)
+                
+                Button("🏆 Leaderboard") {
+                    showingLeaderboard = true
+                }
+                .buttonStyle(.bordered)
+                .font(.title3)
             }
-            .buttonStyle(.borderedProminent)
-            .font(.title2)
             .padding()
         }
     }
