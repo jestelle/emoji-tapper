@@ -13,12 +13,6 @@ enum EmojiType {
     case skull          // 💀 - ends game immediately  
     case hourglass      // ⏳ - adds 5 seconds
     case cherry         // 🍒 - gives 2 extra points
-    case plus           // ➕ - makes emojis 10% bigger
-    case minus          // ➖ - makes emojis 50% smaller
-    case reset_size     // ⭕ - makes emojis normal size
-    case hide           // 🥷 - makes all emojis 50% opacity
-    case time_penalty_small // ❌ - reduces time by 5s
-    case time_penalty_large // 💩 - reduces time by half
 }
 
 struct GameEmoji: Identifiable {
@@ -42,15 +36,12 @@ class GameState {
         }
     }
     
-    // Visual state effects
-    var emojiSizeMultiplier: Double = 1.0
-    var emojiOpacity: Double = 1.0
+
     
     private var gameTimer: Timer?
     
     let normalEmojis = ["😀", "😊", "😂", "🥰", "😎", "🤔", "😮", "😋", "🙂", "😆", "😍", "🤗", "😴", "🤯", "😇"]
-    let positiveEmojis = ["⏳", "🍒"] // hourglass, cherry
-    let negativeEmojis = ["💀", "➕", "➖", "⭕", "🥷", "❌", "💩"] // skull, plus, minus, reset, hide, time penalties
+    let specialEmojis = ["💀", "⏳", "🍒"] // skull, hourglass, cherry
     
     init() {
         loadHighScore()
@@ -66,8 +57,6 @@ class GameState {
         score = 0
         timeRemaining = currentLevel.initialTime
         isGameActive = true
-        emojiSizeMultiplier = 1.0
-        emojiOpacity = 1.0
         generateNewEmojis()
         startTimer()
     }
@@ -98,26 +87,6 @@ class GameState {
             timeRemaining += 5.0
         case .cherry:
             score += 2
-        case .plus:
-            emojiSizeMultiplier = min(3.0, emojiSizeMultiplier * 1.1) // 10% bigger, cap at 3x
-        case .minus:
-            emojiSizeMultiplier = max(0.1, emojiSizeMultiplier * 0.5) // 50% smaller, min 0.1x
-        case .reset_size:
-            emojiSizeMultiplier = 1.0 // Reset to normal size
-        case .hide:
-            emojiOpacity = 0.5 // Make all emojis 50% opacity
-        case .time_penalty_small:
-            timeRemaining = max(0, timeRemaining - 5.0) // Reduce time by 5s
-            if timeRemaining <= 0 {
-                endGame()
-                return
-            }
-        case .time_penalty_large:
-            timeRemaining = max(0, timeRemaining / 2.0) // Reduce time by half
-            if timeRemaining <= 0 {
-                endGame()
-                return
-            }
         }
         
         generateNewEmojis()
@@ -127,15 +96,10 @@ class GameState {
         currentEmojis.removeAll()
         let targetCount = maxEmojisOnScreen
         
-        // Normal emojis: minimum 1, maximum 10% of total
-        let normalCount = max(1, min(targetCount / 10, targetCount))
-        
-        // Negative emojis: fill most of the remaining space (90% of total)
-        let negativeCount = targetCount - normalCount
-        
         var zIndex = 0
         
-        // Add normal emojis (only 10% or less)
+        // Add normal emojis (majority)
+        let normalCount = max(1, targetCount - 3) // Leave room for 3 special emojis
         for _ in 0..<normalCount {
             let normalEmoji = normalEmojis.randomElement() ?? "😀"
             let position = generateRandomPosition()
@@ -148,25 +112,21 @@ class GameState {
             zIndex += 1
         }
         
-        // Add negative emojis (90% of total)
-        for _ in 0..<negativeCount {
-            let negativeEmoji = negativeEmojis.randomElement() ?? "💀"
+        // Add special emojis (skull, hourglass, and cherry)
+        for _ in 0..<3 {
+            let specialEmoji = specialEmojis.randomElement() ?? "💀"
             let specialType: EmojiType = {
-                switch negativeEmoji {
+                switch specialEmoji {
                 case "💀": return .skull
-                case "➕": return .plus
-                case "➖": return .minus
-                case "⭕": return .reset_size
-                case "🥷": return .hide
-                case "❌": return .time_penalty_small
-                case "💩": return .time_penalty_large
+                case "⏳": return .hourglass
+                case "🍒": return .cherry
                 default: return .skull
                 }
             }()
             
             let position = generateRandomPosition()
             currentEmojis.append(GameEmoji(
-                emoji: negativeEmoji,
+                emoji: specialEmoji,
                 type: specialType,
                 position: position,
                 zIndex: zIndex
