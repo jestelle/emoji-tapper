@@ -201,4 +201,9 @@ class ClassicGameEngine: GameModeEngine {
     private func loadHighScore() {
         highScore = UserDefaults.standard.integer(forKey: "EmojiTapperClassicHighScore")
     }
+    
+    func resetHighScore() {
+        highScore = 0
+        UserDefaults.standard.set(0, forKey: "EmojiTapperClassicHighScore")
+    }
 }

@@ -248,4 +248,9 @@ class PenguinBallEngine: GameModeEngine {
     private func loadHighScore() {
         highScore = UserDefaults.standard.integer(forKey: "EmojiTapperPenguinBallHighScore")
     }
+    
+    func resetHighScore() {
+        highScore = 0
+        UserDefaults.standard.set(0, forKey: "EmojiTapperPenguinBallHighScore")
+    }
 }

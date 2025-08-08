@@ -383,6 +383,10 @@ class PlatformGameState {
         return positioner.getTopmostEmojiAt(point: point, in: currentEmojis)
     }
     
+    func resetHighScore() {
+        gameEngine.resetHighScore()
+    }
+    
     private func updatePositions() {
         var existingPositions: [CGPoint] = []
         currentEmojis.removeAll()

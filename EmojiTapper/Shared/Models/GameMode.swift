@@ -40,4 +40,5 @@ protocol GameModeEngine {
     func proceedToNextRound() // For Penguin Ball round progression
     func pauseTimers() // Pause disappearing timers during animations
     func resumeTimers() // Resume timers after animations complete
+    func resetHighScore() // Reset the high score for this game mode
 }

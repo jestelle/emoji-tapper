@@ -75,10 +75,15 @@ struct MenuView: View {
                     .foregroundColor(.gray)
                     .opacity(gameState.score > 0 ? 1.0 : 0.0)
                 
-                Text(gameState.highScore > 0 ? "High: \(gameState.highScore)" : " ")
-                    .font(.system(size: 10))
-                    .foregroundColor(.yellow)
-                    .opacity(gameState.highScore > 0 ? 1.0 : 0.0)
+                HighScoreResetView(
+                    highScore: gameState.highScore,
+                    onReset: {
+                        gameState.resetHighScore()
+                    },
+                    font: .system(size: 10),
+                    color: .yellow,
+                    format: "High: %d"
+                )
             }
             .padding(.vertical, 4)
             

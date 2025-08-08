@@ -68,10 +68,15 @@ struct MacMenuView: View {
                 .foregroundColor(.gray)
                 .opacity(gameState.score > 0 ? 1.0 : 0.0)
             
-            Text(gameState.highScore > 0 ? "High Score: \(gameState.highScore)" : " ")
-                .font(.title2)
-                .foregroundColor(.yellow)
-                .opacity(gameState.highScore > 0 ? 1.0 : 0.0)
+            HighScoreResetView(
+                highScore: gameState.highScore,
+                onReset: {
+                    gameState.resetHighScore()
+                },
+                font: .title2,
+                color: .yellow,
+                format: "High Score: %d"
+            )
             
             Button("Start Game") {
                 gameState.startGame()
