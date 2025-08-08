@@ -86,6 +86,7 @@ struct GameView: View {
                 // Emojis (sorted by zIndex so higher z-index renders on top and gets priority for taps)
                 ForEach(gameState.currentEmojis.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
                     Text(emoji.emoji)
+                        .font(.system(size: 40))
                         .position(emoji.position)
                         .zIndex(Double(emoji.zIndex))
                         .onTapGesture {

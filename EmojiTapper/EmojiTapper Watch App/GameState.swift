@@ -98,40 +98,93 @@ class GameState {
         
         var zIndex = 0
         
-        // Add normal emojis (majority)
-        let normalCount = max(1, targetCount - 3) // Leave room for 3 special emojis
-        for _ in 0..<normalCount {
-            let normalEmoji = normalEmojis.randomElement() ?? "😀"
-            let position = generateRandomPosition()
-            currentEmojis.append(GameEmoji(
-                emoji: normalEmoji,
-                type: .normal,
-                position: position,
-                zIndex: zIndex
-            ))
-            zIndex += 1
-        }
+        // Always add at least one normal emoji
+        let normalEmoji = normalEmojis.randomElement() ?? "😀"
+        let position = generateRandomPosition()
+        currentEmojis.append(GameEmoji(
+            emoji: normalEmoji,
+            type: .normal,
+            position: position,
+            zIndex: zIndex
+        ))
+        zIndex += 1
         
-        // Add special emojis (skull, hourglass, and cherry)
-        for _ in 0..<3 {
-            let specialEmoji = specialEmojis.randomElement() ?? "💀"
-            let specialType: EmojiType = {
-                switch specialEmoji {
-                case "💀": return .skull
-                case "⏳": return .hourglass
-                case "🍒": return .cherry
-                default: return .skull
-                }
-            }()
+        // Fill remaining slots with normal emojis
+        let remainingSlots = targetCount - 1
+        for _ in 0..<remainingSlots {
+            // 20% chance for skull, 10% chance for hourglass (max 1), 10% chance for cherry (max 3)
+            let randomValue = Double.random(in: 0...1)
             
-            let position = generateRandomPosition()
-            currentEmojis.append(GameEmoji(
-                emoji: specialEmoji,
-                type: specialType,
-                position: position,
-                zIndex: zIndex
-            ))
-            zIndex += 1
+            if randomValue < 0.2 {
+                // Add skull (20% chance)
+                let position = generateRandomPosition()
+                currentEmojis.append(GameEmoji(
+                    emoji: "💀",
+                    type: .skull,
+                    position: position,
+                    zIndex: zIndex
+                ))
+                zIndex += 1
+            } else if randomValue < 0.3 {
+                // Check if we already have an hourglass
+                let hasHourglass = currentEmojis.contains { $0.type == .hourglass }
+                if !hasHourglass {
+                    let position = generateRandomPosition()
+                    currentEmojis.append(GameEmoji(
+                        emoji: "⏳",
+                        type: .hourglass,
+                        position: position,
+                        zIndex: zIndex
+                    ))
+                    zIndex += 1
+                } else {
+                    // Add normal emoji instead
+                    let normalEmoji = normalEmojis.randomElement() ?? "😀"
+                    let position = generateRandomPosition()
+                    currentEmojis.append(GameEmoji(
+                        emoji: normalEmoji,
+                        type: .normal,
+                        position: position,
+                        zIndex: zIndex
+                    ))
+                    zIndex += 1
+                }
+            } else if randomValue < 0.4 {
+                // Check if we already have 3 cherries
+                let cherryCount = currentEmojis.filter { $0.type == .cherry }.count
+                if cherryCount < 3 {
+                    let position = generateRandomPosition()
+                    currentEmojis.append(GameEmoji(
+                        emoji: "🍒",
+                        type: .cherry,
+                        position: position,
+                        zIndex: zIndex
+                    ))
+                    zIndex += 1
+                } else {
+                    // Add normal emoji instead
+                    let normalEmoji = normalEmojis.randomElement() ?? "😀"
+                    let position = generateRandomPosition()
+                    currentEmojis.append(GameEmoji(
+                        emoji: normalEmoji,
+                        type: .normal,
+                        position: position,
+                        zIndex: zIndex
+                    ))
+                    zIndex += 1
+                }
+            } else {
+                // Add normal emoji (60% chance)
+                let normalEmoji = normalEmojis.randomElement() ?? "😀"
+                let position = generateRandomPosition()
+                currentEmojis.append(GameEmoji(
+                    emoji: normalEmoji,
+                    type: .normal,
+                    position: position,
+                    zIndex: zIndex
+                ))
+                zIndex += 1
+            }
         }
     }
     
