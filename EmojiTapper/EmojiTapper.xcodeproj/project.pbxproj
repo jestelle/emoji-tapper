@@ -32,6 +32,20 @@
 			remoteGlobalIDString = FC0ADA4E2E26057000A4D0F6;
 			remoteInfo = "EmojiTapper Watch App";
 		};
+		FC7910822E458C8400F1EAB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC7910712E458C8300F1EAB4;
+			remoteInfo = EmojiTapperMobile;
+		};
+		FC79108C2E458C8400F1EAB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC7910712E458C8300F1EAB4;
+			remoteInfo = EmojiTapperMobile;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +67,9 @@
 		FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmojiTapper Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EmojiTapper Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EmojiTapper Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiTapperMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +86,21 @@
 		FC0ADA6E2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "EmojiTapper Watch AppUITests";
+			sourceTree = "<group>";
+		};
+		FC7910732E458C8300F1EAB4 /* EmojiTapperMobile */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EmojiTapperMobile;
+			sourceTree = "<group>";
+		};
+		FC7910842E458C8400F1EAB4 /* EmojiTapperMobileTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EmojiTapperMobileTests;
+			sourceTree = "<group>";
+		};
+		FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EmojiTapperMobileUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -95,6 +127,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC79106F2E458C8300F1EAB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC79107E2E458C8400F1EAB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7910882E458C8400F1EAB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +157,9 @@
 				FC0ADA532E26057000A4D0F6 /* EmojiTapper Watch App */,
 				FC0ADA642E26057100A4D0F6 /* EmojiTapper Watch AppTests */,
 				FC0ADA6E2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */,
+				FC7910732E458C8300F1EAB4 /* EmojiTapperMobile */,
+				FC7910842E458C8400F1EAB4 /* EmojiTapperMobileTests */,
+				FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
 				FC0ADA4A2E26057000A4D0F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +171,9 @@
 				FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */,
 				FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */,
 				FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */,
+				FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */,
+				FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */,
+				FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,6 +268,74 @@
 			productReference = FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		FC7910712E458C8300F1EAB4 /* EmojiTapperMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC7910992E458C8400F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMobile" */;
+			buildPhases = (
+				FC79106E2E458C8300F1EAB4 /* Sources */,
+				FC79106F2E458C8300F1EAB4 /* Frameworks */,
+				FC7910702E458C8300F1EAB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FC7910732E458C8300F1EAB4 /* EmojiTapperMobile */,
+			);
+			name = EmojiTapperMobile;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapperMobile;
+			productReference = FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC7910802E458C8400F1EAB4 /* EmojiTapperMobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC79109A2E458C8400F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMobileTests" */;
+			buildPhases = (
+				FC79107D2E458C8400F1EAB4 /* Sources */,
+				FC79107E2E458C8400F1EAB4 /* Frameworks */,
+				FC79107F2E458C8400F1EAB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC7910832E458C8400F1EAB4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC7910842E458C8400F1EAB4 /* EmojiTapperMobileTests */,
+			);
+			name = EmojiTapperMobileTests;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapperMobileTests;
+			productReference = FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FC79108A2E458C8400F1EAB4 /* EmojiTapperMobileUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC79109B2E458C8400F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMobileUITests" */;
+			buildPhases = (
+				FC7910872E458C8400F1EAB4 /* Sources */,
+				FC7910882E458C8400F1EAB4 /* Frameworks */,
+				FC7910892E458C8400F1EAB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC79108D2E458C8400F1EAB4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
+			);
+			name = EmojiTapperMobileUITests;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapperMobileUITests;
+			productReference = FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -233,6 +360,17 @@
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = FC0ADA4E2E26057000A4D0F6;
 					};
+					FC7910712E458C8300F1EAB4 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					FC7910802E458C8400F1EAB4 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FC7910712E458C8300F1EAB4;
+					};
+					FC79108A2E458C8400F1EAB4 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FC7910712E458C8300F1EAB4;
+					};
 				};
 			};
 			buildConfigurationList = FC0ADA462E26057000A4D0F6 /* Build configuration list for PBXProject "EmojiTapper" */;
@@ -253,6 +391,9 @@
 				FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */,
 				FC0ADA602E26057100A4D0F6 /* EmojiTapper Watch AppTests */,
 				FC0ADA6A2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */,
+				FC7910712E458C8300F1EAB4 /* EmojiTapperMobile */,
+				FC7910802E458C8400F1EAB4 /* EmojiTapperMobileTests */,
+				FC79108A2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,6 +427,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC7910702E458C8300F1EAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC79107F2E458C8400F1EAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7910892E458C8400F1EAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -310,6 +472,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC79106E2E458C8300F1EAB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC79107D2E458C8400F1EAB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7910872E458C8400F1EAB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -327,6 +510,16 @@
 			isa = PBXTargetDependency;
 			target = FC0ADA4E2E26057000A4D0F6 /* EmojiTapper Watch App */;
 			targetProxy = FC0ADA6C2E26057100A4D0F6 /* PBXContainerItemProxy */;
+		};
+		FC7910832E458C8400F1EAB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC7910712E458C8300F1EAB4 /* EmojiTapperMobile */;
+			targetProxy = FC7910822E458C8400F1EAB4 /* PBXContainerItemProxy */;
+		};
+		FC79108D2E458C8400F1EAB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC7910712E458C8300F1EAB4 /* EmojiTapperMobile */;
+			targetProxy = FC79108C2E458C8400F1EAB4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -617,6 +810,149 @@
 			};
 			name = Release;
 		};
+		FC7910932E458C8400F1EAB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EmojiTapperMobile/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FC7910942E458C8400F1EAB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EmojiTapperMobile/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC7910952E458C8400F1EAB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiTapperMobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmojiTapperMobile";
+			};
+			name = Debug;
+		};
+		FC7910962E458C8400F1EAB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiTapperMobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmojiTapperMobile";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FC7910972E458C8400F1EAB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobileUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EmojiTapperMobile;
+			};
+			name = Debug;
+		};
+		FC7910982E458C8400F1EAB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobileUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EmojiTapperMobile;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -661,6 +997,33 @@
 			buildConfigurations = (
 				FC0ADA802E26057100A4D0F6 /* Debug */,
 				FC0ADA812E26057100A4D0F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC7910992E458C8400F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC7910932E458C8400F1EAB4 /* Debug */,
+				FC7910942E458C8400F1EAB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC79109A2E458C8400F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC7910952E458C8400F1EAB4 /* Debug */,
+				FC7910962E458C8400F1EAB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC79109B2E458C8400F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMobileUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC7910972E458C8400F1EAB4 /* Debug */,
+				FC7910982E458C8400F1EAB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
