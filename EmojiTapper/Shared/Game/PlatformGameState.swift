@@ -10,13 +10,14 @@ import Foundation
 
 // Platform-specific emoji with position
 struct PositionedGameEmoji: Identifiable {
-    let id = UUID()
+    let id: UUID
     let emoji: String
     let type: EmojiType
     let position: CGPoint
     let zIndex: Int
     
     init(from gameEmoji: GameEmoji, position: CGPoint) {
+        self.id = gameEmoji.id  // Use the same ID from gameEmoji
         self.emoji = gameEmoji.emoji
         self.type = gameEmoji.type
         self.position = position
@@ -50,7 +51,10 @@ class PlatformGameState {
     
     func startGame() {
         gameEngine.startGame()
-        updatePositions()
+        // Force update positions after game engine generates emojis
+        DispatchQueue.main.async {
+            self.updatePositions()
+        }
     }
     
     func endGame() {
@@ -59,10 +63,13 @@ class PlatformGameState {
     }
     
     func emojiTapped(_ emoji: PositionedGameEmoji) {
-        // Find the corresponding GameEmoji
-        if let gameEmoji = gameEngine.currentEmojis.first(where: { $0.id.uuidString == emoji.id.uuidString }) {
+        // Find the corresponding GameEmoji by ID
+        if let gameEmoji = gameEngine.currentEmojis.first(where: { $0.id == emoji.id }) {
             gameEngine.emojiTapped(gameEmoji)
-            updatePositions()
+            // Update positions after the engine processes the tap
+            DispatchQueue.main.async {
+                self.updatePositions()
+            }
         }
     }
     
