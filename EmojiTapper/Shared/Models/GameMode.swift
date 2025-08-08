@@ -38,4 +38,6 @@ protocol GameModeEngine {
     func endGame()
     func emojiTapped(_ emoji: GameEmoji)
     func proceedToNextRound() // For Penguin Ball round progression
+    func pauseTimers() // Pause disappearing timers during animations
+    func resumeTimers() // Resume timers after animations complete
 }

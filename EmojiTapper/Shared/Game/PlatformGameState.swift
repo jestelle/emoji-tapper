@@ -26,6 +26,15 @@ struct PositionedGameEmoji: Identifiable {
         self.position = position
         self.zIndex = gameEmoji.zIndex
     }
+    
+    // Manual constructor for preserving exact properties
+    init(id: UUID, emoji: String, type: EmojiType, position: CGPoint, zIndex: Int) {
+        self.id = id
+        self.emoji = emoji
+        self.type = type
+        self.position = position
+        self.zIndex = zIndex
+    }
 }
 
 // Platform-agnostic positioning protocol
@@ -41,6 +50,7 @@ class PlatformGameState {
     
     var currentEmojis: [PositionedGameEmoji] = []
     var animatingEmojis: [AnimatedEmoji] = []
+    var animatedPositionChanges: [AnimatedPositionChange] = []
     var celebratingPenguin: PositionedGameEmoji? = nil
     var showGameEndScreen: Bool = false
     var selectedGameMode: GameMode = .classic {
@@ -102,6 +112,7 @@ class PlatformGameState {
         setupEngineCallback()
         currentEmojis.removeAll()
         animatingEmojis.removeAll()
+        animatedPositionChanges.removeAll()
         celebratingPenguin = nil
         showGameEndScreen = false
     }
@@ -175,15 +186,17 @@ class PlatformGameState {
     }
     
     func endGame() {
-        gameEngine.endGame()
-        currentEmojis.removeAll()
-        animatingEmojis.removeAll()
-        celebratingPenguin = nil
-        
-        // Show end screen for Penguin Ball
+        // Show end screen for Penguin Ball BEFORE ending the game
+        // to prevent briefly showing the main menu
         if gameEngine.gameMode == .penguinBall {
             showGameEndScreen = true
         }
+        
+        gameEngine.endGame()
+        currentEmojis.removeAll()
+        animatingEmojis.removeAll()
+        animatedPositionChanges.removeAll()
+        celebratingPenguin = nil
     }
     
     func dismissGameEndScreen() {
@@ -197,6 +210,9 @@ class PlatformGameState {
             // Special handling for Penguin Ball penguin clicks
             if gameEngine.gameMode == .penguinBall && gameEmoji.emoji == "🐧" {
                 handlePenguinCelebration(clickedPenguin: emoji)
+            } else if gameEngine.gameMode == .penguinBall {
+                // Wrong emoji in Penguin Ball - animate position changes
+                handleWrongEmojiTap(gameEmoji)
             } else {
                 gameEngine.emojiTapped(gameEmoji)
                 // Update positions after the engine processes the tap
@@ -207,10 +223,79 @@ class PlatformGameState {
         }
     }
     
+    private func handleWrongEmojiTap(_ gameEmoji: GameEmoji) {
+        gameEngine.emojiTapped(gameEmoji) // Process the tap (no penalty in Penguin Ball)
+        
+        // Pause disappearing timers during animation
+        gameEngine.pauseTimers()
+        
+        // Generate new positions for all current emojis
+        var newPositions: [UUID: CGPoint] = [:]
+        var existingPositions: [CGPoint] = []
+        
+        for emoji in currentEmojis {
+            let newPosition = positioner.generateRandomPosition(avoiding: existingPositions)
+            newPositions[emoji.id] = newPosition
+            existingPositions.append(newPosition)
+        }
+        
+        // Create animated position changes for all emojis
+        for emoji in currentEmojis {
+            if let newPosition = newPositions[emoji.id] {
+                let animatedChange = AnimatedPositionChange(from: emoji, to: newPosition)
+                animatedPositionChanges.append(animatedChange)
+            }
+        }
+        
+        // Hide current emojis during animation
+        let animatingEmojiIds = Set(animatedPositionChanges.map { $0.id })
+        currentEmojis.removeAll { animatingEmojiIds.contains($0.id) }
+        
+        // After animations complete, set final positions and resume timers
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { // Max animation duration
+            // Set final positions without regenerating them - use exact animation end positions
+            self.currentEmojis = self.animatedPositionChanges.compactMap { change in
+                // Find corresponding engine emoji to preserve type and other properties
+                if let engineEmoji = self.gameEngine.currentEmojis.first(where: { $0.id == change.id }) {
+                    // Create positioned emoji manually to preserve the exact ID and final position
+                    return PositionedGameEmoji(
+                        id: change.id, // Keep same ID
+                        emoji: engineEmoji.emoji,
+                        type: engineEmoji.type,
+                        position: change.endPosition, // Use animation end position
+                        zIndex: engineEmoji.zIndex
+                    )
+                }
+                return nil
+            }
+            
+            self.animatedPositionChanges.removeAll()
+            // Resume disappearing timers after animation
+            self.gameEngine.resumeTimers()
+        }
+    }
+    
     private func handlePenguinCelebration(clickedPenguin: PositionedGameEmoji) {
         // Tap the penguin in the engine first (updates score, etc.)
         if let gameEmoji = gameEngine.currentEmojis.first(where: { $0.id == clickedPenguin.id }) {
             gameEngine.emojiTapped(gameEmoji)
+        }
+        
+        // Check if game should end after this round (before celebration)
+        let shouldEndGame = if let penguinEngine = gameEngine as? PenguinBallEngine {
+            penguinEngine.roundScores.count >= 5 // All 5 rounds complete
+        } else {
+            false
+        }
+        
+        if shouldEndGame {
+            // Show end screen immediately for final round
+            showGameEndScreen = true
+            gameEngine.endGame()
+            currentEmojis.removeAll()
+            animatingEmojis.removeAll()
+            celebratingPenguin = nil
+            return
         }
         
         // Start celebration: penguin grows, others animate away
@@ -233,18 +318,11 @@ class PlatformGameState {
         // Remove non-penguin emojis from current display
         currentEmojis.removeAll { $0.id != clickedPenguin.id }
         
-        // After celebration period, proceed to next round or show end screen
+        // After celebration period, proceed to next round
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.celebratingPenguin = nil
-            
-            // Check if game should end after this round
-            if let penguinEngine = self.gameEngine as? PenguinBallEngine,
-               penguinEngine.roundScores.count >= 5 { // All 5 rounds complete
-                self.endGame()
-            } else {
-                self.gameEngine.proceedToNextRound()
-                self.updatePositions()
-            }
+            self.gameEngine.proceedToNextRound()
+            self.updatePositions()
         }
     }
     

@@ -148,6 +148,17 @@ struct iOSGameView: View {
                 ForEach(gameState.animatingEmojis) { animatedEmoji in
                     AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 60)
                 }
+                
+                // Animated position changes (wrong emoji taps in Penguin Ball)
+                ForEach(gameState.animatedPositionChanges) { animatedChange in
+                    AnimatedPositionChangeView(
+                        animatedChange: animatedChange,
+                        fontSize: 60,
+                        onComplete: {
+                            // Individual animations will clean themselves up via the timer
+                        }
+                    )
+                }
             }
         }
     }

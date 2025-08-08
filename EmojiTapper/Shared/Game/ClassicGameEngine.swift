@@ -90,6 +90,14 @@ class ClassicGameEngine: GameModeEngine {
         // Classic mode doesn't have rounds, so this does nothing
     }
     
+    func pauseTimers() {
+        // Classic mode doesn't need timer pausing for position animations
+    }
+    
+    func resumeTimers() {
+        // Classic mode doesn't need timer resuming for position animations
+    }
+    
     func generateNewEmojis() {
         currentEmojis.removeAll()
         let targetCount = maxEmojisOnScreen

@@ -95,6 +95,17 @@ class PenguinBallEngine: GameModeEngine {
         startNextRound()
     }
     
+    func pauseTimers() {
+        stopAllTimers()
+    }
+    
+    func resumeTimers() {
+        // Only resume if we haven't started disappearing yet
+        if disappearTimer == nil && gameTimer == nil {
+            startDisappearTimer()
+        }
+    }
+    
     private func startNextRound() {
         currentRound += 1
         timeUntilDisappear = 1.0
