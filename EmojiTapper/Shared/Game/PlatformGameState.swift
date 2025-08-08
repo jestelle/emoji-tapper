@@ -33,20 +33,58 @@ protocol EmojiPositioner {
 
 @Observable
 class PlatformGameState {
-    private let gameEngine = GameEngine()
+    private var gameEngine: GameModeEngine
     private let positioner: EmojiPositioner
     
     var currentEmojis: [PositionedGameEmoji] = []
+    var selectedGameMode: GameMode = .classic {
+        didSet {
+            switchGameMode(to: selectedGameMode)
+        }
+    }
     
     // Forward properties from GameEngine
     var score: Int { gameEngine.score }
-    var timeRemaining: TimeInterval { gameEngine.timeRemaining }
     var isGameActive: Bool { gameEngine.isGameActive }
-    var currentLevel: GameLevel { gameEngine.currentLevel }
     var highScore: Int { gameEngine.highScore }
+    var gameStateText: String { gameEngine.gameStateText }
     
-    init(positioner: EmojiPositioner) {
+    // Classic mode specific properties for progress bar
+    var timeRemainingForProgress: TimeInterval {
+        if let classicEngine = gameEngine as? ClassicGameEngine {
+            return classicEngine.timeRemainingForProgress
+        }
+        return 0
+    }
+    
+    var totalTimeForProgress: TimeInterval {
+        if let classicEngine = gameEngine as? ClassicGameEngine {
+            return classicEngine.totalTimeForProgress
+        }
+        return 1
+    }
+    
+    init(positioner: EmojiPositioner, gameMode: GameMode = .classic) {
         self.positioner = positioner
+        self.selectedGameMode = gameMode
+        self.gameEngine = Self.createEngine(for: gameMode)
+    }
+    
+    private static func createEngine(for mode: GameMode) -> GameModeEngine {
+        switch mode {
+        case .classic:
+            return ClassicGameEngine()
+        case .penguinBall:
+            return PenguinBallEngine()
+        }
+    }
+    
+    private func switchGameMode(to mode: GameMode) {
+        if isGameActive {
+            gameEngine.endGame()
+        }
+        gameEngine = Self.createEngine(for: mode)
+        currentEmojis.removeAll()
     }
     
     func startGame() {

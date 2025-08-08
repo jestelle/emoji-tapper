@@ -24,11 +24,11 @@ struct ContentView: View {
 }
 
 struct iOSMenuView: View {
-    let gameState: PlatformGameState
+    @Bindable var gameState: PlatformGameState
     
     var body: some View {
-        VStack(spacing: 30) {
-            Text("😊")
+        VStack(spacing: 25) {
+            Text(gameState.selectedGameMode == .classic ? "😊" : "🐧")
                 .font(.system(size: 80))
             
             Text("Emoji Tapper")
@@ -36,15 +36,31 @@ struct iOSMenuView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
+            // Game mode picker
+            Picker("Game Mode", selection: $gameState.selectedGameMode) {
+                ForEach(GameMode.allCases, id: \.self) { mode in
+                    Text(mode.displayName)
+                        .tag(mode)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal)
+            
+            Text(gameState.selectedGameMode.description)
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
             if gameState.score > 0 {
                 Text("Last Score: \(gameState.score)")
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(.gray)
             }
             
             if gameState.highScore > 0 {
                 Text("High Score: \(gameState.highScore)")
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(.yellow)
             }
             
@@ -66,20 +82,31 @@ struct iOSGameView: View {
             ZStack {
                 // Timer progress bar and Score HUD
                 VStack {
-                    // Timer progress bar
-                    HStack {
-                        ProgressView(value: gameState.timeRemaining, total: gameState.currentLevel.initialTime)
-                            .progressViewStyle(LinearProgressViewStyle(tint: .green))
-                            .scaleEffect(x: 1, y: 4, anchor: .center)
+                    // Progress bar for Classic mode, text info for other modes
+                    if gameState.selectedGameMode == .classic {
+                        HStack {
+                            ProgressView(value: gameState.timeRemainingForProgress, total: gameState.totalTimeForProgress)
+                                .progressViewStyle(LinearProgressViewStyle(tint: .green))
+                                .scaleEffect(x: 1, y: 4, anchor: .center)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 60) // Account for status bar
+                    } else {
+                        HStack {
+                            Text(gameState.gameStateText)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 60) // Account for status bar
                     }
-                    .padding(.horizontal)
-                    .padding(.top, 60) // Account for status bar
                     
                     Spacer()
                     
                     // Score in lower left corner
                     HStack {
-                        Text("Score: \(gameState.score)")
+                        Text("\(gameState.score)")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)

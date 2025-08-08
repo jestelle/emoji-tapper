@@ -1,0 +1,39 @@
+//
+//  GameMode.swift
+//  Shared
+//
+//  Created by Josh Estelle on 8/8/25.
+//
+
+import Foundation
+
+enum GameMode: String, CaseIterable {
+    case classic = "Classic"
+    case penguinBall = "Penguin Ball"
+    
+    var displayName: String {
+        return self.rawValue
+    }
+    
+    var description: String {
+        switch self {
+        case .classic:
+            return "Tap emojis to score points and earn time"
+        case .penguinBall:
+            return "Find the penguin among many emojis in 10 rounds"
+        }
+    }
+}
+
+protocol GameModeEngine {
+    var gameMode: GameMode { get }
+    var score: Int { get }
+    var isGameActive: Bool { get }
+    var currentEmojis: [GameEmoji] { get }
+    var gameStateText: String { get } // For displaying round info, time, etc.
+    var highScore: Int { get }
+    
+    func startGame()
+    func endGame()
+    func emojiTapped(_ emoji: GameEmoji)
+}

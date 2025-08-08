@@ -16,6 +16,12 @@
 		FC7910CA2E458EDB00F1EAB4 /* GameEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */; };
 		FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */; };
 		FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */; };
+		FC7910CF2E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */; };
+		FC7910D02E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */; };
+		FC7910D12E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */; };
+		FC7910D22E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */; };
+		FC7910D42E45955200F1EAB4 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910D32E45955200F1EAB4 /* GameMode.swift */; };
+		FC7910D52E45955200F1EAB4 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910D32E45955200F1EAB4 /* GameMode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +88,9 @@
 		FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformGameState.swift; sourceTree = "<group>"; };
 		FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEmoji.swift; sourceTree = "<group>"; };
 		FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
+		FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameEngine.swift; sourceTree = "<group>"; };
+		FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenguinBallEngine.swift; sourceTree = "<group>"; };
+		FC7910D32E45955200F1EAB4 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -194,6 +203,8 @@
 		FC7910C02E458EDB00F1EAB4 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */,
+				FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */,
 				FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */,
 				FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */,
 			);
@@ -205,6 +216,7 @@
 			children = (
 				FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */,
 				FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */,
+				FC7910D32E45955200F1EAB4 /* GameMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -495,10 +507,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7910D52E45955200F1EAB4 /* GameMode.swift in Sources */,
 				FC7910C52E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
 				FC7910C62E458EDB00F1EAB4 /* GameEmoji.swift in Sources */,
 				FC7910C72E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
 				FC7910C82E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
+				FC7910CF2E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
+				FC7910D02E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,10 +535,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7910D42E45955200F1EAB4 /* GameMode.swift in Sources */,
 				FC7910C92E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
 				FC7910CA2E458EDB00F1EAB4 /* GameEmoji.swift in Sources */,
 				FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
 				FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
+				FC7910D12E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
+				FC7910D22E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 //
-//  WatchEmojiPositioner.swift
-//  EmojiTapper Watch App
+//  macOSEmojiPositioner.swift
+//  Shared
 //
 //  Created by Josh Estelle on 8/8/25.
 //
@@ -8,18 +8,19 @@
 import Foundation
 import SwiftUI
 
-class WatchEmojiPositioner: EmojiPositioner {
+class macOSEmojiPositioner: EmojiPositioner {
     func generateRandomPosition(avoiding existingPositions: [CGPoint]) -> CGPoint {
         var attempts = 0
         let maxAttempts = 50
         
         // Allow more overlap for Penguin Ball mode when there are many emojis
-        let minDistance: Double = existingPositions.count > 30 ? 15 : 35
+        let minDistance: Double = existingPositions.count > 80 ? 30 : 60
         
         while attempts < maxAttempts {
+            // Use much larger range for macOS - full window space
             let position = CGPoint(
-                x: Double.random(in: 15...135),
-                y: Double.random(in: 35...135)
+                x: Double.random(in: 50...750),  // Wide range for desktop
+                y: Double.random(in: 100...500)  // Tall range for desktop
             )
             
             // Check if this position overlaps with existing emojis
@@ -37,16 +38,16 @@ class WatchEmojiPositioner: EmojiPositioner {
         
         // If we can't find a non-overlapping position after max attempts, return a random one
         return CGPoint(
-            x: Double.random(in: 15...135),
-            y: Double.random(in: 35...135)
+            x: Double.random(in: 50...750),
+            y: Double.random(in: 100...500)
         )
     }
     
     func getTopmostEmojiAt(point: CGPoint, in emojis: [PositionedGameEmoji]) -> PositionedGameEmoji? {
-        // Find emojis that contain this point (within 15 pixel radius)
+        // Find emojis that contain this point (within 30 pixel radius for mouse clicking)
         let hitEmojis = emojis.filter { emoji in
             let distance = sqrt(pow(point.x - emoji.position.x, 2) + pow(point.y - emoji.position.y, 2))
-            return distance <= 15 // Hit radius
+            return distance <= 30 // Good hit radius for desktop mouse
         }
         
         // Return the one with highest zIndex (rendered on top)
