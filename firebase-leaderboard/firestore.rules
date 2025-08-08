@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // High scores collection rules
+    match /highscores/{scoreId} {
+      // Allow read access to all high scores
+      allow read: if true;
+      
+      // Only allow writes through Cloud Functions for data validation
+      allow write: if false;
+    }
+    
+    // Deny access to all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
