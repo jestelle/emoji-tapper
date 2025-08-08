@@ -74,6 +74,20 @@
 			remoteGlobalIDString = FC7910712E458C8300F1EAB4;
 			remoteInfo = EmojiTapperMobile;
 		};
+		FC7911262E464C2A00F1EAB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC7911142E464C2900F1EAB4;
+			remoteInfo = EmojiTapperMac;
+		};
+		FC7911302E464C2A00F1EAB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC0ADA432E26057000A4D0F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC7911142E464C2900F1EAB4;
+			remoteInfo = EmojiTapperMac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -112,6 +126,9 @@
 		FC7910E32E45A15F00F1EAB4 /* AnimatedPositionChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPositionChangeView.swift; sourceTree = "<group>"; };
 		FC7910E62E45A16400F1EAB4 /* AnimatedPositionChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPositionChange.swift; sourceTree = "<group>"; };
 		FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancingEmojiView.swift; sourceTree = "<group>"; };
+		FC7911152E464C2900F1EAB4 /* EmojiTapperMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiTapperMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7911252E464C2A00F1EAB4 /* EmojiTapperMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC79112F2E464C2A00F1EAB4 /* EmojiTapperMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -143,6 +160,21 @@
 		FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = EmojiTapperMobileUITests;
+			sourceTree = "<group>";
+		};
+		FC7911162E464C2900F1EAB4 /* EmojiTapperMac */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EmojiTapperMac;
+			sourceTree = "<group>";
+		};
+		FC7911282E464C2A00F1EAB4 /* EmojiTapperMacTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EmojiTapperMacTests;
+			sourceTree = "<group>";
+		};
+		FC7911322E464C2A00F1EAB4 /* EmojiTapperMacUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EmojiTapperMacUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -190,6 +222,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC7911122E464C2900F1EAB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7911222E464C2A00F1EAB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC79112C2E464C2A00F1EAB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -203,6 +256,9 @@
 				FC7910842E458C8400F1EAB4 /* EmojiTapperMobileTests */,
 				FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
 				FC7910C42E458EDB00F1EAB4 /* Shared */,
+				FC7911162E464C2900F1EAB4 /* EmojiTapperMac */,
+				FC7911282E464C2A00F1EAB4 /* EmojiTapperMacTests */,
+				FC7911322E464C2A00F1EAB4 /* EmojiTapperMacUITests */,
 				FC0ADA4A2E26057000A4D0F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -217,6 +273,9 @@
 				FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */,
 				FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */,
 				FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */,
+				FC7911152E464C2900F1EAB4 /* EmojiTapperMac.app */,
+				FC7911252E464C2A00F1EAB4 /* EmojiTapperMacTests.xctest */,
+				FC79112F2E464C2A00F1EAB4 /* EmojiTapperMacUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -424,6 +483,74 @@
 			productReference = FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		FC7911142E464C2900F1EAB4 /* EmojiTapperMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC7911372E464C2A00F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMac" */;
+			buildPhases = (
+				FC7911112E464C2900F1EAB4 /* Sources */,
+				FC7911122E464C2900F1EAB4 /* Frameworks */,
+				FC7911132E464C2900F1EAB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FC7911162E464C2900F1EAB4 /* EmojiTapperMac */,
+			);
+			name = EmojiTapperMac;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapperMac;
+			productReference = FC7911152E464C2900F1EAB4 /* EmojiTapperMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC7911242E464C2A00F1EAB4 /* EmojiTapperMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC79113A2E464C2A00F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMacTests" */;
+			buildPhases = (
+				FC7911212E464C2A00F1EAB4 /* Sources */,
+				FC7911222E464C2A00F1EAB4 /* Frameworks */,
+				FC7911232E464C2A00F1EAB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC7911272E464C2A00F1EAB4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC7911282E464C2A00F1EAB4 /* EmojiTapperMacTests */,
+			);
+			name = EmojiTapperMacTests;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapperMacTests;
+			productReference = FC7911252E464C2A00F1EAB4 /* EmojiTapperMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FC79112E2E464C2A00F1EAB4 /* EmojiTapperMacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC79113D2E464C2A00F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMacUITests" */;
+			buildPhases = (
+				FC79112B2E464C2A00F1EAB4 /* Sources */,
+				FC79112C2E464C2A00F1EAB4 /* Frameworks */,
+				FC79112D2E464C2A00F1EAB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FC7911312E464C2A00F1EAB4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FC7911322E464C2A00F1EAB4 /* EmojiTapperMacUITests */,
+			);
+			name = EmojiTapperMacUITests;
+			packageProductDependencies = (
+			);
+			productName = EmojiTapperMacUITests;
+			productReference = FC79112F2E464C2A00F1EAB4 /* EmojiTapperMacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -459,6 +586,17 @@
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = FC7910712E458C8300F1EAB4;
 					};
+					FC7911142E464C2900F1EAB4 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					FC7911242E464C2A00F1EAB4 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FC7911142E464C2900F1EAB4;
+					};
+					FC79112E2E464C2A00F1EAB4 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = FC7911142E464C2900F1EAB4;
+					};
 				};
 			};
 			buildConfigurationList = FC0ADA462E26057000A4D0F6 /* Build configuration list for PBXProject "EmojiTapper" */;
@@ -482,6 +620,9 @@
 				FC7910712E458C8300F1EAB4 /* EmojiTapperMobile */,
 				FC7910802E458C8400F1EAB4 /* EmojiTapperMobileTests */,
 				FC79108A2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
+				FC7911142E464C2900F1EAB4 /* EmojiTapperMac */,
+				FC7911242E464C2A00F1EAB4 /* EmojiTapperMacTests */,
+				FC79112E2E464C2A00F1EAB4 /* EmojiTapperMacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -530,6 +671,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FC7910892E458C8400F1EAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7911132E464C2900F1EAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7911232E464C2A00F1EAB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC79112D2E464C2A00F1EAB4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -609,6 +771,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC7911112E464C2900F1EAB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7911212E464C2A00F1EAB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC79112B2E464C2A00F1EAB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -636,6 +819,16 @@
 			isa = PBXTargetDependency;
 			target = FC7910712E458C8300F1EAB4 /* EmojiTapperMobile */;
 			targetProxy = FC79108C2E458C8400F1EAB4 /* PBXContainerItemProxy */;
+		};
+		FC7911272E464C2A00F1EAB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC7911142E464C2900F1EAB4 /* EmojiTapperMac */;
+			targetProxy = FC7911262E464C2A00F1EAB4 /* PBXContainerItemProxy */;
+		};
+		FC7911312E464C2A00F1EAB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC7911142E464C2900F1EAB4 /* EmojiTapperMac */;
+			targetProxy = FC7911302E464C2A00F1EAB4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -951,6 +1144,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -982,6 +1178,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1069,6 +1268,138 @@
 			};
 			name = Release;
 		};
+		FC7911382E464C2A00F1EAB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EmojiTapperMac/EmojiTapperMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EmojiTapperMac/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FC7911392E464C2A00F1EAB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EmojiTapperMac/EmojiTapperMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EmojiTapperMac/Preview Content\"";
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		FC79113B2E464C2A00F1EAB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiTapperMac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmojiTapperMac";
+			};
+			name = Debug;
+		};
+		FC79113C2E464C2A00F1EAB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EmojiTapperMac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EmojiTapperMac";
+			};
+			name = Release;
+		};
+		FC79113E2E464C2A00F1EAB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = EmojiTapperMac;
+			};
+			name = Debug;
+		};
+		FC79113F2E464C2A00F1EAB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PK2RYRL26;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = EmojiTapperMac;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1140,6 +1471,33 @@
 			buildConfigurations = (
 				FC7910972E458C8400F1EAB4 /* Debug */,
 				FC7910982E458C8400F1EAB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC7911372E464C2A00F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC7911382E464C2A00F1EAB4 /* Debug */,
+				FC7911392E464C2A00F1EAB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC79113A2E464C2A00F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC79113B2E464C2A00F1EAB4 /* Debug */,
+				FC79113C2E464C2A00F1EAB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC79113D2E464C2A00F1EAB4 /* Build configuration list for PBXNativeTarget "EmojiTapperMacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC79113E2E464C2A00F1EAB4 /* Debug */,
+				FC79113F2E464C2A00F1EAB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
