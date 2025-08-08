@@ -8,6 +8,7 @@ const db = admin.firestore();
 interface HighScore {
   game: string;
   mode: string;
+  platform: string;
   player: string;
   score: number;
   datetime: admin.firestore.Timestamp;
@@ -32,6 +33,10 @@ function validateHighScoreData(data: any): string | null {
     return 'Game mode is required and must be a non-empty string';
   }
   
+  if (!data.platform || typeof data.platform !== 'string' || data.platform.trim().length === 0) {
+    return 'Platform is required and must be a non-empty string';
+  }
+  
   if (!data.player || typeof data.player !== 'string' || data.player.trim().length === 0) {
     return 'Player name is required and must be a non-empty string';
   }
@@ -50,6 +55,10 @@ function validateHighScoreData(data: any): string | null {
   
   if (data.mode.length > 50) {
     return 'Game mode must be 50 characters or less';
+  }
+  
+  if (data.platform.length > 50) {
+    return 'Platform must be 50 characters or less';
   }
   
   return null;
@@ -88,7 +97,7 @@ function getDateRange(period: TimePeriod): Date {
 /**
  * Submit a new high score
  * POST /submitScore
- * Body: { game, mode, player, score }
+ * Body: { game, mode, platform, player, score }
  */
 export const submitScore = functions.https.onRequest(async (req, res) => {
   // Enable CORS
@@ -121,6 +130,7 @@ export const submitScore = functions.https.onRequest(async (req, res) => {
     const highScore: HighScore = {
       game: data.game.trim(),
       mode: data.mode.trim(),
+      platform: data.platform.trim(),
       player: data.player.trim(),
       score: data.score,
       datetime: now,
@@ -143,8 +153,8 @@ export const submitScore = functions.https.onRequest(async (req, res) => {
 });
 
 /**
- * Get top high scores for a specific game and mode
- * GET /getTopScores?game=EmojiTapper&mode=Classic&period=day&limit=10
+ * Get top high scores for a specific game, mode, and platform
+ * GET /getTopScores?game=EmojiTapper&mode=Classic&platform=iOS&period=day&limit=10
  */
 export const getTopScores = functions.https.onRequest(async (req, res) => {
   // Enable CORS
@@ -165,12 +175,13 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
   try {
     const game = req.query.game as string;
     const mode = req.query.mode as string;
+    const platform = req.query.platform as string;
     const period = (req.query.period as string) || TimePeriod.ALL_TIME;
     const limit = parseInt(req.query.limit as string) || 10;
     
     // Validate required parameters
-    if (!game || !mode) {
-      res.status(400).json({ error: 'Game and mode parameters are required' });
+    if (!game || !mode || !platform) {
+      res.status(400).json({ error: 'Game, mode, and platform parameters are required' });
       return;
     }
     
@@ -191,7 +202,8 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
     // Build query
     let query = db.collection('highscores')
       .where('game', '==', game)
-      .where('mode', '==', mode);
+      .where('mode', '==', mode)
+      .where('platform', '==', platform);
     
     // Add time filter if not all-time
     if (period !== TimePeriod.ALL_TIME) {
@@ -210,6 +222,7 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
         id: doc.id,
         game: data.game,
         mode: data.mode,
+        platform: data.platform,
         player: data.player,
         score: data.score,
         datetime: data.datetime.toDate().toISOString()
@@ -222,7 +235,8 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
       count: scores.length,
       period,
       game,
-      mode
+      mode,
+      platform
     });
     
   } catch (error) {
@@ -232,8 +246,8 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
 });
 
 /**
- * Get player's personal best for a specific game and mode
- * GET /getPlayerBest?game=EmojiTapper&mode=Classic&player=Josh
+ * Get player's personal best for a specific game, mode, and platform
+ * GET /getPlayerBest?game=EmojiTapper&mode=Classic&platform=iOS&player=Josh
  */
 export const getPlayerBest = functions.https.onRequest(async (req, res) => {
   // Enable CORS
@@ -254,11 +268,12 @@ export const getPlayerBest = functions.https.onRequest(async (req, res) => {
   try {
     const game = req.query.game as string;
     const mode = req.query.mode as string;
+    const platform = req.query.platform as string;
     const player = req.query.player as string;
     
     // Validate required parameters
-    if (!game || !mode || !player) {
-      res.status(400).json({ error: 'Game, mode, and player parameters are required' });
+    if (!game || !mode || !platform || !player) {
+      res.status(400).json({ error: 'Game, mode, platform, and player parameters are required' });
       return;
     }
     
@@ -266,6 +281,7 @@ export const getPlayerBest = functions.https.onRequest(async (req, res) => {
     const snapshot = await db.collection('highscores')
       .where('game', '==', game)
       .where('mode', '==', mode)
+      .where('platform', '==', platform)
       .where('player', '==', player)
       .orderBy('score', 'desc')
       .limit(1)
@@ -287,6 +303,7 @@ export const getPlayerBest = functions.https.onRequest(async (req, res) => {
       id: doc.id,
       game: data.game,
       mode: data.mode,
+      platform: data.platform,
       player: data.player,
       score: data.score,
       datetime: data.datetime.toDate().toISOString()
@@ -305,7 +322,7 @@ export const getPlayerBest = functions.https.onRequest(async (req, res) => {
 
 /**
  * Get leaderboard stats (total players, total scores, etc.)
- * GET /getLeaderboardStats?game=EmojiTapper&mode=Classic
+ * GET /getLeaderboardStats?game=EmojiTapper&mode=Classic&platform=iOS
  */
 export const getLeaderboardStats = functions.https.onRequest(async (req, res) => {
   // Enable CORS
@@ -326,17 +343,19 @@ export const getLeaderboardStats = functions.https.onRequest(async (req, res) =>
   try {
     const game = req.query.game as string;
     const mode = req.query.mode as string;
+    const platform = req.query.platform as string;
     
     // Validate required parameters
-    if (!game || !mode) {
-      res.status(400).json({ error: 'Game and mode parameters are required' });
+    if (!game || !mode || !platform) {
+      res.status(400).json({ error: 'Game, mode, and platform parameters are required' });
       return;
     }
     
-    // Get all scores for this game/mode
+    // Get all scores for this game/mode/platform
     const snapshot = await db.collection('highscores')
       .where('game', '==', game)
       .where('mode', '==', mode)
+      .where('platform', '==', platform)
       .get();
     
     const scores = snapshot.docs.map(doc => doc.data() as HighScore);
@@ -352,7 +371,8 @@ export const getLeaderboardStats = functions.https.onRequest(async (req, res) =>
         highestScore,
         averageScore,
         game,
-        mode
+        mode,
+        platform
       }
     });
     

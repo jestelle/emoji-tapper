@@ -57,6 +57,7 @@ This will start:
 interface HighScore {
   game: string;        // "Emoji Tapper"
   mode: string;        // "Classic" or "Penguin Ball"
+  platform: string;    // "iOS", "macOS", "watchOS"
   player: string;      // Player name (max 50 chars)
   score: number;       // Non-negative integer
   datetime: Timestamp; // When the score was achieved
@@ -69,6 +70,7 @@ interface HighScore {
 /highscores/{documentId}
   - game: "Emoji Tapper"
   - mode: "Classic"
+  - platform: "iOS"
   - player: "Josh"
   - score: 115
   - datetime: 2025-08-08T15:45:00Z
@@ -90,6 +92,7 @@ Base URL: `https://us-central1-top-leaderboard.cloudfunctions.net/`
 {
   "game": "Emoji Tapper",
   "mode": "Classic",
+  "platform": "iOS",
   "player": "Josh",
   "score": 115
 }
@@ -125,12 +128,13 @@ Base URL: `https://us-central1-top-leaderboard.cloudfunctions.net/`
 **Query Parameters:**
 - `game` (required): Game name (e.g., "Emoji Tapper")
 - `mode` (required): Game mode (e.g., "Classic", "Penguin Ball")
+- `platform` (required): Platform (e.g., "iOS", "macOS", "watchOS")
 - `period` (optional): Time period - "day", "week", "month", "all_time" (default: "all_time")
 - `limit` (optional): Number of scores to return (1-100, default: 10)
 
 **Example:**
 ```
-GET /getTopScores?game=Emoji%20Tapper&mode=Classic&period=week&limit=5
+GET /getTopScores?game=Emoji%20Tapper&mode=Classic&platform=iOS&period=week&limit=5
 ```
 
 **Response:**
@@ -142,6 +146,7 @@ GET /getTopScores?game=Emoji%20Tapper&mode=Classic&period=week&limit=5
       "id": "doc_id_1",
       "game": "Emoji Tapper",
       "mode": "Classic",
+      "platform": "iOS",
       "player": "Josh",
       "score": 115,
       "datetime": "2025-08-08T15:45:00.000Z"
@@ -149,7 +154,8 @@ GET /getTopScores?game=Emoji%20Tapper&mode=Classic&period=week&limit=5
     {
       "id": "doc_id_2",
       "game": "Emoji Tapper",
-      "mode": "Classic", 
+      "mode": "Classic",
+      "platform": "iOS",
       "player": "Alice",
       "score": 98,
       "datetime": "2025-08-08T14:30:00.000Z"
@@ -158,7 +164,8 @@ GET /getTopScores?game=Emoji%20Tapper&mode=Classic&period=week&limit=5
   "count": 2,
   "period": "week",
   "game": "Emoji Tapper",
-  "mode": "Classic"
+  "mode": "Classic",
+  "platform": "iOS"
 }
 ```
 
@@ -171,11 +178,12 @@ GET /getTopScores?game=Emoji%20Tapper&mode=Classic&period=week&limit=5
 **Query Parameters:**
 - `game` (required): Game name
 - `mode` (required): Game mode
+- `platform` (required): Platform
 - `player` (required): Player name
 
 **Example:**
 ```
-GET /getPlayerBest?game=Emoji%20Tapper&mode=Classic&player=Josh
+GET /getPlayerBest?game=Emoji%20Tapper&mode=Classic&platform=iOS&player=Josh
 ```
 
 **Response:**
@@ -186,6 +194,7 @@ GET /getPlayerBest?game=Emoji%20Tapper&mode=Classic&player=Josh
     "id": "doc_id",
     "game": "Emoji Tapper",
     "mode": "Classic",
+    "platform": "iOS",
     "player": "Josh",
     "score": 115,
     "datetime": "2025-08-08T15:45:00.000Z"
@@ -214,7 +223,7 @@ GET /getPlayerBest?game=Emoji%20Tapper&mode=Classic&player=Josh
 
 **Example:**
 ```
-GET /getLeaderboardStats?game=Emoji%20Tapper&mode=Classic
+GET /getLeaderboardStats?game=Emoji%20Tapper&mode=Classic&platform=iOS
 ```
 
 **Response:**
@@ -227,7 +236,8 @@ GET /getLeaderboardStats?game=Emoji%20Tapper&mode=Classic
     "highestScore": 115,
     "averageScore": 67,
     "game": "Emoji Tapper",
-    "mode": "Classic"
+    "mode": "Classic",
+    "platform": "iOS"
   }
 }
 ```
@@ -237,6 +247,7 @@ GET /getLeaderboardStats?game=Emoji%20Tapper&mode=Classic
 ### Score Submission
 - `game`: Required, non-empty string, max 100 characters
 - `mode`: Required, non-empty string, max 50 characters
+- `platform`: Required, non-empty string, max 50 characters
 - `player`: Required, non-empty string, max 50 characters
 - `score`: Required, non-negative integer
 
@@ -288,6 +299,7 @@ const response = await fetch('https://us-central1-top-leaderboard.cloudfunctions
   body: JSON.stringify({
     game: 'Emoji Tapper',
     mode: 'Classic',
+    platform: 'iOS',
     player: 'Josh',
     score: 115
   })
@@ -302,6 +314,7 @@ console.log(result);
 const params = new URLSearchParams({
   game: 'Emoji Tapper',
   mode: 'Classic',
+  platform: 'iOS',
   period: 'week',
   limit: '10'
 });

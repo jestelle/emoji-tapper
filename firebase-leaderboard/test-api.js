@@ -17,6 +17,7 @@ async function testAPI() {
       body: JSON.stringify({
         game: 'Emoji Tapper',
         mode: 'Classic',
+        platform: 'iOS',
         player: 'Josh',
         score: 115
       })
@@ -44,6 +45,7 @@ async function testAPI() {
         body: JSON.stringify({
           game: 'Emoji Tapper',
           mode: 'Classic',
+          platform: 'iOS',
           ...testScore
         })
       });
@@ -62,6 +64,7 @@ async function testAPI() {
     const params = new URLSearchParams({
       game: 'Emoji Tapper',
       mode: 'Classic',
+      platform: 'iOS',
       period: 'all_time',
       limit: '10'
     });
@@ -83,6 +86,7 @@ async function testAPI() {
     const params = new URLSearchParams({
       game: 'Emoji Tapper',
       mode: 'Classic',
+      platform: 'iOS',
       player: 'Josh'
     });
     
@@ -103,7 +107,8 @@ async function testAPI() {
   try {
     const params = new URLSearchParams({
       game: 'Emoji Tapper',
-      mode: 'Classic'
+      mode: 'Classic',
+      platform: 'iOS'
     });
     
     const statsResponse = await fetch(`${BASE_URL}/getLeaderboardStats?${params}`);
@@ -126,6 +131,7 @@ async function testAPI() {
       body: JSON.stringify({
         game: '',
         mode: 'Classic',
+        platform: 'iOS',
         player: 'Test',
         score: -5
       })
@@ -150,6 +156,7 @@ async function testAPI() {
       body: JSON.stringify({
         game: 'Emoji Tapper',
         mode: 'Penguin Ball',
+        platform: 'iOS',
         player: 'Josh',
         score: 89
       })
@@ -162,6 +169,7 @@ async function testAPI() {
     const penguinParams = new URLSearchParams({
       game: 'Emoji Tapper',
       mode: 'Penguin Ball',
+      platform: 'iOS',
       period: 'all_time',
       limit: '10'
     });
