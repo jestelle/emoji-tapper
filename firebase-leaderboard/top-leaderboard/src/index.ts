@@ -199,24 +199,16 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
       return;
     }
     
-    // Build query
-    let query = db.collection('highscores')
+    // For time-based filtering, we need to fetch and sort in memory to avoid composite index requirements
+    // Get all scores for this game/mode/platform combination first
+    const baseQuery = db.collection('highscores')
       .where('game', '==', game)
       .where('mode', '==', mode)
       .where('platform', '==', platform);
     
-    // Add time filter if not all-time
-    if (period !== TimePeriod.ALL_TIME) {
-      const startDate = getDateRange(period as TimePeriod);
-      query = query.where('datetime', '>=', admin.firestore.Timestamp.fromDate(startDate));
-    }
+    const snapshot = await baseQuery.get();
     
-    // Order by score descending and limit results
-    query = query.orderBy('score', 'desc').limit(limit);
-    
-    const snapshot = await query.get();
-    
-    const scores = snapshot.docs.map(doc => {
+    let allScores = snapshot.docs.map(doc => {
       const data = doc.data() as HighScore;
       return {
         id: doc.id,
@@ -225,9 +217,30 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
         platform: data.platform,
         player: data.player,
         score: data.score,
-        datetime: data.datetime.toDate().toISOString()
+        datetime: data.datetime.toDate().toISOString(),
+        datetimeObj: data.datetime.toDate() // Keep for filtering
       };
     });
+    
+    // Apply time filter if not all-time
+    if (period !== TimePeriod.ALL_TIME) {
+      const startDate = getDateRange(period as TimePeriod);
+      allScores = allScores.filter(score => score.datetimeObj >= startDate);
+    }
+    
+    // Sort by score descending and limit
+    const scores = allScores
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit)
+      .map(score => ({
+        id: score.id,
+        game: score.game,
+        mode: score.mode,
+        platform: score.platform,
+        player: score.player,
+        score: score.score,
+        datetime: score.datetime
+      }));
     
     res.status(200).json({
       success: true,
