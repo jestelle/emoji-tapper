@@ -9,7 +9,13 @@ import SwiftUI
 
 struct LeaderboardView: View {
     @State private var leaderboardService = LeaderboardService()
-    @State private var selectedMode: GameMode = .classic
+    @State private var selectedMode: GameMode
+    let initialMode: GameMode?
+    
+    init(initialMode: GameMode? = nil) {
+        self.initialMode = initialMode
+        self._selectedMode = State(initialValue: initialMode ?? .classic)
+    }
     @State private var selectedPeriod: TimePeriod = .allTime
     @State private var playerName: String = ""
     @State private var showingPlayerNameAlert = false
@@ -18,6 +24,7 @@ struct LeaderboardView: View {
     @State private var leaderboardStats: LeaderboardStats? = nil
     @State private var isLoading = false
     @State private var lastError: String? = nil
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -83,17 +90,14 @@ struct LeaderboardView: View {
             .toolbar {
                 #if !os(macOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Refresh") {
-                        Task {
-                            await refreshLeaderboard()
-                        }
+                    Button("Done") {
+                        dismiss()
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Test") {
+                    Button("Refresh") {
                         Task {
-                            let success = await leaderboardService.testConnection()
-                            print("🔍 Connection test result: \(success)")
+                            await refreshLeaderboard()
                         }
                     }
                 }
@@ -337,7 +341,13 @@ struct PlayerBestSection: View {
 
 struct LeaderboardViewWatch: View {
     @State private var leaderboardService = LeaderboardService()
-    @State private var selectedMode: GameMode = .classic
+    @State private var selectedMode: GameMode
+    let initialMode: GameMode?
+    
+    init(initialMode: GameMode? = nil) {
+        self.initialMode = initialMode
+        self._selectedMode = State(initialValue: initialMode ?? .classic)
+    }
     @State private var topScores: [HighScore] = []
     @State private var isLoading = false
     

@@ -30,6 +30,7 @@ class ClassicGameEngine: GameModeEngine {
     var timeRemainingForProgress: TimeInterval { timeRemaining }
     var totalTimeForProgress: TimeInterval { currentLevel.initialTime }
     var onEmojisChanged: (() -> Void)?
+    var onGameEnded: (() -> Void)?
     
     private var gameTimer: Timer?
     
@@ -61,6 +62,9 @@ class ClassicGameEngine: GameModeEngine {
         if score > highScore {
             highScore = score
         }
+        
+        // Notify that game has ended
+        onGameEnded?()
     }
     
     func emojiTapped(_ emoji: GameEmoji) {

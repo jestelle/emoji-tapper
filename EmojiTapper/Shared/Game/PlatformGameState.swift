@@ -130,6 +130,17 @@ class PlatformGameState {
                 }
             }
         }
+        
+        gameEngine.onGameEnded = { [weak self] in
+            DispatchQueue.main.async {
+                // Just show the end screen - the engine has already ended
+                self?.showGameEndScreen = true
+                self?.currentEmojis.removeAll()
+                self?.animatingEmojis.removeAll()
+                self?.animatedPositionChanges.removeAll()
+                self?.celebratingPenguin = nil
+            }
+        }
     }
     
     private func syncWithEngine() {
@@ -240,11 +251,9 @@ class PlatformGameState {
     }
     
     func endGame() {
-        // Show end screen for Penguin Ball BEFORE ending the game
+        // Show end screen BEFORE ending the game for both game modes
         // to prevent briefly showing the main menu
-        if gameEngine.gameMode == .penguinBall {
-            showGameEndScreen = true
-        }
+        showGameEndScreen = true
         
         gameEngine.endGame()
         currentEmojis.removeAll()
@@ -255,6 +264,15 @@ class PlatformGameState {
     
     func dismissGameEndScreen() {
         showGameEndScreen = false
+        // Ensure the game engine is properly ended
+        if gameEngine.isGameActive {
+            gameEngine.endGame()
+        }
+        // Clear all UI state
+        currentEmojis.removeAll()
+        animatingEmojis.removeAll()
+        animatedPositionChanges.removeAll()
+        celebratingPenguin = nil
     }
     
     func emojiTapped(_ emoji: PositionedGameEmoji) {

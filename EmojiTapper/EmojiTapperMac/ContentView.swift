@@ -33,7 +33,7 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $showingLeaderboard) {
-            LeaderboardView()
+            LeaderboardView(initialMode: gameState.selectedGameMode)
                 .frame(minWidth: 500, minHeight: 700)
         }
     }
