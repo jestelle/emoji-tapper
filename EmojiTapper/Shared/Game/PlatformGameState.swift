@@ -76,6 +76,27 @@ class PlatformGameState {
         return []
     }
     
+    var currentRoundNumber: Int {
+        if let penguinEngine = gameEngine as? PenguinBallEngine {
+            return penguinEngine.currentRoundNumber
+        }
+        return 0
+    }
+    
+    var totalRounds: Int {
+        if let penguinEngine = gameEngine as? PenguinBallEngine {
+            return penguinEngine.totalRounds
+        }
+        return 0
+    }
+    
+    var currentRoundPoints: Int {
+        if let penguinEngine = gameEngine as? PenguinBallEngine {
+            return penguinEngine.currentRoundPoints
+        }
+        return 0
+    }
+    
     // Classic mode specific properties for progress bar
     var timeRemainingForProgress: TimeInterval {
         if let classicEngine = gameEngine as? ClassicGameEngine {
@@ -354,7 +375,7 @@ class PlatformGameState {
         
         // Check if game should end after this round (before celebration)
         let shouldEndGame = if let penguinEngine = gameEngine as? PenguinBallEngine {
-            penguinEngine.roundScores.count >= 5 // All 5 rounds complete
+            penguinEngine.roundScores.count >= 3 // All 3 rounds complete
         } else {
             false
         }

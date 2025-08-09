@@ -119,11 +119,15 @@ struct iOSGameView: View {
                         }
                         .padding(.horizontal)
                         .padding(.top, 60) // Account for status bar
-                    } else {
+                    } else if gameState.selectedGameMode == .penguinBall {
+                        // Round indicators for Penguin Ball
                         HStack {
-                            Text(gameState.gameStateText)
-                                .font(.headline)
-                                .foregroundColor(.primary)
+                            RoundIndicatorsView(
+                                currentRound: gameState.currentRoundNumber,
+                                totalRounds: gameState.totalRounds,
+                                roundScores: gameState.roundScores,
+                                currentRoundPoints: gameState.currentRoundPoints
+                            )
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -180,6 +184,98 @@ struct iOSGameView: View {
                         }
                     )
                 }
+            }
+        }
+    }
+}
+
+struct RoundIndicatorsView: View {
+    let currentRound: Int
+    let totalRounds: Int
+    let roundScores: [Int]
+    let currentRoundPoints: Int
+    
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(1...totalRounds, id: \.self) { roundNumber in
+                RoundIndicatorBox(
+                    roundNumber: roundNumber,
+                    currentRound: currentRound,
+                    roundScores: roundScores,
+                    currentRoundPoints: currentRoundPoints
+                )
+            }
+        }
+    }
+}
+
+struct RoundIndicatorBox: View {
+    let roundNumber: Int
+    let currentRound: Int
+    let roundScores: [Int]
+    let currentRoundPoints: Int
+    
+    private var roundState: RoundState {
+        if roundNumber < currentRound {
+            return .completed
+        } else if roundNumber == currentRound {
+            return .current
+        } else {
+            return .upcoming
+        }
+    }
+    
+    private var displayText: String {
+        switch roundState {
+        case .completed:
+            let scoreIndex = roundNumber - 1
+            return scoreIndex < roundScores.count ? "\(roundScores[scoreIndex])" : "0"
+        case .current:
+            return "\(currentRoundPoints)"
+        case .upcoming:
+            return "—"
+        }
+    }
+    
+    var body: some View {
+        Text(displayText)
+            .font(.title3)
+            .fontWeight(.medium)
+            .foregroundColor(.black)
+            .frame(width: 80, height: 32)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(roundState.backgroundColor)
+                    .stroke(roundState.borderColor, style: StrokeStyle(lineWidth: 2, dash: roundState.dashPattern))
+            )
+    }
+    
+    private enum RoundState {
+        case completed
+        case current  
+        case upcoming
+        
+        var backgroundColor: Color {
+            switch self {
+            case .completed: return .gray
+            case .current: return .green
+            case .upcoming: return .clear
+            }
+        }
+        
+        var borderColor: Color {
+            switch self {
+            case .completed: return .gray
+            case .current: return .green
+            case .upcoming: return .gray
+            }
+        }
+        
+        var dashPattern: [CGFloat] {
+            switch self {
+            case .completed: return []
+            case .current: return []
+            case .upcoming: return [3, 3]
             }
         }
     }

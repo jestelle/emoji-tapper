@@ -98,7 +98,7 @@ struct GameEndScreen: View {
                     VStack(spacing: 12) {
                         if !scoreSubmitted {
                             VStack(spacing: 8) {
-                                TextField("Enter your name", text: $playerName)
+                                TextField("Name...", text: $playerName)
                                     .textFieldStyle(.roundedBorder)
                                     .focused($isPlayerNameFocused)
                                     .onSubmit {
@@ -166,16 +166,12 @@ struct GameEndScreen: View {
     }
     
     private func loadDefaultPlayerName() {
-        // Load last saved name or get device user's name
+        // Load last saved name only - don't auto-fill device name
         if let savedName = UserDefaults.standard.string(forKey: "EmojiTapperPlayerName"), !savedName.isEmpty {
             playerName = savedName
         } else {
-            // Try to get device user's first name
-            #if canImport(UIKit) && !os(watchOS)
-            if let deviceName = UIDevice.current.name.components(separatedBy: " ").first {
-                playerName = deviceName
-            }
-            #endif
+            // Leave empty for "Name..." placeholder to show
+            playerName = ""
         }
     }
     
@@ -264,7 +260,7 @@ struct GameEndScreenWatch: View {
                 VStack(spacing: 8) {
                     if !scoreSubmitted {
                         VStack(spacing: 6) {
-                            TextField("Name", text: $playerName)
+                            TextField("Name...", text: $playerName)
                                 .textFieldStyle(.roundedBorder)
                                 .focused($isPlayerNameFocused)
                                 .onSubmit {
@@ -331,11 +327,13 @@ struct GameEndScreenWatch: View {
     }
     
     private func loadDefaultPlayerName() {
-        // Load last saved name or get device user's name
+        // Load last saved name only - don't auto-fill device name
         if let savedName = UserDefaults.standard.string(forKey: "EmojiTapperPlayerName"), !savedName.isEmpty {
             playerName = savedName
+        } else {
+            // Leave empty for "Name..." placeholder to show
+            playerName = ""
         }
-        // watchOS doesn't have UIDevice.name, so we'll just use saved name or empty
     }
     
     private func submitScore() {

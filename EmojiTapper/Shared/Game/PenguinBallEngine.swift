@@ -25,11 +25,16 @@ class PenguinBallEngine: GameModeEngine {
     
     // Penguin Ball specific properties
     private var currentRound: Int = 0
-    private let maxRounds: Int = 5
+    private let maxRounds: Int = 3
     private var timeUntilDisappear: TimeInterval = 1.0
     private var totalEmojis: Int = 0
     private var emojisRemaining: Int = 0
     var roundScores: [Int] = [] // Track score for each round
+    
+    // Expose round info for UI
+    var currentRoundNumber: Int { currentRound }
+    var totalRounds: Int { maxRounds }
+    var currentRoundPoints: Int { possiblePoints }
     
     var gameStateText: String {
         if isGameActive {
