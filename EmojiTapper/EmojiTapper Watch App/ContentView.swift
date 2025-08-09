@@ -16,7 +16,7 @@ struct ContentView: View {
             Color.primary.colorInvert().ignoresSafeArea()
             
             if gameState.showGameEndScreen {
-                GameEndScreenWatch(
+                GameEndScreen(
                     totalScore: gameState.score,
                     roundScores: gameState.roundScores,
                     highScore: gameState.highScore,
@@ -33,7 +33,7 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $showingLeaderboard) {
-            LeaderboardViewWatch(initialMode: gameState.selectedGameMode)
+            LeaderboardView(initialMode: gameState.selectedGameMode)
         }
     }
 }

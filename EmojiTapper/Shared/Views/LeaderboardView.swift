@@ -7,6 +7,91 @@
 
 import SwiftUI
 
+#if os(watchOS)
+struct LeaderboardView: View {
+    @State private var leaderboardService = LeaderboardService()
+    @State private var selectedMode: GameMode
+    let initialMode: GameMode?
+    
+    init(initialMode: GameMode? = nil) {
+        self.initialMode = initialMode
+        self._selectedMode = State(initialValue: initialMode ?? .classic)
+    }
+    @State private var topScores: [HighScore] = []
+    @State private var isLoading = false
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 12) {
+                // Mode Selector
+                Picker("Mode", selection: $selectedMode) {
+                    ForEach(GameMode.allCases, id: \.self) { mode in
+                        Text(mode.displayName).tag(mode)
+                    }
+                }
+                .onChange(of: selectedMode) { _, _ in
+                    Task {
+                        await refreshTopScores()
+                    }
+                }
+                
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                } else {
+                    // Top Scores (compact)
+                    VStack(spacing: 8) {
+                        Text("🏆 Top 5")
+                            .font(.headline)
+                        
+                        ForEach(Array(topScores.enumerated()), id: \.element.id) { index, score in
+                            HStack {
+                                Text("#\(index + 1)")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .frame(width: 25, alignment: .leading)
+                                
+                                Text(score.player)
+                                    .font(.caption)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                                
+                                Text("\(score.score)")
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.green)
+                            }
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                        }
+                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                }
+            }
+            .padding()
+        }
+        .navigationTitle("Leaderboard")
+        .task {
+            await refreshTopScores()
+        }
+    }
+    
+    @MainActor
+    private func refreshTopScores() async {
+        isLoading = true
+        
+        let success = await leaderboardService.getTopScores(mode: selectedMode, limit: 5)
+        if success {
+            topScores = leaderboardService.topScores
+        }
+        
+        isLoading = false
+    }
+}
+#else
 struct LeaderboardView: View {
     @State private var leaderboardService = LeaderboardService()
     @State private var selectedMode: GameMode
@@ -88,7 +173,7 @@ struct LeaderboardView: View {
             .navigationBarTitleDisplayMode(.large)
             #endif
             .toolbar {
-                #if !os(macOS)
+                #if !os(watchOS) && !os(macOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
                         dismiss()
@@ -336,93 +421,7 @@ struct PlayerBestSection: View {
         .cornerRadius(12)
     }
 }
-
-// MARK: - Watch Version
-
-struct LeaderboardViewWatch: View {
-    @State private var leaderboardService = LeaderboardService()
-    @State private var selectedMode: GameMode
-    let initialMode: GameMode?
-    
-    init(initialMode: GameMode? = nil) {
-        self.initialMode = initialMode
-        self._selectedMode = State(initialValue: initialMode ?? .classic)
-    }
-    @State private var topScores: [HighScore] = []
-    @State private var isLoading = false
-    
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 12) {
-                // Mode Selector
-                Picker("Mode", selection: $selectedMode) {
-                    ForEach(GameMode.allCases, id: \.self) { mode in
-                        Text(mode.displayName).tag(mode)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .onChange(of: selectedMode) { _, _ in
-                    Task {
-                        await refreshTopScores()
-                    }
-                }
-                
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                } else {
-                    // Top Scores (compact)
-                    VStack(spacing: 8) {
-                        Text("🏆 Top 5")
-                            .font(.headline)
-                        
-                        ForEach(Array(topScores.enumerated()), id: \.element.id) { index, score in
-                            HStack {
-                                Text("#\(index + 1)")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                                    .frame(width: 25, alignment: .leading)
-                                
-                                Text(score.player)
-                                    .font(.caption)
-                                    .lineLimit(1)
-                                
-                                Spacer()
-                                
-                                Text("\(score.score)")
-                                    .font(.caption)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.green)
-                            }
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                        }
-                    }
-                    .padding()
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(8)
-                }
-            }
-            .padding()
-        }
-        .navigationTitle("Leaderboard")
-        .task {
-            await refreshTopScores()
-        }
-    }
-    
-    @MainActor
-    private func refreshTopScores() async {
-        isLoading = true
-        
-        let success = await leaderboardService.getTopScores(mode: selectedMode, limit: 5)
-        if success {
-            topScores = leaderboardService.topScores
-        }
-        
-        isLoading = false
-    }
-}
+#endif
 
 #Preview {
     LeaderboardView()
