@@ -199,58 +199,88 @@ export const getTopScores = functions.https.onRequest(async (req, res) => {
       return;
     }
     
-    // For time-based filtering, we need to fetch and sort in memory to avoid composite index requirements
-    // Get all scores for this game/mode/platform combination first
-    const baseQuery = db.collection('highscores')
-      .where('game', '==', game)
-      .where('mode', '==', mode)
-      .where('platform', '==', platform);
-    
-    const snapshot = await baseQuery.get();
-    
-    let allScores = snapshot.docs.map(doc => {
-      const data = doc.data() as HighScore;
-      return {
-        id: doc.id,
-        game: data.game,
-        mode: data.mode,
-        platform: data.platform,
-        player: data.player,
-        score: data.score,
-        datetime: data.datetime.toDate().toISOString(),
-        datetimeObj: data.datetime.toDate() // Keep for filtering
-      };
-    });
-    
-    // Apply time filter if not all-time
-    if (period !== TimePeriod.ALL_TIME) {
+    // Use different strategies based on period to work around Firestore index limitations
+    if (period === TimePeriod.ALL_TIME) {
+      // For all-time queries, use the fast index-optimized query
+      const query = db.collection('highscores')
+        .where('game', '==', game)
+        .where('mode', '==', mode)
+        .where('platform', '==', platform)
+        .orderBy('score', 'desc')
+        .limit(limit);
+      
+      const snapshot = await query.get();
+      
+      const scores = snapshot.docs.map(doc => {
+        const data = doc.data() as HighScore;
+        return {
+          id: doc.id,
+          game: data.game,
+          mode: data.mode,
+          platform: data.platform,
+          player: data.player,
+          score: data.score,
+          datetime: data.datetime.toDate().toISOString()
+        };
+      });
+      
+      res.status(200).json({
+        success: true,
+        scores,
+        count: scores.length,
+        period,
+        game,
+        mode,
+        platform
+      });
+    } else {
+      // For time-based queries, fetch and filter in memory to avoid complex index requirements
+      const baseQuery = db.collection('highscores')
+        .where('game', '==', game)
+        .where('mode', '==', mode)
+        .where('platform', '==', platform);
+      
+      const snapshot = await baseQuery.get();
+      
       const startDate = getDateRange(period as TimePeriod);
-      allScores = allScores.filter(score => score.datetimeObj >= startDate);
+      
+      const filteredScores = snapshot.docs
+        .map(doc => {
+          const data = doc.data() as HighScore;
+          return {
+            id: doc.id,
+            game: data.game,
+            mode: data.mode,
+            platform: data.platform,
+            player: data.player,
+            score: data.score,
+            datetime: data.datetime.toDate().toISOString(),
+            datetimeObj: data.datetime.toDate()
+          };
+        })
+        .filter(score => score.datetimeObj >= startDate)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, limit)
+        .map(score => ({
+          id: score.id,
+          game: score.game,
+          mode: score.mode,
+          platform: score.platform,
+          player: score.player,
+          score: score.score,
+          datetime: score.datetime
+        }));
+      
+      res.status(200).json({
+        success: true,
+        scores: filteredScores,
+        count: filteredScores.length,
+        period,
+        game,
+        mode,
+        platform
+      });
     }
-    
-    // Sort by score descending and limit
-    const scores = allScores
-      .sort((a, b) => b.score - a.score)
-      .slice(0, limit)
-      .map(score => ({
-        id: score.id,
-        game: score.game,
-        mode: score.mode,
-        platform: score.platform,
-        player: score.player,
-        score: score.score,
-        datetime: score.datetime
-      }));
-    
-    res.status(200).json({
-      success: true,
-      scores,
-      count: scores.length,
-      period,
-      game,
-      mode,
-      platform
-    });
     
   } catch (error) {
     console.error('Error getting top scores:', error);
