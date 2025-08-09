@@ -138,7 +138,7 @@
 		FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EmojiTapper Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EmojiTapper Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EmojiTapper Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiTapperMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7910722E458C8300F1EAB4 /* Emoji Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		FC7910E32E45A15F00F1EAB4 /* AnimatedPositionChangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPositionChangeView.swift; sourceTree = "<group>"; };
 		FC7910E62E45A16400F1EAB4 /* AnimatedPositionChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedPositionChange.swift; sourceTree = "<group>"; };
 		FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DancingEmojiView.swift; sourceTree = "<group>"; };
-		FC7911152E464C2900F1EAB4 /* EmojiTapperMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiTapperMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7911152E464C2900F1EAB4 /* Emoji Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7911252E464C2A00F1EAB4 /* EmojiTapperMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC79112F2E464C2A00F1EAB4 /* EmojiTapperMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7911402E464D4300F1EAB4 /* macOSEmojiPositioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSEmojiPositioner.swift; sourceTree = "<group>"; };
@@ -304,10 +304,10 @@
 				FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */,
 				FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */,
 				FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */,
-				FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */,
+				FC7910722E458C8300F1EAB4 /* Emoji Tap.app */,
 				FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */,
 				FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */,
-				FC7911152E464C2900F1EAB4 /* EmojiTapperMac.app */,
+				FC7911152E464C2900F1EAB4 /* Emoji Tap.app */,
 				FC7911252E464C2A00F1EAB4 /* EmojiTapperMacTests.xctest */,
 				FC79112F2E464C2A00F1EAB4 /* EmojiTapperMacUITests.xctest */,
 			);
@@ -481,7 +481,7 @@
 			packageProductDependencies = (
 			);
 			productName = EmojiTapperMobile;
-			productReference = FC7910722E458C8300F1EAB4 /* EmojiTapperMobile.app */;
+			productReference = FC7910722E458C8300F1EAB4 /* Emoji Tap.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FC7910802E458C8400F1EAB4 /* EmojiTapperMobileTests */ = {
@@ -549,7 +549,7 @@
 			packageProductDependencies = (
 			);
 			productName = EmojiTapperMac;
-			productReference = FC7911152E464C2900F1EAB4 /* EmojiTapperMac.app */;
+			productReference = FC7911152E464C2900F1EAB4 /* Emoji Tap.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FC7911242E464C2A00F1EAB4 /* EmojiTapperMacTests */ = {
@@ -1219,9 +1219,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Emoji Tap";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1254,9 +1254,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMobile;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Emoji Tap";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1371,7 +1371,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Emoji Tap";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1401,7 +1401,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshestelle.EmojiTapperMac;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Emoji Tap";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
