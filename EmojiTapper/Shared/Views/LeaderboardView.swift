@@ -14,6 +14,10 @@ struct LeaderboardView: View {
     @State private var playerName: String = ""
     @State private var showingPlayerNameAlert = false
     @State private var scoreToSubmit: Int?
+    @State private var topScores: [HighScore] = []
+    @State private var leaderboardStats: LeaderboardStats? = nil
+    @State private var isLoading = false
+    @State private var lastError: String? = nil
     
     var body: some View {
         NavigationView {
@@ -28,7 +32,7 @@ struct LeaderboardView: View {
                 .padding()
                 .onChange(of: selectedMode) { _, _ in
                     Task {
-                        await leaderboardService.refreshLeaderboard(mode: selectedMode)
+                        await refreshLeaderboard()
                     }
                 }
                 
@@ -42,12 +46,12 @@ struct LeaderboardView: View {
                 .padding(.horizontal)
                 .onChange(of: selectedPeriod) { _, _ in
                     Task {
-                        await leaderboardService.getTopScores(mode: selectedMode, period: selectedPeriod)
+                        await refreshTopScores()
                     }
                 }
                 
                 // Content
-                if leaderboardService.isLoading {
+                if isLoading {
                     Spacer()
                     ProgressView("Loading leaderboard...")
                         .progressViewStyle(.circular)
@@ -55,13 +59,13 @@ struct LeaderboardView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: 20) {
-                            // Stats Section
-                            if let stats = leaderboardService.leaderboardStats {
+                            // Top Scores Section (moved first)
+                            TopScoresSection(scores: topScores)
+                            
+                            // Stats Section (moved after top scores)
+                            if let stats = leaderboardStats {
                                 StatsSection(stats: stats)
                             }
-                            
-                            // Top Scores Section
-                            TopScoresSection(scores: leaderboardService.topScores)
                             
                             // Player Best Section
                             if let playerBest = leaderboardService.playerBest {
@@ -81,7 +85,7 @@ struct LeaderboardView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Refresh") {
                         Task {
-                            await leaderboardService.refreshLeaderboard(mode: selectedMode)
+                            await refreshLeaderboard()
                         }
                     }
                 }
@@ -95,12 +99,12 @@ struct LeaderboardView: View {
                 }
                 #endif
             }
-            .alert("Leaderboard Error", isPresented: .constant(leaderboardService.lastError != nil)) {
+            .alert("Leaderboard Error", isPresented: .constant(lastError != nil)) {
                 Button("OK") {
-                    leaderboardService.clearError()
+                    lastError = nil
                 }
             } message: {
-                Text(leaderboardService.lastError ?? "")
+                Text(lastError ?? "")
             }
             .alert("Submit Score", isPresented: $showingPlayerNameAlert) {
                 TextField("Your Name", text: $playerName)
@@ -114,7 +118,7 @@ struct LeaderboardView: View {
                                 score: score
                             )
                             if success {
-                                await leaderboardService.refreshLeaderboard(mode: selectedMode)
+                                await refreshLeaderboard()
                             }
                         }
                     }
@@ -123,14 +127,53 @@ struct LeaderboardView: View {
                 Text("Enter your name to submit your score to the leaderboard")
             }
         }
+        #if os(macOS)
+        .frame(minWidth: 400, minHeight: 600)
+        #endif
         .task {
-            await leaderboardService.refreshLeaderboard(mode: selectedMode)
+            await refreshLeaderboard()
         }
     }
     
     func submitScore(_ score: Int) {
         scoreToSubmit = score
         showingPlayerNameAlert = true
+    }
+    
+    @MainActor
+    private func refreshLeaderboard() async {
+        isLoading = true
+        
+        let scoresSuccess = await leaderboardService.getTopScores(mode: selectedMode, period: selectedPeriod)
+        let statsSuccess = await leaderboardService.getLeaderboardStats(mode: selectedMode)
+        
+        if scoresSuccess {
+            topScores = leaderboardService.topScores
+        }
+        
+        if statsSuccess {
+            leaderboardStats = leaderboardService.leaderboardStats
+        }
+        
+        if !scoresSuccess || !statsSuccess {
+            lastError = leaderboardService.lastError
+        }
+        
+        isLoading = false
+    }
+    
+    @MainActor
+    private func refreshTopScores() async {
+        isLoading = true
+        
+        let success = await leaderboardService.getTopScores(mode: selectedMode, period: selectedPeriod)
+        if success {
+            topScores = leaderboardService.topScores
+        } else {
+            lastError = leaderboardService.lastError
+        }
+        
+        isLoading = false
     }
 }
 
@@ -295,6 +338,8 @@ struct PlayerBestSection: View {
 struct LeaderboardViewWatch: View {
     @State private var leaderboardService = LeaderboardService()
     @State private var selectedMode: GameMode = .classic
+    @State private var topScores: [HighScore] = []
+    @State private var isLoading = false
     
     var body: some View {
         ScrollView {
@@ -308,11 +353,11 @@ struct LeaderboardViewWatch: View {
                 .pickerStyle(.segmented)
                 .onChange(of: selectedMode) { _, _ in
                     Task {
-                        await leaderboardService.getTopScores(mode: selectedMode, limit: 5)
+                        await refreshTopScores()
                     }
                 }
                 
-                if leaderboardService.isLoading {
+                if isLoading {
                     ProgressView()
                         .progressViewStyle(.circular)
                 } else {
@@ -321,7 +366,7 @@ struct LeaderboardViewWatch: View {
                         Text("🏆 Top 5")
                             .font(.headline)
                         
-                        ForEach(Array(leaderboardService.topScores.enumerated()), id: \.element.id) { index, score in
+                        ForEach(Array(topScores.enumerated()), id: \.element.id) { index, score in
                             HStack {
                                 Text("#\(index + 1)")
                                     .font(.caption)
@@ -352,8 +397,20 @@ struct LeaderboardViewWatch: View {
         }
         .navigationTitle("Leaderboard")
         .task {
-            await leaderboardService.getTopScores(mode: selectedMode, limit: 5)
+            await refreshTopScores()
         }
+    }
+    
+    @MainActor
+    private func refreshTopScores() async {
+        isLoading = true
+        
+        let success = await leaderboardService.getTopScores(mode: selectedMode, limit: 5)
+        if success {
+            topScores = leaderboardService.topScores
+        }
+        
+        isLoading = false
     }
 }
 

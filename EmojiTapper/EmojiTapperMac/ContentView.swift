@@ -34,6 +34,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingLeaderboard) {
             LeaderboardView()
+                .frame(minWidth: 500, minHeight: 700)
         }
     }
 }

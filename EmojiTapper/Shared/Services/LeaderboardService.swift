@@ -138,6 +138,8 @@ class LeaderboardService {
                     let topScoresResponse = try JSONDecoder().decode(TopScoresResponse.self, from: data)
                     if topScoresResponse.success {
                         topScores = topScoresResponse.scores
+                        print("🔍 LeaderboardService: Successfully loaded \(topScores.count) scores")
+                        print("🔍 LeaderboardService: Scores: \(topScores)")
                         return true
                     } else {
                         lastError = topScoresResponse.error ?? "Failed to get top scores"
@@ -154,7 +156,8 @@ class LeaderboardService {
             return false
             
         } catch {
-            print("❌ Network error: \(error)")
+            print("❌ Network error getting top scores: \(error)")
+            print("❌ Error details: \(error.localizedDescription)")
             
             // Handle specific sandbox errors
             if error.localizedDescription.contains("Sandbox") || error.localizedDescription.contains("networkd") {
@@ -272,8 +275,10 @@ class LeaderboardService {
     }
     
     func refreshLeaderboard(mode: GameMode) async {
+        print("🔍 LeaderboardService: refreshLeaderboard called for mode \(mode)")
         await getTopScores(mode: mode)
         await getLeaderboardStats(mode: mode)
+        print("🔍 LeaderboardService: refreshLeaderboard completed, topScores count: \(topScores.count)")
     }
     
     // MARK: - Test Connection
