@@ -32,6 +32,8 @@ class LeaderboardService {
         #elseif os(watchOS)
         currentPlatform = .watchOS
         #endif
+        
+        print("🔧 LeaderboardService initialized with platform: \(currentPlatform.rawValue)")
     }
     
     // MARK: - Submit Score
@@ -116,6 +118,8 @@ class LeaderboardService {
             lastError = "Invalid URL"
             return false
         }
+        
+        print("🔗 Generated URL: \(url)")
         
         do {
             print("🌐 Getting top scores from: \(url)")
