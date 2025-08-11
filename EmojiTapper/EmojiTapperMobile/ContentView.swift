@@ -148,39 +148,26 @@ struct iOSGameView: View {
                     .padding(.bottom, 50) // Account for home indicator
                 }
                 
-                // Layer 1: VISUALS ONLY. These views handle all animations and visuals,
-                // but are explicitly marked as not hittable.
-                ForEach(gameState.currentEmojis.filter { emoji in
-                    gameState.celebratingPenguin?.id != emoji.id
-                }.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
-                    DancingEmojiView(
-                        emoji: emoji.emoji,
-                        basePosition: emoji.position,
-                        fontSize: 60,
-                        zIndex: Double(emoji.zIndex),
-                        onTap: {},
-                        isInvisible: false
-                    )
-                    .allowsHitTesting(false)
+                // Emojis are drawn here. Taps are handled by the .gesture modifier below.
+                ZStack {
+                    ForEach(gameState.currentEmojis.filter { emoji in
+                        gameState.celebratingPenguin?.id != emoji.id
+                    }.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
+                        DancingEmojiView(
+                            emoji: emoji.emoji,
+                            basePosition: emoji.position,
+                            fontSize: 60,
+                            zIndex: Double(emoji.zIndex)
+                        )
+                    }
                 }
-
-                // Layer 2: TAPS ONLY. A parallel set of invisible views that handle
-                // all tap gestures. The penguin is given a higher zIndex to ensure
-                // its tap gesture has priority.
-                ForEach(gameState.currentEmojis.filter { emoji in
-                    gameState.celebratingPenguin?.id != emoji.id
-                }) { emoji in
-                    DancingEmojiView(
-                        emoji: emoji.emoji,
-                        basePosition: emoji.position,
-                        fontSize: 60,
-                        zIndex: emoji.emoji == "🐧" && gameState.selectedGameMode == .penguinBall ? 1000 : Double(emoji.zIndex),
-                        onTap: {
-                            gameState.emojiTapped(emoji)
-                        },
-                        isInvisible: true
-                    )
-                }
+                .contentShape(Rectangle())
+                .gesture(
+                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onEnded { value in
+                            gameState.handleTap(at: value.location)
+                        }
+                )
                 
                 // Celebrating penguin (grown and staying in place)
                 if let celebratingPenguin = gameState.celebratingPenguin {

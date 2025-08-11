@@ -108,6 +108,7 @@ class PenguinBallEngine: GameModeEngine {
     }
     
     func pauseTimers() {
+        print("PBE DEBUG: pauseTimers() called.")
         stopAllTimers()
     }
     
@@ -244,6 +245,7 @@ class PenguinBallEngine: GameModeEngine {
     }
     
     private func stopAllTimers() {
+        print("PBE DEBUG: stopAllTimers() called.")
         gameTimer?.invalidate()
         gameTimer = nil
         disappearTimer?.invalidate()

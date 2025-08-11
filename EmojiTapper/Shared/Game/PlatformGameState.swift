@@ -315,6 +315,24 @@ class PlatformGameState {
             }
         }
     }
+
+    func handleTap(at location: CGPoint) {
+        // Manual hit-testing. First, prioritize the penguin in Penguin Ball mode.
+        if self.selectedGameMode == GameMode.penguinBall, let penguin = currentEmojis.first(where: { $0.emoji == "🐧" }) {
+            // Define a tappable frame around the penguin's position.
+            // The frame is larger than the emoji to make it easier to tap.
+            let penguinFrame = CGRect(x: penguin.position.x - 35, y: penguin.position.y - 35, width: 70, height: 70)
+            if penguinFrame.contains(location) {
+                self.emojiTapped(penguin)
+                return // Penguin was tapped, our work is done.
+            }
+        }
+        
+        // If penguin was not tapped (or not in the right mode), find the topmost emoji at the location.
+        if let tappedEmoji = getTopmostEmojiAt(point: location) {
+            self.emojiTapped(tappedEmoji)
+        }
+    }
     
     private func handleWrongEmojiTap(_ gameEmoji: GameEmoji) {
         gameEngine.emojiTapped(gameEmoji) // Process the tap (no penalty in Penguin Ball)
