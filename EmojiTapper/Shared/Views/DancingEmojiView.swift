@@ -13,6 +13,7 @@ struct DancingEmojiView: View {
     let fontSize: CGFloat
     let zIndex: Double
     let onTap: () -> Void
+    var isInvisible: Bool = false
     
     @State private var danceOffset: CGSize = .zero
     @State private var rotationAngle: Double = 0
@@ -23,6 +24,8 @@ struct DancingEmojiView: View {
     var body: some View {
         Text(emoji)
             .font(.system(size: fontSize))
+            .opacity(isInvisible ? 0 : 1)
+            .contentShape(Rectangle())
             .position(x: basePosition.x + danceOffset.width, 
                      y: basePosition.y + danceOffset.height)
             .rotationEffect(.degrees(rotationAngle))

@@ -148,19 +148,37 @@ struct iOSGameView: View {
                     .padding(.bottom, 50) // Account for home indicator
                 }
                 
-                // Emojis (sorted by zIndex so higher z-index renders on top and gets priority for taps)
-                // Exclude celebrating penguin from regular emojis to avoid double display
+                // Layer 1: VISUALS ONLY. These views handle all animations and visuals,
+                // but are explicitly marked as not hittable.
                 ForEach(gameState.currentEmojis.filter { emoji in
                     gameState.celebratingPenguin?.id != emoji.id
                 }.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
                     DancingEmojiView(
                         emoji: emoji.emoji,
                         basePosition: emoji.position,
-                        fontSize: 60, // Larger for iPhone
+                        fontSize: 60,
                         zIndex: Double(emoji.zIndex),
+                        onTap: {},
+                        isInvisible: false
+                    )
+                    .allowsHitTesting(false)
+                }
+
+                // Layer 2: TAPS ONLY. A parallel set of invisible views that handle
+                // all tap gestures. The penguin is given a higher zIndex to ensure
+                // its tap gesture has priority.
+                ForEach(gameState.currentEmojis.filter { emoji in
+                    gameState.celebratingPenguin?.id != emoji.id
+                }) { emoji in
+                    DancingEmojiView(
+                        emoji: emoji.emoji,
+                        basePosition: emoji.position,
+                        fontSize: 60,
+                        zIndex: emoji.emoji == "🐧" && gameState.selectedGameMode == .penguinBall ? 1000 : Double(emoji.zIndex),
                         onTap: {
                             gameState.emojiTapped(emoji)
-                        }
+                        },
+                        isInvisible: true
                     )
                 }
                 
