@@ -81,7 +81,7 @@ class ClassicGameEngine: GameModeEngine {
             endGame()
             return
         case .hourglass:
-            timeRemaining += 5.0
+            timeRemaining += 1.0
         case .cherry:
             score += 2
         }
