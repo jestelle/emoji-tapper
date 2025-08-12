@@ -17,14 +17,12 @@ struct AnimatedPositionChange: Identifiable {
     let controlPoint1: CGPoint // For curved bezier path
     let controlPoint2: CGPoint // For curved bezier path
     let duration: TimeInterval
-    let zIndex: Int
     
     init(from positionedEmoji: PositionedGameEmoji, to newPosition: CGPoint) {
         self.id = positionedEmoji.id
         self.emoji = positionedEmoji.emoji
         self.startPosition = positionedEmoji.position
         self.endPosition = newPosition
-        self.zIndex = positionedEmoji.zIndex
         self.duration = Double.random(in: 0.3...0.5)
         
         // Create curved path with random control points

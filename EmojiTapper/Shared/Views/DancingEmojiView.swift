@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct DancingEmojiView: View {
-    let emoji: String
+    let emoji: GameEmoji
     let basePosition: CGPoint
-    let fontSize: CGFloat
-    let zIndex: Double
+    let onTap: () -> Void
     
     @State private var danceOffset: CGSize = .zero
     @State private var rotationAngle: Double = 0
@@ -20,13 +19,13 @@ struct DancingEmojiView: View {
     let danceSpeedScale: Double = 0.5
     
     var body: some View {
-        Text(emoji)
-            .font(.system(size: fontSize))
+        EmojiImage(emoji: emoji)
+            .frame(width: 50, height: 50)
             .position(x: basePosition.x + danceOffset.width, 
                      y: basePosition.y + danceOffset.height)
             .rotationEffect(.degrees(rotationAngle))
             .scaleEffect(scale)
-            .zIndex(zIndex)
+            .onTapGesture(perform: onTap)
             .onAppear {
                 startDancing()
             }

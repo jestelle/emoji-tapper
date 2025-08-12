@@ -45,7 +45,6 @@ struct AnimatedPositionChangeView: View {
             .position(currentPosition)
             .rotationEffect(.degrees(danceRotation))
             .scaleEffect(danceScale)
-            .zIndex(Double(animatedChange.zIndex))
             .onAppear {
                 // Main position animation
                 withAnimation(.easeInOut(duration: animatedChange.duration)) {

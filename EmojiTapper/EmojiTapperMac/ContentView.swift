@@ -154,12 +154,10 @@ struct MacGameView: View {
                 // Exclude celebrating penguin from regular emojis to avoid double display
                 ForEach(gameState.currentEmojis.filter { emoji in
                     gameState.celebratingPenguin?.id != emoji.id
-                }.sorted(by: { $0.zIndex < $1.zIndex })) { emoji in
+                }) { emoji in
                     DancingEmojiView(
-                        emoji: emoji.emoji,
+                        emoji: GameEmoji(emoji: emoji.emoji, type: emoji.type),
                         basePosition: emoji.position,
-                        fontSize: 50, // Good size for Mac
-                        zIndex: Double(emoji.zIndex),
                         onTap: {
                             gameState.emojiTapped(emoji)
                         }

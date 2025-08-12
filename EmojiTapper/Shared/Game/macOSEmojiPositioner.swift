@@ -50,7 +50,7 @@ class macOSEmojiPositioner: EmojiPositioner {
             return distance <= 30 // Good hit radius for desktop mouse
         }
         
-        // Return the one with highest zIndex (rendered on top)
-        return hitEmojis.max(by: { $0.zIndex < $1.zIndex })
+        // Return the first one
+        return hitEmojis.first
     }
 }
