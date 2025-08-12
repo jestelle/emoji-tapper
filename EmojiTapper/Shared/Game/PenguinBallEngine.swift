@@ -162,38 +162,22 @@ class PenguinBallEngine: GameModeEngine {
         totalEmojis = baseCount
         emojisRemaining = baseCount
         
-        // Create all emojis with sequential z-index values
+        // Create all emojis
         var allEmojis: [GameEmoji] = []
         
-        // Add the penguin (will get random z-index after shuffle)
-        allEmojis.append(GameEmoji(
-            emoji: "🐧",
-            type: .normal,
-            zIndex: 0 // Temporary value, will be reassigned
-        ))
+        // Add the penguin
+        allEmojis.append(GameEmoji(emoji: "🐧", type: .normal))
         
         // Fill with lots of distractor emojis
         for _ in 1..<baseCount {
             let randomEmoji = distractorEmojis.randomElement() ?? "😀"
-            allEmojis.append(GameEmoji(
-                emoji: randomEmoji,
-                type: .normal,
-                zIndex: 0 // Temporary value, will be reassigned
-            ))
+            allEmojis.append(GameEmoji(emoji: randomEmoji, type: .normal))
         }
         
         // Shuffle the array to randomize order
         allEmojis.shuffle()
         
-        // Assign sequential z-index values after shuffling to randomize penguin position
-        currentEmojis = allEmojis.enumerated().map { index, emoji in
-            GameEmoji(
-                id: emoji.id,
-                emoji: emoji.emoji,
-                type: emoji.type,
-                zIndex: index
-            )
-        }
+        currentEmojis = allEmojis
         
         // Notify UI of emoji changes
         if shouldNotifyUI {
