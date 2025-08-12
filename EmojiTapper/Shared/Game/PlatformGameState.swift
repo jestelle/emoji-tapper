@@ -20,23 +20,20 @@ struct PositionedGameEmoji: Identifiable {
     let emoji: String
     let type: EmojiType
     let position: CGPoint
-    let zIndex: Int
     
     init(from gameEmoji: GameEmoji, position: CGPoint) {
         self.id = gameEmoji.id  // Use the same ID from gameEmoji
         self.emoji = gameEmoji.emoji
         self.type = gameEmoji.type
         self.position = position
-        self.zIndex = gameEmoji.zIndex
     }
     
     // Manual constructor for preserving exact properties
-    init(id: UUID, emoji: String, type: EmojiType, position: CGPoint, zIndex: Int) {
+    init(id: UUID, emoji: String, type: EmojiType, position: CGPoint) {
         self.id = id
         self.emoji = emoji
         self.type = type
         self.position = position
-        self.zIndex = zIndex
     }
 }
 
@@ -194,8 +191,7 @@ class PlatformGameState {
                 id: animatingChange.id,
                 emoji: animatingChange.emoji,
                 type: .normal, // Default type since we can't access the original type
-                position: currentPosition,
-                zIndex: animatingChange.zIndex
+                position: currentPosition
             )
             
             let animatedEmoji = AnimatedEmoji(from: interruptedEmoji, screenBounds: screenBounds)
@@ -374,8 +370,7 @@ class PlatformGameState {
                         id: change.id, // Keep same ID
                         emoji: engineEmoji.emoji,
                         type: engineEmoji.type,
-                        position: change.endPosition, // Use animation end position
-                        zIndex: engineEmoji.zIndex
+                        position: change.endPosition // Use animation end position
                     )
                 }
                 return nil
