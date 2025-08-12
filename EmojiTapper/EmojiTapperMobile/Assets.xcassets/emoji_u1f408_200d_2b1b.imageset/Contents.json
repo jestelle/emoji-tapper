@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "emoji_u1f408_200d_2b1b.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
