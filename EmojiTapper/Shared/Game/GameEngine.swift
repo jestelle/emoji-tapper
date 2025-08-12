@@ -23,8 +23,8 @@ class GameEngine {
     
     private var gameTimer: Timer?
     
-    let normalEmojis = ["😀", "😊", "😂", "🥰", "😎", "🤔", "😮", "😋", "🙂", "😆", "😍", "🤗", "😴", "🤯", "😇"]
-    let specialEmojis = ["💀", "⏳", "🍒"] // skull, hourglass, cherry
+        let normalEmojis = [GameEmoji(emoji: "😀", type: .normal, zIndex: 0), GameEmoji(emoji: "😊", type: .normal, zIndex: 0), GameEmoji(emoji: "😂", type: .normal, zIndex: 0), GameEmoji(emoji: "🥰", type: .normal, zIndex: 0), GameEmoji(emoji: "😎", type: .normal, zIndex: 0), GameEmoji(emoji: "🤔", type: .normal, zIndex: 0), GameEmoji(emoji: "😮", type: .normal, zIndex: 0), GameEmoji(emoji: "😋", type: .normal, zIndex: 0), GameEmoji(emoji: "🙂", type: .normal, zIndex: 0), GameEmoji(emoji: "😆", type: .normal, zIndex: 0), GameEmoji(emoji: "😍", type: .normal, zIndex: 0), GameEmoji(emoji: "🤗", type: .normal, zIndex: 0), GameEmoji(emoji: "😴", type: .normal, zIndex: 0), GameEmoji(emoji: "🤯", type: .normal, zIndex: 0), GameEmoji(emoji: "😇", type: .normal, zIndex: 0)]
+    let specialEmojis = [GameEmoji(emoji: "💀", type: .skull, zIndex: 0), GameEmoji(emoji: "⏳", type: .hourglass, zIndex: 0), GameEmoji(emoji: "🍒", type: .cherry, zIndex: 0)]
     
     init() {
         loadHighScore()
@@ -79,16 +79,10 @@ class GameEngine {
         currentEmojis.removeAll()
         let targetCount = maxEmojisOnScreen
         
-        var zIndex = 0
+        
         
         // Always add at least one normal emoji
-        let normalEmoji = normalEmojis.randomElement() ?? "😀"
-        currentEmojis.append(GameEmoji(
-            emoji: normalEmoji,
-            type: .normal,
-            zIndex: zIndex
-        ))
-        zIndex += 1
+        currentEmojis.append(normalEmojis.randomElement()!)
         
         // Fill remaining slots with normal emojis
         let remainingSlots = targetCount - 1
@@ -98,22 +92,12 @@ class GameEngine {
             
             if randomValue < 0.4 {
                 // Add skull (40% chance)
-                currentEmojis.append(GameEmoji(
-                    emoji: "💀",
-                    type: .skull,
-                    zIndex: zIndex
-                ))
-                zIndex += 1
+                currentEmojis.append(specialEmojis[0])
             } else if randomValue < 0.5 {
                 // Check if we already have an hourglass
                 let hasHourglass = currentEmojis.contains { $0.type == .hourglass }
                 if !hasHourglass {
-                    currentEmojis.append(GameEmoji(
-                        emoji: "⏳",
-                        type: .hourglass,
-                        zIndex: zIndex
-                    ))
-                    zIndex += 1
+                    currentEmojis.append(specialEmojis[1])
                 } else {
                     // Add normal emoji instead
                     let normalEmoji = normalEmojis.randomElement() ?? "😀"

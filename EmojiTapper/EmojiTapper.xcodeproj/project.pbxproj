@@ -65,6 +65,9 @@
 		FC7911602E465EB300F1EAB4 /* LeaderboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79115E2E465EB300F1EAB4 /* LeaderboardService.swift */; };
 		FC7911612E465EB300F1EAB4 /* LeaderboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79115E2E465EB300F1EAB4 /* LeaderboardService.swift */; };
 		FC7911622E465EB300F1EAB4 /* LeaderboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79115E2E465EB300F1EAB4 /* LeaderboardService.swift */; };
+		FCC225172E4BCB0C0036735F /* EmojiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225162E4BCB0C0036735F /* EmojiImage.swift */; };
+		FCC225182E4BCB0C0036735F /* EmojiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225162E4BCB0C0036735F /* EmojiImage.swift */; };
+		FCC225192E4BCB0C0036735F /* EmojiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225162E4BCB0C0036735F /* EmojiImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +166,7 @@
 		FC7911562E465E5F00F1EAB4 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		FC79115A2E465E6C00F1EAB4 /* LeaderboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardModels.swift; sourceTree = "<group>"; };
 		FC79115E2E465EB300F1EAB4 /* LeaderboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardService.swift; sourceTree = "<group>"; };
+		FCC225162E4BCB0C0036735F /* EmojiImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -360,6 +364,7 @@
 				FC7910E02E459E4100F1EAB4 /* GameEndScreen.swift */,
 				FC79110E2E463E7A00F1EAB4 /* DancingEmojiView.swift */,
 				FC7911522E464EFC00F1EAB4 /* HighScoreResetView.swift */,
+				FCC225162E4BCB0C0036735F /* EmojiImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -388,8 +393,6 @@
 				FC0ADA522E26057000A4D0F6 /* PBXTargetDependency */,
 			);
 			name = EmojiTapper;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapper;
 			productReference = FC0ADA492E26057000A4D0F6 /* EmojiTapper.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
@@ -410,8 +413,6 @@
 				FC0ADA532E26057000A4D0F6 /* EmojiTapper Watch App */,
 			);
 			name = "EmojiTapper Watch App";
-			packageProductDependencies = (
-			);
 			productName = "EmojiTapper Watch App";
 			productReference = FC0ADA4F2E26057000A4D0F6 /* EmojiTapper Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -433,8 +434,6 @@
 				FC0ADA642E26057100A4D0F6 /* EmojiTapper Watch AppTests */,
 			);
 			name = "EmojiTapper Watch AppTests";
-			packageProductDependencies = (
-			);
 			productName = "EmojiTapper Watch AppTests";
 			productReference = FC0ADA612E26057100A4D0F6 /* EmojiTapper Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -456,8 +455,6 @@
 				FC0ADA6E2E26057100A4D0F6 /* EmojiTapper Watch AppUITests */,
 			);
 			name = "EmojiTapper Watch AppUITests";
-			packageProductDependencies = (
-			);
 			productName = "EmojiTapper Watch AppUITests";
 			productReference = FC0ADA6B2E26057100A4D0F6 /* EmojiTapper Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -478,8 +475,6 @@
 				FC7910732E458C8300F1EAB4 /* EmojiTapperMobile */,
 			);
 			name = EmojiTapperMobile;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapperMobile;
 			productReference = FC7910722E458C8300F1EAB4 /* Emoji Tap.app */;
 			productType = "com.apple.product-type.application";
@@ -501,8 +496,6 @@
 				FC7910842E458C8400F1EAB4 /* EmojiTapperMobileTests */,
 			);
 			name = EmojiTapperMobileTests;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapperMobileTests;
 			productReference = FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -524,8 +517,6 @@
 				FC79108E2E458C8400F1EAB4 /* EmojiTapperMobileUITests */,
 			);
 			name = EmojiTapperMobileUITests;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapperMobileUITests;
 			productReference = FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -546,8 +537,6 @@
 				FC7911162E464C2900F1EAB4 /* EmojiTapperMac */,
 			);
 			name = EmojiTapperMac;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapperMac;
 			productReference = FC7911152E464C2900F1EAB4 /* Emoji Tapper.app */;
 			productType = "com.apple.product-type.application";
@@ -569,8 +558,6 @@
 				FC7911282E464C2A00F1EAB4 /* EmojiTapperMacTests */,
 			);
 			name = EmojiTapperMacTests;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapperMacTests;
 			productReference = FC7911252E464C2A00F1EAB4 /* EmojiTapperMacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -592,8 +579,6 @@
 				FC7911322E464C2A00F1EAB4 /* EmojiTapperMacUITests */,
 			);
 			name = EmojiTapperMacUITests;
-			packageProductDependencies = (
-			);
 			productName = EmojiTapperMacUITests;
 			productReference = FC79112F2E464C2A00F1EAB4 /* EmojiTapperMacUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -771,6 +756,7 @@
 				FC7910CF2E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
 				FC79110F2E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7910D02E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
+				FCC225182E4BCB0C0036735F /* EmojiImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +797,7 @@
 				FC7910D12E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
 				FC7911102E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7910D22E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
+				FCC225192E4BCB0C0036735F /* EmojiImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +821,7 @@
 			files = (
 				FC7911422E464D4300F1EAB4 /* macOSEmojiPositioner.swift in Sources */,
 				FC7911442E464D9A00F1EAB4 /* ClassicGameEngine.swift in Sources */,
+				FCC225172E4BCB0C0036735F /* EmojiImage.swift in Sources */,
 				FC7911622E465EB300F1EAB4 /* LeaderboardService.swift in Sources */,
 				FC79115D2E465E6C00F1EAB4 /* LeaderboardModels.swift in Sources */,
 				FC7911452E464D9A00F1EAB4 /* PlatformGameState.swift in Sources */,
