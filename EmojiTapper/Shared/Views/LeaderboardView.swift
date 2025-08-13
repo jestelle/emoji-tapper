@@ -9,7 +9,7 @@ import SwiftUI
 
 #if os(watchOS)
 struct LeaderboardView: View {
-    @State private var leaderboardService = LeaderboardService()
+    @State private var leaderboardService = LeaderboardService.shared
     @State private var selectedMode: GameMode
     let initialMode: GameMode?
     
@@ -93,7 +93,7 @@ struct LeaderboardView: View {
 }
 #else
 struct LeaderboardView: View {
-    @State private var leaderboardService = LeaderboardService()
+    @State private var leaderboardService = LeaderboardService.shared
     @State private var selectedMode: GameMode
     let initialMode: GameMode?
     

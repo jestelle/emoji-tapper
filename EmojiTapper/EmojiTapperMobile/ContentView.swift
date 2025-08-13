@@ -184,7 +184,6 @@ struct iOSGameView: View {
                 ForEach(gameState.animatedPositionChanges) { animatedChange in
                     AnimatedPositionChangeView(
                         animatedChange: animatedChange,
-                        fontSize: 60,
                         onComplete: {
                             // Individual animations will clean themselves up via the timer
                         }

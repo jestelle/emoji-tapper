@@ -9,6 +9,8 @@ import Foundation
 
 @Observable
 class LeaderboardService {
+    static let shared = LeaderboardService()
+    
     private let baseURL = "https://us-central1-top-leaderboard.cloudfunctions.net"
     private let gameName = "Emoji Tapper"
     
@@ -24,7 +26,7 @@ class LeaderboardService {
     var playerBest: HighScore?
     var leaderboardStats: LeaderboardStats?
     
-    init() {
+    private init() {
         #if os(iOS)
         currentPlatform = .iOS
         #elseif os(macOS)

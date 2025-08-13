@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AnimatedPositionChangeView: View {
     let animatedChange: AnimatedPositionChange
-    let fontSize: CGFloat
     let onComplete: () -> Void
     
     @State private var progress: Double = 0.0
@@ -40,8 +39,8 @@ struct AnimatedPositionChangeView: View {
     @State private var danceScale: Double = 1.0
     
     var body: some View {
-        Text(animatedChange.emoji)
-            .font(.system(size: fontSize))
+        EmojiImage(emoji: GameEmoji(emoji: animatedChange.emoji, type: .normal))
+            .frame(width: 50, height: 50)
             .position(currentPosition)
             .rotationEffect(.degrees(danceRotation))
             .scaleEffect(danceScale)

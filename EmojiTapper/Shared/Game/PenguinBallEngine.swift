@@ -26,7 +26,6 @@ class PenguinBallEngine: GameModeEngine {
     // Penguin Ball specific properties
     private var currentRound: Int = 0
     private let maxRounds: Int = 3
-    private var timeUntilDisappear: TimeInterval = 1.0
     private var totalEmojis: Int = 0
     private var emojisRemaining: Int = 0
     var roundScores: [Int] = [] // Track score for each round
@@ -121,7 +120,6 @@ class PenguinBallEngine: GameModeEngine {
     
     private func startNextRound() {
         currentRound += 1
-        timeUntilDisappear = 1.0
         generateNewEmojis()
         startDisappearTimer()
     }
@@ -187,7 +185,7 @@ class PenguinBallEngine: GameModeEngine {
     
     private func startDisappearTimer() {
         // After 1 second, start making emojis disappear
-        disappearTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+        disappearTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
             self.startDisappearingEmojis()
         }
     }
@@ -211,8 +209,8 @@ class PenguinBallEngine: GameModeEngine {
             return
         }
         
-        // Remove 3-5 emojis at a time, but don't go below just the penguin
-        let removeCount = min(Int.random(in: 3...5), nonPenguinEmojis.count)
+        // Remove 1-3 emojis at a time, but don't go below just the penguin
+        let removeCount = min(Int.random(in: 1...3), nonPenguinEmojis.count)
         let emojisToRemove = Array(nonPenguinEmojis.shuffled().prefix(removeCount))
         
         for emojiToRemove in emojisToRemove {

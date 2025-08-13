@@ -18,7 +18,7 @@ struct GameEndScreen: View {
     let gameMode: GameMode
     let onDismiss: () -> Void
     
-    @State private var leaderboardService = LeaderboardService()
+    @State private var leaderboardService = LeaderboardService.shared
     @State private var showingLeaderboard = false
     @State private var playerName: String = ""
     @State private var scoreSubmitted = false
