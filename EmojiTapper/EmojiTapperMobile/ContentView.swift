@@ -44,8 +44,8 @@ struct iOSMenuView: View {
     
     var body: some View {
         VStack(spacing: 25) {
-            Text(gameState.selectedGameMode == .classic ? "😊" : "🐧")
-                .font(.system(size: 80))
+            EmojiImage(emoji: GameEmoji(emoji: gameState.selectedGameMode == .classic ? "😊" : "🐧", type: .normal))
+                .frame(width: 80, height: 80)
             
             Text(gameState.selectedGameMode == .classic ? "Emoji Tapper" : "Penguin Ball")
                 .font(.largeTitle)

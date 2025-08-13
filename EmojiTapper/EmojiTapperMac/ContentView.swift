@@ -45,8 +45,8 @@ struct MacMenuView: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            Text(gameState.selectedGameMode == .classic ? "😊" : "🐧")
-                .font(.system(size: 100))
+            EmojiImage(emoji: GameEmoji(emoji: gameState.selectedGameMode == .classic ? "😊" : "🐧", type: .normal))
+                .frame(width: 100, height: 100)
             
             Text(gameState.selectedGameMode == .classic ? "Emoji Tapper" : "Penguin Ball")
                 .font(.largeTitle)
@@ -166,19 +166,18 @@ struct MacGameView: View {
                 
                 // Celebrating penguin (grown and staying in place)
                 if let celebratingPenguin = gameState.celebratingPenguin {
-                    CelebratingPenguinView(penguin: celebratingPenguin, fontSize: 50)
+                    CelebratingPenguinView(penguin: celebratingPenguin)
                 }
                 
                 // Animated emojis flying off screen
                 ForEach(gameState.animatingEmojis) { animatedEmoji in
-                    AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 50)
+                    AnimatedEmojiView(animatedEmoji: animatedEmoji)
                 }
                 
                 // Animated position changes (wrong emoji taps in Penguin Ball)
                 ForEach(gameState.animatedPositionChanges) { animatedChange in
                     AnimatedPositionChangeView(
                         animatedChange: animatedChange,
-                        fontSize: 50,
                         onComplete: {
                             // Individual animations will clean themselves up via the timer
                         }
