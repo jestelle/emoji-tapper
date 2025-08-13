@@ -11,11 +11,9 @@
 		FC7910C52E458EDB00F1EAB4 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */; };
 		FC7910C62E458EDB00F1EAB4 /* GameEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */; };
 		FC7910C72E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */; };
-		FC7910C82E458EDB00F1EAB4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */; };
 		FC7910C92E458EDB00F1EAB4 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */; };
 		FC7910CA2E458EDB00F1EAB4 /* GameEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */; };
 		FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */; };
-		FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */; };
 		FC7910CF2E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */; };
 		FC7910D02E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */; };
 		FC7910D12E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */; };
@@ -41,7 +39,6 @@
 		FC7911432E464D4300F1EAB4 /* macOSEmojiPositioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7911402E464D4300F1EAB4 /* macOSEmojiPositioner.swift */; };
 		FC7911442E464D9A00F1EAB4 /* ClassicGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */; };
 		FC7911452E464D9A00F1EAB4 /* PlatformGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */; };
-		FC7911462E464D9A00F1EAB4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */; };
 		FC7911472E464D9A00F1EAB4 /* PenguinBallEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */; };
 		FC7911482E464D9F00F1EAB4 /* GameEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */; };
 		FC7911492E464D9F00F1EAB4 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7910D32E45955200F1EAB4 /* GameMode.swift */; };
@@ -68,6 +65,9 @@
 		FCC225172E4BCB0C0036735F /* EmojiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225162E4BCB0C0036735F /* EmojiImage.swift */; };
 		FCC225182E4BCB0C0036735F /* EmojiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225162E4BCB0C0036735F /* EmojiImage.swift */; };
 		FCC225192E4BCB0C0036735F /* EmojiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225162E4BCB0C0036735F /* EmojiImage.swift */; };
+		FCC225532E4C1B240036735F /* EmojiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225522E4C1B240036735F /* EmojiProvider.swift */; };
+		FCC225542E4C1B240036735F /* EmojiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225522E4C1B240036735F /* EmojiProvider.swift */; };
+		FCC225552E4C1B240036735F /* EmojiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC225522E4C1B240036735F /* EmojiProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +144,6 @@
 		FC7910722E458C8300F1EAB4 /* Emoji Tap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Tap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC7910812E458C8400F1EAB4 /* EmojiTapperMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC79108B2E458C8400F1EAB4 /* EmojiTapperMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojiTapperMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformGameState.swift; sourceTree = "<group>"; };
 		FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEmoji.swift; sourceTree = "<group>"; };
 		FC7910C22E458EDB00F1EAB4 /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
@@ -167,6 +166,7 @@
 		FC79115A2E465E6C00F1EAB4 /* LeaderboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardModels.swift; sourceTree = "<group>"; };
 		FC79115E2E465EB300F1EAB4 /* LeaderboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardService.swift; sourceTree = "<group>"; };
 		FCC225162E4BCB0C0036735F /* EmojiImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiImage.swift; sourceTree = "<group>"; };
+		FCC225522E4C1B240036735F /* EmojiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -324,7 +324,6 @@
 				FC7911402E464D4300F1EAB4 /* macOSEmojiPositioner.swift */,
 				FC7910CD2E45954300F1EAB4 /* ClassicGameEngine.swift */,
 				FC7910CE2E45954300F1EAB4 /* PenguinBallEngine.swift */,
-				FC7910BE2E458EDB00F1EAB4 /* GameEngine.swift */,
 				FC7910BF2E458EDB00F1EAB4 /* PlatformGameState.swift */,
 			);
 			path = Game;
@@ -334,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				FC79115A2E465E6C00F1EAB4 /* LeaderboardModels.swift */,
+				FCC225522E4C1B240036735F /* EmojiProvider.swift */,
 				FC7910D62E4599F800F1EAB4 /* AnimatedEmoji.swift */,
 				FC7910E62E45A16400F1EAB4 /* AnimatedPositionChange.swift */,
 				FC7910C12E458EDB00F1EAB4 /* GameEmoji.swift */,
@@ -746,13 +746,13 @@
 				FC7910E12E459E4100F1EAB4 /* GameEndScreen.swift in Sources */,
 				FC7910E72E45A16400F1EAB4 /* AnimatedPositionChange.swift in Sources */,
 				FC7910C52E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
+				FCC225552E4C1B240036735F /* EmojiProvider.swift in Sources */,
 				FC7910D82E4599F800F1EAB4 /* AnimatedEmoji.swift in Sources */,
 				FC7910DC2E459A2E00F1EAB4 /* AnimatedEmojiView.swift in Sources */,
 				FC79115B2E465E6C00F1EAB4 /* LeaderboardModels.swift in Sources */,
 				FC7910C62E458EDB00F1EAB4 /* GameEmoji.swift in Sources */,
 				FC7910C72E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
 				FC7911612E465EB300F1EAB4 /* LeaderboardService.swift in Sources */,
-				FC7910C82E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
 				FC7910CF2E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
 				FC79110F2E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7910D02E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
@@ -787,13 +787,13 @@
 				FC7910E82E45A16400F1EAB4 /* AnimatedPositionChange.swift in Sources */,
 				FC7910C92E458EDB00F1EAB4 /* GameLevel.swift in Sources */,
 				FC7911552E464EFC00F1EAB4 /* HighScoreResetView.swift in Sources */,
+				FCC225532E4C1B240036735F /* EmojiProvider.swift in Sources */,
 				FC7910D72E4599F800F1EAB4 /* AnimatedEmoji.swift in Sources */,
 				FC7910DB2E459A2E00F1EAB4 /* AnimatedEmojiView.swift in Sources */,
 				FC79115C2E465E6C00F1EAB4 /* LeaderboardModels.swift in Sources */,
 				FC7910CA2E458EDB00F1EAB4 /* GameEmoji.swift in Sources */,
 				FC7910CB2E458EDB00F1EAB4 /* PlatformGameState.swift in Sources */,
 				FC7911602E465EB300F1EAB4 /* LeaderboardService.swift in Sources */,
-				FC7910CC2E458EDB00F1EAB4 /* GameEngine.swift in Sources */,
 				FC7910D12E45954300F1EAB4 /* PenguinBallEngine.swift in Sources */,
 				FC7911102E463E7A00F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7910D22E45954300F1EAB4 /* ClassicGameEngine.swift in Sources */,
@@ -825,12 +825,12 @@
 				FC7911622E465EB300F1EAB4 /* LeaderboardService.swift in Sources */,
 				FC79115D2E465E6C00F1EAB4 /* LeaderboardModels.swift in Sources */,
 				FC7911452E464D9A00F1EAB4 /* PlatformGameState.swift in Sources */,
-				FC7911462E464D9A00F1EAB4 /* GameEngine.swift in Sources */,
 				FC7911472E464D9A00F1EAB4 /* PenguinBallEngine.swift in Sources */,
 				FC79114D2E464DA400F1EAB4 /* AnimatedPositionChangeView.swift in Sources */,
 				FC79114E2E464DA400F1EAB4 /* GameEndScreen.swift in Sources */,
 				FC79114F2E464DA400F1EAB4 /* CelebratingPenguinView.swift in Sources */,
 				FC7911532E464EFC00F1EAB4 /* HighScoreResetView.swift in Sources */,
+				FCC225542E4C1B240036735F /* EmojiProvider.swift in Sources */,
 				FC7911502E464DA400F1EAB4 /* AnimatedEmojiView.swift in Sources */,
 				FC7911512E464DA400F1EAB4 /* DancingEmojiView.swift in Sources */,
 				FC7911482E464D9F00F1EAB4 /* GameEmoji.swift in Sources */,

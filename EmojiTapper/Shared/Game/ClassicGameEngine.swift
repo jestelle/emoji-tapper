@@ -34,28 +34,9 @@ class ClassicGameEngine: GameModeEngine {
     
     private var gameTimer: Timer?
     
-    let normalEmojis: [(String, EmojiType)] = [
-        ("😀", .normal),
-        ("😊", .normal),
-        ("😂", .normal),
-        ("🥰", .normal),
-        ("😎", .normal),
-        ("🤔", .normal),
-        ("😮", .normal),
-        ("😋", .normal),
-        ("🙂", .normal),
-        ("😆", .normal),
-        ("😍", .normal),
-        ("🤗", .normal),
-        ("😴", .normal),
-        ("🤯", .normal),
-        ("😇", .normal)
-    ]
-    let specialEmojis: [(String, EmojiType)] = [
-        ("💀", .skull),
-        ("⏳", .hourglass),
-        ("🍒", .cherry)
-    ]
+    private let skullEmoji = GameEmoji(emoji: "💀", type: .skull)
+    private let hourglassEmoji = GameEmoji(emoji: "⏳", type: .hourglass)
+    private let cherryEmoji = GameEmoji(emoji: "🍒", type: .cherry)
     
     init() {
         loadHighScore()
@@ -127,7 +108,7 @@ class ClassicGameEngine: GameModeEngine {
         let targetCount = maxEmojisOnScreen
         
         // Always add at least one normal emoji
-        if let (emoji, type) = normalEmojis.randomElement() {
+        if let (emoji, type) = EmojiProvider.classicNormal.randomElement() {
             currentEmojis.append(GameEmoji(emoji: emoji, type: type))
         }
         
@@ -138,27 +119,24 @@ class ClassicGameEngine: GameModeEngine {
             
             if randomValue < 0.4 {
                 // Add skull (40% chance)
-                let (emoji, type) = specialEmojis[0]
-                currentEmojis.append(GameEmoji(emoji: emoji, type: type))
+                currentEmojis.append(skullEmoji)
             } else if randomValue < 0.5 {
                 // Add hourglass (10% chance, max 1)
                 if !currentEmojis.contains(where: { $0.type == .hourglass }) {
-                    let (emoji, type) = specialEmojis[1]
-                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
-                } else if let (emoji, type) = normalEmojis.randomElement() {
+                    currentEmojis.append(hourglassEmoji)
+                } else if let (emoji, type) = EmojiProvider.classicNormal.randomElement() {
                     currentEmojis.append(GameEmoji(emoji: emoji, type: type))
                 }
             } else if randomValue < 0.6 {
                 // Add cherry (10% chance, max 3)
                 if currentEmojis.filter({ $0.type == .cherry }).count < 3 {
-                    let (emoji, type) = specialEmojis[2]
-                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
-                } else if let (emoji, type) = normalEmojis.randomElement() {
+                    currentEmojis.append(cherryEmoji)
+                } else if let (emoji, type) = EmojiProvider.classicNormal.randomElement() {
                     currentEmojis.append(GameEmoji(emoji: emoji, type: type))
                 }
             } else {
                 // Add normal emoji
-                if let (emoji, type) = normalEmojis.randomElement() {
+                if let (emoji, type) = EmojiProvider.classicNormal.randomElement() {
                     currentEmojis.append(GameEmoji(emoji: emoji, type: type))
                 }
             }
