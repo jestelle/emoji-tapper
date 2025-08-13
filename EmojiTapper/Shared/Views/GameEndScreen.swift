@@ -30,14 +30,14 @@ struct GameEndScreen: View {
         ScrollView {
             VStack(spacing: 8) {
                 // Title
-                Text("🐧 Complete! 🐧")
+                Text("Complete!")
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
                 
                 if isNewHighScore {
-                    Text("🎉 NEW HIGH! 🎉")
+                    Label("NEW HIGH!", systemImage: "star.fill")
                         .font(.caption)
                         .fontWeight(.bold)
                         .foregroundColor(.yellow)
@@ -102,7 +102,7 @@ struct GameEndScreen: View {
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(6)
                     } else {
-                        Text("✅ Submitted!")
+                        Label("Submitted!", systemImage: "checkmark.circle.fill")
                             .font(.caption)
                             .foregroundColor(.green)
                     }
@@ -142,14 +142,14 @@ struct GameEndScreen: View {
             ScrollView {
                 VStack(spacing: 20) {
                     // Title
-                    Text("🐧 Game Complete! 🐧")
+                    Text("Game Complete!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                     
                     if isNewHighScore {
-                        Text("🎉 NEW HIGH SCORE! 🎉")
+                        Label("NEW HIGH SCORE!", systemImage: "star.fill")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.yellow)
@@ -238,7 +238,7 @@ struct GameEndScreen: View {
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                         } else {
-                            Text("✅ Score Submitted!")
+                            Label("Score Submitted!", systemImage: "checkmark.circle.fill")
                                 .font(.title2)
                                 .foregroundColor(.green)
                         }

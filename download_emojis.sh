@@ -134,6 +134,9 @@ PENGUIN_BALL_EMOJIS=(
     "emoji_u1f9ab" # 🦫
     "emoji_u1f43f" # 🐿
     "emoji_u1f994" # 🦔
+    "emoji_u1f9a1" # 🦡
+    "emoji_u1f435" # 🐵
+    "emoji_u1f40f" # 🐏
 )
 
 ALL_EMOJIS=("${CLASSIC_EMOJIS[@]}" "${PENGUIN_BALL_EMOJIS[@]}")

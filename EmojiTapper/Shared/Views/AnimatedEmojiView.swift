@@ -9,19 +9,17 @@ import SwiftUI
 
 struct AnimatedEmojiView: View {
     let animatedEmoji: AnimatedEmoji
-    let fontSize: CGFloat
     @State private var currentPosition: CGPoint
     @State private var isAnimating = false
     
-    init(animatedEmoji: AnimatedEmoji, fontSize: CGFloat) {
+    init(animatedEmoji: AnimatedEmoji) {
         self.animatedEmoji = animatedEmoji
-        self.fontSize = fontSize
         self._currentPosition = State(initialValue: animatedEmoji.startPosition)
     }
     
     var body: some View {
-        Text(animatedEmoji.emoji)
-            .font(.system(size: fontSize))
+        EmojiImage(emoji: GameEmoji(emoji: animatedEmoji.emoji, type: .normal))
+            .frame(width: 50, height: 50)
             .position(currentPosition)
             .scaleEffect(isAnimating ? 0.3 : 1.0) // Shrink as it flies away
             .opacity(isAnimating ? 0.0 : 1.0) // Fade out

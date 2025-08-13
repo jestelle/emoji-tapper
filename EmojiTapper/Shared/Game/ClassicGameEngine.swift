@@ -34,27 +34,27 @@ class ClassicGameEngine: GameModeEngine {
     
     private var gameTimer: Timer?
     
-    let normalEmojis = [
-        GameEmoji(emoji: "😀", type: .normal),
-        GameEmoji(emoji: "😊", type: .normal),
-        GameEmoji(emoji: "😂", type: .normal),
-        GameEmoji(emoji: "🥰", type: .normal),
-        GameEmoji(emoji: "😎", type: .normal),
-        GameEmoji(emoji: "🤔", type: .normal),
-        GameEmoji(emoji: "😮", type: .normal),
-        GameEmoji(emoji: "😋", type: .normal),
-        GameEmoji(emoji: "🙂", type: .normal),
-        GameEmoji(emoji: "😆", type: .normal),
-        GameEmoji(emoji: "😍", type: .normal),
-        GameEmoji(emoji: "🤗", type: .normal),
-        GameEmoji(emoji: "😴", type: .normal),
-        GameEmoji(emoji: "🤯", type: .normal),
-        GameEmoji(emoji: "😇", type: .normal)
+    let normalEmojis: [(String, EmojiType)] = [
+        ("😀", .normal),
+        ("😊", .normal),
+        ("😂", .normal),
+        ("🥰", .normal),
+        ("😎", .normal),
+        ("🤔", .normal),
+        ("😮", .normal),
+        ("😋", .normal),
+        ("🙂", .normal),
+        ("😆", .normal),
+        ("😍", .normal),
+        ("🤗", .normal),
+        ("😴", .normal),
+        ("🤯", .normal),
+        ("😇", .normal)
     ]
-    let specialEmojis = [
-        GameEmoji(emoji: "💀", type: .skull),
-        GameEmoji(emoji: "⏳", type: .hourglass),
-        GameEmoji(emoji: "🍒", type: .cherry)
+    let specialEmojis: [(String, EmojiType)] = [
+        ("💀", .skull),
+        ("⏳", .hourglass),
+        ("🍒", .cherry)
     ]
     
     init() {
@@ -101,9 +101,9 @@ class ClassicGameEngine: GameModeEngine {
             endGame()
             return
         case .hourglass:
-            timeRemaining += 1.0
+            timeRemaining += 2.0
         case .cherry:
-            score += 2
+            score += 3
         }
         
         generateNewEmojis()
@@ -127,8 +127,8 @@ class ClassicGameEngine: GameModeEngine {
         let targetCount = maxEmojisOnScreen
         
         // Always add at least one normal emoji
-        if let normalEmoji = normalEmojis.randomElement() {
-            currentEmojis.append(normalEmoji)
+        if let (emoji, type) = normalEmojis.randomElement() {
+            currentEmojis.append(GameEmoji(emoji: emoji, type: type))
         }
         
         // Fill remaining slots
@@ -138,25 +138,28 @@ class ClassicGameEngine: GameModeEngine {
             
             if randomValue < 0.4 {
                 // Add skull (40% chance)
-                currentEmojis.append(specialEmojis[0])
+                let (emoji, type) = specialEmojis[0]
+                currentEmojis.append(GameEmoji(emoji: emoji, type: type))
             } else if randomValue < 0.5 {
                 // Add hourglass (10% chance, max 1)
                 if !currentEmojis.contains(where: { $0.type == .hourglass }) {
-                    currentEmojis.append(specialEmojis[1])
-                } else if let normalEmoji = normalEmojis.randomElement() {
-                    currentEmojis.append(normalEmoji)
+                    let (emoji, type) = specialEmojis[1]
+                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
+                } else if let (emoji, type) = normalEmojis.randomElement() {
+                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
                 }
             } else if randomValue < 0.6 {
                 // Add cherry (10% chance, max 3)
                 if currentEmojis.filter({ $0.type == .cherry }).count < 3 {
-                    currentEmojis.append(specialEmojis[2])
-                } else if let normalEmoji = normalEmojis.randomElement() {
-                    currentEmojis.append(normalEmoji)
+                    let (emoji, type) = specialEmojis[2]
+                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
+                } else if let (emoji, type) = normalEmojis.randomElement() {
+                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
                 }
             } else {
                 // Add normal emoji
-                if let normalEmoji = normalEmojis.randomElement() {
-                    currentEmojis.append(normalEmoji)
+                if let (emoji, type) = normalEmojis.randomElement() {
+                    currentEmojis.append(GameEmoji(emoji: emoji, type: type))
                 }
             }
         }

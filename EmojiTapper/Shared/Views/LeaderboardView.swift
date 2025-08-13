@@ -41,7 +41,7 @@ struct LeaderboardView: View {
                 } else {
                     // Top Scores (compact)
                     VStack(spacing: 8) {
-                        Text("🏆 Top 5")
+                        Label("Top 5", systemImage: "trophy.fill")
                             .font(.headline)
                         
                         ForEach(Array(topScores.enumerated()), id: \.element.id) { index, score in
@@ -168,7 +168,7 @@ struct LeaderboardView: View {
                     }
                 }
             }
-            .navigationTitle("🏆 Leaderboard")
+            .navigationTitle("Leaderboard")
             #if !os(watchOS) && !os(macOS)
             .navigationBarTitleDisplayMode(.large)
             #endif
@@ -273,7 +273,7 @@ struct StatsSection: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("📊 Statistics")
+            Label("Statistics", systemImage: "chart.bar.xaxis")
                 .font(.headline)
                 .foregroundColor(.gray)
             
@@ -321,7 +321,7 @@ struct TopScoresSection: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("🏆 Top Scores")
+            Label("Top Scores", systemImage: "trophy.fill")
                 .font(.headline)
                 .foregroundColor(.gray)
             
@@ -389,7 +389,7 @@ struct PlayerBestSection: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("👤 Your Best")
+            Label("Your Best", systemImage: "person.fill")
                 .font(.headline)
                 .foregroundColor(.gray)
             

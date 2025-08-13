@@ -172,12 +172,12 @@ struct iOSGameView: View {
                 
                 // Celebrating penguin (grown and staying in place)
                 if let celebratingPenguin = gameState.celebratingPenguin {
-                    CelebratingPenguinView(penguin: celebratingPenguin, fontSize: 60)
+                    CelebratingPenguinView(penguin: celebratingPenguin)
                 }
                 
                 // Animated emojis flying off screen
                 ForEach(gameState.animatingEmojis) { animatedEmoji in
-                    AnimatedEmojiView(animatedEmoji: animatedEmoji, fontSize: 60)
+                    AnimatedEmojiView(animatedEmoji: animatedEmoji)
                 }
                 
                 // Animated position changes (wrong emoji taps in Penguin Ball)
